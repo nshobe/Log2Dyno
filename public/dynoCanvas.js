@@ -24,6 +24,8 @@ class DynoCanvas {
       ignition: true,
       tps: false
     };
+    this.customChannel = null; // name of an arbitrary log channel to plot
+    this.customColor = '#ff4fd8';
 
     this.cursorRpm = null;
     this.isDragging = false;
@@ -114,6 +116,11 @@ class DynoCanvas {
     this.render();
   }
 
+  setCustomChannel(name) {
+    this.customChannel = name || null;
+    this.render();
+  }
+
   setUnits(boostUnit, fuelUnit) {
     if (boostUnit) this.boostUnit = boostUnit;
     if (fuelUnit) this.fuelUnit = fuelUnit;
@@ -127,6 +134,8 @@ class DynoCanvas {
 
     let maxBoost = 20;
     let maxTiming = 35;
+    let customMin = Infinity;
+    let customMax = -Infinity;
 
     const examine = (pts) => {
       if (!pts || pts.length === 0) return;
@@ -137,6 +146,10 @@ class DynoCanvas {
         if (p.torque > maxPowerTq) maxPowerTq = p.torque;
         if (p.boostPsi && p.boostPsi > maxBoost) maxBoost = p.boostPsi;
         if (p.ignition && p.ignition > maxTiming) maxTiming = p.ignition;
+        if (p.custom !== null && p.custom !== undefined) {
+          if (p.custom < customMin) customMin = p.custom;
+          if (p.custom > customMax) customMax = p.custom;
+        }
       });
     };
 
@@ -163,7 +176,7 @@ class DynoCanvas {
       if (maxBoost < 15) maxBoost = 25;
     }
 
-    return { minRpm, maxRpm, minPowerTq: 0, maxPowerTq, maxBoost, maxTiming };
+    return { minRpm, maxRpm, minPowerTq: 0, maxPowerTq, maxBoost, maxTiming, customMin, customMax };
   }
 
   render() {
@@ -391,6 +404,16 @@ class DynoCanvas {
     const boostToY = (b) => p.top + plotH - (b / bounds.maxBoost) * plotH;
     const fuelToY = (l) => p.top + plotH - ((l - 0.65) / 0.50) * plotH; // 0.65 to 1.15 lambda
 
+    // Custom user-selected channel: auto-scale to its own observed range.
+    let customToY = null;
+    if (this.customChannel && Number.isFinite(bounds.customMin) && Number.isFinite(bounds.customMax)) {
+      const span = bounds.customMax - bounds.customMin;
+      customToY = span > 1e-9
+        ? (v) => p.top + plotH - ((v - bounds.customMin) / span) * plotH
+        : () => p.top + plotH / 2;
+    }
+    const fmtCustom = (v) => Math.abs(v) >= 100 ? v.toFixed(0) : (Math.abs(v) >= 10 ? v.toFixed(1) : v.toFixed(2));
+
     // Horizontal Grid Lines & Left Axis (Boost)
     ctx.lineWidth = 1;
     const boostStep = this.boostUnit === 'kpa' ? (bounds.maxBoost >= 250 ? 50 : 25) : 5;
@@ -524,11 +547,40 @@ class DynoCanvas {
         ctx.stroke();
       }
 
+      // Custom user-selected channel
+      if (this.customChannel && customToY) {
+        ctx.beginPath();
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = isRunB ? 'rgba(255, 79, 216, 0.6)' : this.customColor;
+        ctx.setLineDash(lineDash);
+        let started = false;
+        pts.forEach(pt => {
+          if (pt.custom === null || pt.custom === undefined) return;
+          const x = rpmToX(pt.rpm);
+          const y = customToY(pt.custom);
+          if (!started) { ctx.moveTo(x, y); started = true; }
+          else { ctx.lineTo(x, y); }
+        });
+        ctx.stroke();
+      }
+
       ctx.setLineDash([]);
     };
 
     if (this.runA?.dynoResult?.curvePoints) drawTelemRun(this.runA.dynoResult.curvePoints, false);
     if (this.runB?.dynoResult?.curvePoints) drawTelemRun(this.runB.dynoResult.curvePoints, true);
+
+    // Custom channel legend (top-left of the plot area)
+    if (this.customChannel && customToY) {
+      ctx.fillStyle = this.customColor;
+      ctx.font = 'bold 10px monospace';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(
+        `◆ ${this.customChannel}  [${fmtCustom(bounds.customMin)} .. ${fmtCustom(bounds.customMax)}]`,
+        p.left + 6, p.top + 2
+      );
+    }
 
     // Live In-Line Callouts on Lower Telemetry Graph!
     if (this.cursorRpm && this.cursorRpm >= bounds.minRpm && this.cursorRpm <= bounds.maxRpm) {
@@ -563,6 +615,9 @@ class DynoCanvas {
         if (this.telemChannels.tps && ptA.tps !== null) {
           telemCallouts.push({ y: p.top + plotH - (ptA.tps / 100) * plotH, text: `${pA}${ptA.tps}%`, color: '#00e5ff' });
         }
+        if (this.customChannel && customToY && ptA.custom !== null && ptA.custom !== undefined) {
+          telemCallouts.push({ y: customToY(ptA.custom), text: `${pA}${fmtCustom(ptA.custom)}`, color: this.customColor });
+        }
       }
 
       const ptB = this.runB?.dynoResult?.curvePoints ? this.interpolatePoint(this.runB.dynoResult.curvePoints, this.cursorRpm) : null;
@@ -582,6 +637,9 @@ class DynoCanvas {
         }
         if (this.telemChannels.tps && ptB.tps !== null) {
           telemCallouts.push({ y: p.top + plotH - (ptB.tps / 100) * plotH, text: `${pB}${ptB.tps}%`, color: 'rgba(0, 229, 255, 0.85)' });
+        }
+        if (this.customChannel && customToY && ptB.custom !== null && ptB.custom !== undefined) {
+          telemCallouts.push({ y: customToY(ptB.custom), text: `${pB}${fmtCustom(ptB.custom)}`, color: 'rgba(255, 79, 216, 0.85)' });
         }
       }
 

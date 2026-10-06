@@ -40,7 +40,7 @@ function calculateOptimalRpmStep(timeSmoothed, manualStep) {
 /**
  * Calculate dyno curves from WOT pull data points
  */
-function calculateDyno(pullData, carProfile, manualRpmStep = null) {
+function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = null) {
   if (!pullData || pullData.length < 5) {
     return { error: 'Insufficient pull data' };
   }
@@ -82,7 +82,8 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
       knock: pt.knock,
       vvt: pt.vvt,
       oilPressurePsi: pt.oilPressurePsi,
-      iatF: pt.iatF
+      iatF: pt.iatF,
+      custom: pt.custom !== undefined ? pt.custom : null
     };
   });
 
@@ -146,8 +147,8 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
   for (let i = 0; i < cleanPoints.length; i++) {
     const t0 = cleanPoints[i].t;
     let sumW = 0, sumWt = 0, sumWv = 0, sumWtt = 0, sumWtv = 0, sumRpm = 0, sumTps = 0;
-    let sumBoost = 0, sumLambda = 0, sumTargetLambda = 0, sumIgnition = 0, sumVvt = 0, sumOil = 0, sumIat = 0;
-    let countBoost = 0, countLambda = 0, countTargetLambda = 0, countIgnition = 0, countVvt = 0, countOil = 0, countIat = 0;
+    let sumBoost = 0, sumLambda = 0, sumTargetLambda = 0, sumIgnition = 0, sumVvt = 0, sumOil = 0, sumIat = 0, sumCustom = 0;
+    let countBoost = 0, countLambda = 0, countTargetLambda = 0, countIgnition = 0, countVvt = 0, countOil = 0, countIat = 0, countCustom = 0;
 
     for (let j = 0; j < cleanPoints.length; j++) {
       const dt = cleanPoints[j].t - t0;
@@ -183,6 +184,9 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
       if (cleanPoints[j].iatF !== null && cleanPoints[j].iatF !== undefined) {
         sumIat += w * cleanPoints[j].iatF; countIat += w;
       }
+      if (cleanPoints[j].custom !== null && cleanPoints[j].custom !== undefined) {
+        sumCustom += w * cleanPoints[j].custom; countCustom += w;
+      }
     }
 
     if (sumW === 0) continue;
@@ -204,7 +208,8 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
       ignition: countIgnition > 0 ? sumIgnition / countIgnition : null,
       vvt: countVvt > 0 ? sumVvt / countVvt : null,
       oilPressurePsi: countOil > 0 ? sumOil / countOil : null,
-      iatF: countIat > 0 ? sumIat / countIat : null
+      iatF: countIat > 0 ? sumIat / countIat : null,
+      custom: countCustom > 0 ? sumCustom / countCustom : null
     });
   }
 
@@ -257,6 +262,7 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
     const curTps = interp('tps');
     const curOil = interp('oilPressurePsi');
     const curIat = interp('iatF');
+    const curCustom = interp('custom');
     const curT = interp('t');
 
     // Force calculations (Newtons)
@@ -312,9 +318,12 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
       vvt: curVvt !== null ? Math.round(curVvt * 10) / 10 : null,
       tps: Math.round(curTps * 10) / 10,
       oilPressurePsi: curOil !== null ? Math.round(curOil * 10) / 10 : null,
-      iatF: curIat !== null ? Math.round(curIat) : null
+      iatF: curIat !== null ? Math.round(curIat) : null,
+      custom: curCustom !== null ? Math.round(curCustom * 1000) / 1000 : null
     });
   }
+
+  const customVals = curvePoints.map(p => p.custom).filter(v => v !== null && v !== undefined);
 
   return {
     curvePoints,
@@ -330,7 +339,10 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null) {
     startRpm: curvePoints[0]?.rpm || 0,
     endRpm: curvePoints[curvePoints.length - 1]?.rpm || 0,
     durationSec: Math.round((cleanPoints[cleanPoints.length - 1].t - cleanPoints[0].t) * 100) / 100,
-    rpmStep
+    rpmStep,
+    customName: customName || null,
+    customMin: customVals.length ? Math.round(Math.min(...customVals) * 1000) / 1000 : null,
+    customMax: customVals.length ? Math.round(Math.max(...customVals) * 1000) / 1000 : null
   };
 }
 

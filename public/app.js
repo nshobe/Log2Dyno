@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let globalBoostUnit = prefGet('boost_unit', 'psi');
   let globalFuelUnit = prefGet('fuel_unit', 'lambda');
   let globalLogFormat = prefGet('log_format', 'auto');
+  let globalCustomChannel = prefGet('custom_channel', '');
   dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
 
   let isPlaying = false;
@@ -130,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const runBLambdaLabel = document.getElementById('runBLambdaLabel');
   const btnTelemBoost = document.getElementById('btnTelemBoost');
   const btnTelemLambda = document.getElementById('btnTelemLambda');
+  const customChannelSelect = document.getElementById('customChannelSelect');
 
   if (boostUnitSelect) boostUnitSelect.value = globalBoostUnit;
   if (fuelUnitSelect) fuelUnitSelect.value = globalFuelUnit;
@@ -143,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnTelemLambda) btnTelemLambda.textContent = globalFuelUnit === 'afr' ? 'Air/Fuel (AFR)' : 'Lambda (λ)';
   }
   updateUnitLabels();
+  dynoCanvas.setCustomChannel(globalCustomChannel || null);
+  refreshCustomChannelOptions();
 
   // Splitter Elements
   const upperWrapper = document.getElementById('upperWrapper');
@@ -369,6 +373,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Custom channel selector (any numeric field found in a log)
+  if (customChannelSelect) {
+    customChannelSelect.addEventListener('change', () => {
+      globalCustomChannel = customChannelSelect.value;
+      prefSet('custom_channel', globalCustomChannel);
+      dynoCanvas.setCustomChannel(globalCustomChannel || null);
+      recalculateAllRuns();
+    });
+  }
+
   // Top Bar Listeners
   dynoTypeSelect.addEventListener('change', () => {
     globalDynoType = dynoTypeSelect.value;
@@ -460,6 +474,63 @@ document.addEventListener('DOMContentLoaded', () => {
   runBNotes.addEventListener('input', () => {
     if (runB) runB.notes = runBNotes.value;
   });
+
+  // --- Custom channel series (lazy, cached per log) ---
+  function refreshCustomChannelOptions() {
+    if (!customChannelSelect) return;
+    const names = new Set();
+    loadedLogs.forEach(log => {
+      (log.numericChannels || log.channels || []).forEach(ch => names.add(ch));
+    });
+    const sorted = [...names].sort((a, b) => a.localeCompare(b));
+    customChannelSelect.innerHTML = '<option value="">＋ Custom field…</option>';
+    sorted.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      customChannelSelect.appendChild(opt);
+    });
+    if (globalCustomChannel && sorted.includes(globalCustomChannel)) {
+      customChannelSelect.value = globalCustomChannel;
+    } else {
+      // Keep the remembered preference; it re-applies when a matching log loads.
+      customChannelSelect.value = '';
+    }
+    dynoCanvas.setCustomChannel(customChannelSelect.value || null);
+  }
+
+  function fetchChannelSeries(log, channel) {
+    if (!log || !log._content || !channel) return Promise.resolve(null);
+    if (log._series && Object.prototype.hasOwnProperty.call(log._series, channel)) {
+      return Promise.resolve(log._series[channel]);
+    }
+    const options = { ...(log._options || buildParseOptions()) };
+    return fetch('/api/channel-series', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content: log._content,
+        filename: log._filename,
+        encoding: log._encoding || undefined,
+        options,
+        channels: [channel]
+      })
+    })
+      .then(r => r.json())
+      .then(res => {
+        log._series = log._series || {};
+        const vals = !res.error && res.series && res.series[channel] && res.series[channel].some(v => v !== null)
+          ? res.series[channel]
+          : null;
+        log._series[channel] = vals;
+        return vals;
+      })
+      .catch(() => {
+        log._series = log._series || {};
+        log._series[channel] = null;
+        return null;
+      });
+  }
 
   function detectGearFromPull(pull, filename) {
     if (pull && pull.gear) return parseInt(pull.gear, 10);
@@ -594,35 +665,40 @@ document.addEventListener('DOMContentLoaded', () => {
     runObj.carProfile = profile;
     runObj.gear = profile.gear;
 
+    const ch = globalCustomChannel;
+    const series = ch && runObj.log._series ? runObj.log._series[ch] : null;
+    const start = Number.isFinite(pull.startIndex) ? pull.startIndex : 0;
+    const pullData = series
+      ? pull.data.map((row, i) => ({ ...row, custom: series[start + i] }))
+      : pull.data;
+
     return fetch('/api/calculate-dyno', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        pullData: pull.data,
+        pullData,
         carProfile: profile,
-        rpmStep: globalRpmStep === 'auto' ? null : Number(globalRpmStep)
+        rpmStep: globalRpmStep === 'auto' ? null : Number(globalRpmStep),
+        customName: series ? ch : null
       })
     }).then(r => r.json());
   }
 
   function recalculateRun(target) {
-    if (target === 'A') {
-      if (!runA) return Promise.resolve();
-      return calcSingleRun(runA, 'A').then(res => {
-        runA.dynoResult = res;
-        updateRunDisplay('A', runA);
+    const runObj = target === 'A' ? runA : runB;
+    if (!runObj) return Promise.resolve();
+    const preload = globalCustomChannel
+      ? fetchChannelSeries(runObj.log, globalCustomChannel)
+      : Promise.resolve(null);
+    return preload
+      .then(() => calcSingleRun(runObj, target))
+      .then(res => {
+        if (!res) return;
+        runObj.dynoResult = res;
+        updateRunDisplay(target, runObj);
         dynoCanvas.setRuns(runA, runB);
         updateDeltas();
       });
-    } else {
-      if (!runB) return Promise.resolve();
-      return calcSingleRun(runB, 'B').then(res => {
-        runB.dynoResult = res;
-        updateRunDisplay('B', runB);
-        dynoCanvas.setRuns(runA, runB);
-        updateDeltas();
-      });
-    }
   }
 
   function recalculateAllRuns() {
@@ -817,6 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function replaceLog(logIdx, newLog) {
     const old = loadedLogs[logIdx];
     loadedLogs[logIdx] = newLog;
+    refreshCustomChannelOptions();
 
     const aVal = runASelect.value;
     const bVal = runBSelect.value;
@@ -882,6 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     activeOverrides = {};
     mappingPanel.classList.add('hidden');
+    refreshCustomChannelOptions();
 
     populateRunDropdowns();
     renderDiagnostics(logIdx);

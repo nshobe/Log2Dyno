@@ -56,6 +56,7 @@ If you tune or analyze ECU logs, the traditional virtual dyno workflow is tediou
 - **Multi-Format Log Parser**: Drag & drop raw **Haltech** (NSP raw / flat CSV), **MegaSquirt / TunerStudio** (`.csv`, tab-delimited `.msl`, binary `.mlg`), **MS1 legacy**, or **generic CSV** logs. Format, delimiter, header, and units are auto-detected; channel names are mapped semantically with unit-aware conversion. A diagnostics bar shows what was detected, and a Channel Mapping panel lets you correct any field.
 - **Side-by-Side Pull Comparison**: Compare two pulls (Run A vs Run B) with live power deltas (`+15.2 WHP`, `+12.8 lb-ft`), curve overlays, and synchronized telemetry.
 - **Live Hover Callouts**: Move your cursor across the graph to inspect instant inline readout badges for HP, torque, boost, lambda, ignition timing, and throttle position.
+- **Custom Channel Graphing**: Beyond the Boost / Lambda / Timing / Throttle toggles, pick **any numeric channel found in the log** from a dropdown and overlay it on the telemetry graph, auto-scaled to its own range.
 - **Custom Vehicle Profiles**: Save profiles for curb weight, occupant weight, gear ratios, tire dimensions, final drive ratio, and aerodynamic drag.
 - **High-Res Export**: One-click **Print Screen** button generates clean, high-resolution PNG dyno sheets with vehicle parameters and peak stats.
 - **Flexible Access**: Run it locally on your tuning laptop or host it on a home server (TrueNAS, Unraid, Docker) to access it from any browser on your network.

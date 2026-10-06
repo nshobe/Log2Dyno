@@ -220,6 +220,24 @@ function finalizeParse({ detection, channels, units, rawRows, mapping, filename,
     warn(unitWarnings, extra.warning);
   }
 
+  // Channels that actually carry numeric data (used to populate the custom
+  // channel selector). Text/status columns never make it into rawRows values.
+  const numericCounts = {};
+  for (const r of rawRows) {
+    for (const k in r) {
+      if (typeof r[k] === 'number' && !isNaN(r[k])) numericCounts[k] = (numericCounts[k] || 0) + 1;
+    }
+  }
+  const numericChannels = channels.filter(c => (numericCounts[c] || 0) >= 2);
+
+  // Optional per-channel series extraction (aligned to normalizedRows order),
+  // so the client can plot an arbitrary column without shipping every channel.
+  const requestedSeries = Array.isArray(options.series)
+    ? options.series.filter(name => typeof name === 'string' && channels.includes(name))
+    : [];
+  const series = {};
+  for (const name of requestedSeries) series[name] = [];
+
   let maxTpsSeen = 0;
   const normalizedRows = [];
 
@@ -317,6 +335,11 @@ function finalizeParse({ detection, channels, units, rawRows, mapping, filename,
       oilPressurePsi: oilPressurePsi !== null ? Math.round(oilPressurePsi * 10) / 10 : null,
       iatF: iatF !== null ? Math.round(iatF) : null
     });
+
+    for (const name of requestedSeries) {
+      const v = r[name];
+      series[name].push(typeof v === 'number' && !isNaN(v) ? v : null);
+    }
   }
 
   // WOT Pull Extraction
@@ -348,9 +371,11 @@ function finalizeParse({ detection, channels, units, rawRows, mapping, filename,
     binary: !!(extra && extra.binary),
     totalRows: normalizedRows.length,
     channels,
+    numericChannels,
     units,
     mapping,
     unmappedRequired,
+    ...(requestedSeries.length ? { series } : {}),
     unitWarnings,
     tpsScale,
     tpsScaleSuggested,
@@ -463,6 +488,7 @@ function extractWotPulls(rows, thresholdTps = 85.0) {
   const pulls = [];
   let inWot = false;
   let currentPull = [];
+  let currentStart = 0;
 
   for (let i = 0; i < rows.length; i++) {
     const r = rows[i];
@@ -471,6 +497,7 @@ function extractWotPulls(rows, thresholdTps = 85.0) {
     if (isWot) {
       if (!inWot) {
         inWot = true;
+        currentStart = i;
         currentPull = [r];
       } else {
         currentPull.push(r);
@@ -479,7 +506,7 @@ function extractWotPulls(rows, thresholdTps = 85.0) {
       if (inWot) {
         inWot = false;
         if (currentPull.length >= 20) {
-          validateAndAddPull(currentPull, pulls);
+          validateAndAddPull(currentPull, pulls, currentStart, i - 1);
         }
         currentPull = [];
       }
@@ -487,13 +514,13 @@ function extractWotPulls(rows, thresholdTps = 85.0) {
   }
 
   if (inWot && currentPull.length >= 20) {
-    validateAndAddPull(currentPull, pulls);
+    validateAndAddPull(currentPull, pulls, currentStart, rows.length - 1);
   }
 
   return pulls;
 }
 
-function validateAndAddPull(pullRows, pulls) {
+function validateAndAddPull(pullRows, pulls, startIndex, endIndex) {
   const minRpm = Math.min(...pullRows.map(p => p.rpm));
   const maxRpm = Math.max(...pullRows.map(p => p.rpm));
   const duration = pullRows[pullRows.length - 1].t - pullRows[0].t;
@@ -515,6 +542,8 @@ function validateAndAddPull(pullRows, pulls) {
     pulls.push({
       pullIndex: pulls.length + 1,
       gear: dominantGear,
+      startIndex,
+      endIndex,
       startRpm: Math.round(minRpm),
       endRpm: Math.round(maxRpm),
       durationSec: Math.round(duration * 100) / 100,

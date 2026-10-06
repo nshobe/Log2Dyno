@@ -122,7 +122,41 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
-  // 2. Supported log formats / type hints for the UI selector
+  // 2. Extract arbitrary numeric channel series (custom graph field)
+  if (pathname === '/api/channel-series' && req.method === 'POST') {
+    try {
+      const data = await parseBody(req);
+      const content = typeof data === 'object' ? data.content : null;
+      const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
+      const baseOptions = (typeof data === 'object' && data.options) || {};
+      const encoding = typeof data === 'object' ? data.encoding : null;
+      const requested = (typeof data === 'object' && Array.isArray(data.channels)) ? data.channels : [];
+      if (!content || requested.length === 0) {
+        return sendJson(res, 400, { error: 'Missing content or channels' });
+      }
+      const options = { ...baseOptions, series: requested };
+      let parsed;
+      if (encoding === 'base64') {
+        parsed = parseLogBuffer(Buffer.from(content, 'base64'), filename, options);
+      } else {
+        parsed = parseLog(content, filename, options);
+      }
+      if (parsed.error) return sendJson(res, 200, { error: parsed.error });
+      const series = parsed.series || {};
+      const available = Object.keys(series).filter(k => series[k].some(v => v !== null));
+      const missing = requested.filter(name => !available.includes(name));
+      return sendJson(res, 200, {
+        series,
+        missing,
+        numericChannels: parsed.numericChannels || [],
+        totalRows: parsed.totalRows
+      });
+    } catch (err) {
+      return sendJson(res, 500, { error: 'Channel series failure: ' + err.message });
+    }
+  }
+
+  // 3. Supported log formats / type hints for the UI selector
   if (pathname === '/api/formats' && req.method === 'GET') {
     return sendJson(res, 200, [
       { id: 'auto', label: 'Auto-detect' },
@@ -135,12 +169,12 @@ const server = http.createServer(async (req, res) => {
   // 4. Calculate Dyno Curve
   if (pathname === '/api/calculate-dyno' && req.method === 'POST') {
     try {
-      const { pullData, carProfile, rpmStep } = await parseBody(req);
+      const { pullData, carProfile, rpmStep, customName } = await parseBody(req);
       if (!pullData || !carProfile) {
         return sendJson(res, 400, { error: 'Missing pullData or carProfile' });
       }
       const manualRpmStep = [5,10,25].includes(Number(rpmStep)) ? Number(rpmStep) : null;
-      const dynoResult = calculateDyno(pullData, carProfile, manualRpmStep);
+      const dynoResult = calculateDyno(pullData, carProfile, manualRpmStep, customName || null);
       return sendJson(res, 200, dynoResult);
     } catch (err) {
       return sendJson(res, 500, { error: 'Dyno calculation failure: ' + err.message });
