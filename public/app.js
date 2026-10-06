@@ -1,5 +1,5 @@
 /**
- * app.js - Main NSP Dyno Controller
+ * app.js - Main Log2Dyno Controller
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,12 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
     extraWeightLbs: 0
   };
 
+  // Preferences live under the Log2Dyno namespace; legacy NSP keys migrate on read.
+  function prefGet(key, fallback) {
+    const current = localStorage.getItem('log2dyno_' + key);
+    if (current !== null) return current;
+    const legacy = localStorage.getItem('nsp_' + key);
+    if (legacy !== null) {
+      localStorage.setItem('log2dyno_' + key, legacy);
+      return legacy;
+    }
+    return fallback;
+  }
+  function prefSet(key, value) {
+    localStorage.setItem('log2dyno_' + key, value);
+  }
+
   let globalDynoType = 'dynojet';
   let globalSmoothing = 4;
-  let globalRpmStep = localStorage.getItem('nsp_rpm_step') || 'auto';
-  let globalBoostUnit = localStorage.getItem('nsp_boost_unit') || 'psi';
-  let globalFuelUnit = localStorage.getItem('nsp_fuel_unit') || 'lambda';
-  let globalLogFormat = localStorage.getItem('nsp_log_format') || 'auto';
+  let globalRpmStep = prefGet('rpm_step', 'auto');
+  let globalBoostUnit = prefGet('boost_unit', 'psi');
+  let globalFuelUnit = prefGet('fuel_unit', 'lambda');
+  let globalLogFormat = prefGet('log_format', 'auto');
   dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
 
   let isPlaying = false;
@@ -362,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   boostUnitSelect.addEventListener('change', () => {
     globalBoostUnit = boostUnitSelect.value;
-    localStorage.setItem('nsp_boost_unit', globalBoostUnit);
+    prefSet('boost_unit', globalBoostUnit);
     dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
     updateRunDisplay('A', runA);
     updateRunDisplay('B', runB);
@@ -371,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fuelUnitSelect.addEventListener('change', () => {
     globalFuelUnit = fuelUnitSelect.value;
-    localStorage.setItem('nsp_fuel_unit', globalFuelUnit);
+    prefSet('fuel_unit', globalFuelUnit);
     dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
     updateRunDisplay('A', runA);
     updateRunDisplay('B', runB);
@@ -389,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rpmStepSelect.value = globalRpmStep;
     rpmStepSelect.addEventListener('change', () => {
       globalRpmStep = rpmStepSelect.value;
-      localStorage.setItem('nsp_rpm_step', globalRpmStep);
+      prefSet('rpm_step', globalRpmStep);
       recalculateAllRuns();
     });
   }
@@ -900,7 +915,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (logFormatSelect) {
     logFormatSelect.addEventListener('change', () => {
       globalLogFormat = logFormatSelect.value;
-      localStorage.setItem('nsp_log_format', globalLogFormat);
+      prefSet('log_format', globalLogFormat);
       if (diagLogIndex >= 0) reparseLog(diagLogIndex, activeOverrides);
     });
   }
@@ -964,7 +979,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < scan; i++) if (bytes[i] === 0) nullBytes++;
       if (nullBytes > 8) {
         handlers.onError(new Error(
-          `"${file.name}" is a binary log NSP Dyno cannot decode directly. ` +
+          `"${file.name}" is a binary log Log2Dyno cannot decode directly. ` +
           'MLG files are supported natively; for native SD .MS3 logs, open/convert them in TunerStudio and export CSV or MSL.'
         ));
         return;
@@ -1031,7 +1046,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataUrl = dynoCanvas.exportDynoSheet();
     const link = document.createElement('a');
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    link.download = `NSP_Dyno_Sheet_${timestamp}.png`;
+    link.download = `Log2Dyno_Sheet_${timestamp}.png`;
     link.href = dataUrl;
     link.click();
   });

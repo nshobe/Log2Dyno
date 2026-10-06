@@ -1,7 +1,9 @@
+name: log2dyno
+
 services:
-  nspdyno:
+  log2dyno:
     build: .
-    container_name: nspdyno
+    container_name: log2dyno
     restart: unless-stopped
     ports:
       - "3300:3300"

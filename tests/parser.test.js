@@ -15,56 +15,44 @@ const { detectFormat } = require('../server/formats');
 const units = require('../server/units');
 
 const FIXTURES = path.join(__dirname, 'fixtures');
-const SAMPLE = path.join(__dirname, '..', 'Log parsing - re_261001_230131_3rd (1).csv');
-const GOLDEN = path.join(FIXTURES, 'golden', 'haltech_sample.prerefactor.json');
 
 const read = (name) => fs.readFileSync(path.join(FIXTURES, name), 'utf8');
 
 // ---------------------------------------------------------------------------
 // Haltech wide CSV: the pre-refactor parser mis-mapped status/derived columns.
+// The fixture deliberately contains shadowing columns that a naive ordered
+// regex would select (see comments below).
 // ---------------------------------------------------------------------------
 test('Haltech wide CSV resolves real channels, not status flags', () => {
-  const p = parseLog(fs.readFileSync(SAMPLE, 'utf8'), path.basename(SAMPLE));
+  const p = parseLog(read('haltech_wide.csv'), 'haltech_wide.csv');
 
   assert.equal(p.format, 'generic_csv');
   assert.equal(p.family, 'haltech');
-  assert.equal(p.totalRows, 755);
-  assert.equal(p.channels.length, 845);
+  assert.equal(p.totalRows, 40);
+  assert.equal(p.channels.length, 22);
 
-  // The historical mapping picked "MAP from sensor seems valid",
-  // "boostStatus.pTerm" and "IAT: measured resistance". Must not happen now.
+  // A naive matcher would pick "MAP from sensor seems valid",
+  // "boostStatus.pTerm", "TPS2", "IAT: measured resistance" and
+  // "Gearbox Ratio". Each must resolve to the real signal instead.
   assert.equal(p.mapping.map, 'MAP');
   assert.equal(p.mapping.boost, null, 'a status/boolean column must not be chosen as boost');
+  assert.equal(p.mapping.tps, 'TPS');
   assert.equal(p.mapping.iat, 'Intake Air IAT');
   assert.equal(p.mapping.lambda, 'Lambda');
   assert.equal(p.mapping.gear, 'Detected Gear');
 
-  assert.equal(p.maxTpsSeen, 91.8);
+  assert.equal(p.maxTpsSeen, 100);
   assert.equal(p.pulls.length, 1);
   const pull = p.pulls[0];
-  assert.equal(pull.startRpm, 1670);
-  assert.equal(pull.endRpm, 6128);
-  assert.equal(pull.durationSec, 11);
-  assert.equal(pull.pointsCount, 547);
+  assert.equal(pull.startRpm, 1705);
+  assert.equal(pull.endRpm, 6359);
+  assert.equal(pull.durationSec, 1.65);
+  assert.equal(pull.pointsCount, 34);
 
-  // MAP is kPa (idle vacuum -> low boost), IAT is Celsius.
-  assert.ok(p.allRows[0].mapPsi > 2 && p.allRows[0].mapPsi < 8, `mapPsi=${p.allRows[0].mapPsi}`);
+  // MAP is kPa (idle vacuum -> negative boost), IAT is Celsius.
+  assert.equal(p.allRows[0].mapPsi, 4.4);
   assert.ok(p.allRows[0].boostPsi < 0, 'idle should show vacuum, not positive boost');
-  assert.equal(p.allRows[0].iatF, 80);
-});
-
-test('Haltech golden subset: row count and pull geometry are unchanged', () => {
-  const golden = JSON.parse(fs.readFileSync(GOLDEN, 'utf8'));
-  const p = parseLog(fs.readFileSync(SAMPLE, 'utf8'), path.basename(SAMPLE));
-
-  assert.equal(p.totalRows, golden.totalRows);
-  assert.equal(p.channels.length, golden.channelCount);
-  assert.equal(p.maxTpsSeen, golden.maxTpsSeen);
-  assert.equal(p.pulls.length, golden.pullCount);
-  assert.equal(p.pulls[0].startRpm, golden.pulls[0].startRpm);
-  assert.equal(p.pulls[0].endRpm, golden.pulls[0].endRpm);
-  assert.equal(p.pulls[0].durationSec, golden.pulls[0].durationSec);
-  assert.equal(p.pulls[0].pointsCount, golden.pulls[0].pointsCount);
+  assert.equal(p.allRows[0].iatF, 79);
 });
 
 // ---------------------------------------------------------------------------
@@ -275,7 +263,7 @@ function buildMlg(version, recCount = 40) {
   ];
   const flen = version >= 2 ? 89 : 55;
   const fixed = version >= 2 ? 24 : 22;
-  const infoStr = 'NSP Dyno test MLG';
+  const infoStr = 'Log2Dyno test MLG';
   const infoLen = Buffer.byteLength(infoStr) + 1;
   const infoDataStart = fixed + fields.length * flen;
   const dataBeginIndex = infoDataStart + infoLen;
@@ -355,8 +343,8 @@ for (const version of [1, 2]) {
 }
 
 test('committed MLG fixture parses', () => {
-  const buf = fs.readFileSync(path.join(FIXTURES, 'nsp_test.mlg'));
-  const p = parseLogBuffer(buf, 'nsp_test.mlg');
+  const buf = fs.readFileSync(path.join(FIXTURES, 'log2dyno_test.mlg'));
+  const p = parseLogBuffer(buf, 'log2dyno_test.mlg');
   assert.equal(p.error, undefined);
   assert.equal(p.format, 'mlg_binary');
   assert.equal(p.mlg.formatVersion, 2);

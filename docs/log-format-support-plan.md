@@ -1,8 +1,8 @@
 # Multi-Format Log Support Plan (MegaSquirt + Generic)
 
 Status: **PLANNED — not yet implemented**
-Owner: NSP Dyno
-Goal: Make NSP Dyno accept logs beyond Haltech (specifically MegaSquirt families) via
+Owner: Log2Dyno
+Goal: Make Log2Dyno accept logs beyond Haltech (specifically MegaSquirt families) via
 format detection + semantic field/unit detection, without changing the dyno math or
 frontend data contract.
 
@@ -48,9 +48,9 @@ normalized row shape. If we preserve that contract, all work is in the parser.
 | Frontend | `public/app.js` | Only `.csv`; never surfaces `format`/`mapping`/warnings |
 | Tests | — | None; `package.json` has no test script |
 
-Baseline sample: `Log parsing - re_261001_230131_3rd (1).csv` is a Haltech flat CSV with
-a header and **no units row**; time is in **seconds** (~2201.313). This is the golden
-fixture for regression.
+Baseline: the original Haltech log was a wide flat CSV with a header and **no units
+row** (time in seconds). The regression is now pinned by the committed synthetic
+`tests/fixtures/haltech_wide.csv`, which reproduces the shadowing columns (see below).
 
 ---
 
@@ -134,15 +134,14 @@ tests exist. See `../server/formats/`, `../server/channelMap.js`, `../server/uni
   MAP keeps a range check only as a last resort when no unit/family is known).
 - [x] Refactor `parseLog` into the orchestrator; preserved output fields and added
   `formatLabel`, `family`, `detectedDelimiter`, `units`, `unmappedRequired`, `unitWarnings`.
-- [x] Add `npm test` (built-in `node:test`) + fixtures + golden regression.
+- [x] Add `npm test` (built-in `node:test`) + fixtures + wide-Haltech regression.
 
 Deviations / discoveries (important):
 - The **pre-refactor parser mis-mapped the wide Haltech sample**: `map` resolved to the
   boolean `MAP from sensor seems valid`, `boost` to `boostStatus.pTerm`, `iat` to
-  `IAT: measured resistance`, `gear` to `Gearbox Ratio`. The golden snapshot
-  (`tests/fixtures/golden/haltech_sample.prerefactor.json`) records this old behavior.
-  The regression test intentionally asserts the *corrected* semantics for mapped
-  channels while freezing stable fields (row count, pull geometry, max TPS).
+  `IAT: measured resistance`, `gear` to `Gearbox Ratio`, and `tps` to `TPS2`.
+  `tests/fixtures/haltech_wide.csv` deliberately contains all of these shadowing
+  columns; the regression test asserts the *corrected* semantics and pull geometry.
 - `normalizeName()` strips trailing unit/suffix tokens (`_kpa`, `_c`, `_pct`) so
   names like `manifold_pressure_kpa` resolve to the base concept.
 - `detectFamily()` prefers Haltech markers over MegaSquirt markers to avoid
@@ -192,7 +191,7 @@ whichever log is selected in the Run A/B dropdowns.
   conversion path instead.
 
 Verified: v1 + v2 unit tests (including timestamp rollover and field scaling),
-committed 1.2 KB `tests/fixtures/nsp_test.mlg`, API round-trip, and real browser
+committed 1.2 KB `tests/fixtures/log2dyno_test.mlg`, API round-trip, and real browser
 upload (diagnostics show "TunerStudio binary MLG", pull + dyno calculated).
 
 ---
@@ -239,8 +238,8 @@ Keep the existing Haltech aliases working via the same table (family = `haltech`
 - **TPS voltage scaling** — many MS logs are 0–5 V or ADC counts. Warn, allow override;
   do not silently scale.
 - **Binary MLG/MS3** — separable effort; keep out of Phase 1 and reject clearly.
-- **Golden regression** — existing sample must produce byte-identical (or deeply equal)
-  output to the pre-refactor parser. Capture a snapshot before refactor.
+- **Regression coverage** — the committed wide-Haltech fixture locks the corrected
+  channel mapping and pull geometry so the shadowing bug cannot silently return.
 
 ---
 
@@ -248,7 +247,7 @@ Keep the existing Haltech aliases working via the same table (family = `haltech`
 
 | Fixture | Format | Delimiter | Units row | Assertions |
 |---|---|---|---|---|
-| existing sample | haltech_flat_csv | comma | no | golden regression, pulls unchanged |
+| `haltech_wide.csv` | generic_csv (haltech) | comma | no | shadowing columns resolve correctly; pull geometry |
 | `haltech_raw.txt` | haltech_nsp_raw | comma | n/a | channels, mapping |
 | `ms3_ts.csv` | tunerstudio | comma | yes | mapping, units, pulls |
 | `ms3_ts.msl` | megasquirt_msl | tab | yes | preamble skip, mapping, pulls |
@@ -272,8 +271,9 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
 
 ### Notes / decisions made during work
 
-- (2026-10) Pre-refactor golden snapshot captured with `node tests/capture-golden.js`.
-  It revealed the wide Haltech sample was mis-mapped; see Phase 1 deviations above.
+- (2026-10) Capturing a pre-refactor snapshot revealed the wide Haltech log was
+  mis-mapped; see Phase 1 deviations above. The original sample was untracked and has
+  since been removed, so the regression is pinned by `tests/fixtures/haltech_wide.csv`.
 - (2026-10) Test fixtures are synthetic and small: `ms3_tunerstudio.csv`,
   `ms3_sd.msl`, `ms1_legacy.csv`, `generic.csv`, `haltech_raw.txt`, `haltech_flat.csv`.
 - (2026-10) Verified end-to-end via `/api/parse-log` + `/api/calculate-dyno`

@@ -1,20 +1,20 @@
-# ⚡ NSP Dyno
+# ⚡ Log2Dyno
 
 **Lightweight Virtual Dyno & Telemetry Analysis Tool for Haltech, MegaSquirt & Generic ECU Datalogs**
 
-![NSP Dyno Fullscreen Interface](Full_Screen.png)
+![Log2Dyno Fullscreen Interface](Full_Screen.png)
 
-NSP Dyno is a zero-friction, web-based virtual dyno and telemetry comparison tool. It parses raw exported datalogs directly—no manual log trimming, no Excel editing, and no intermediate software required. Instead of hardcoding a single ECU's column names, it detects the log format, resolves channels semantically, and normalizes units, so the same tool works across platforms.
+Log2Dyno is a zero-friction, web-based virtual dyno and telemetry comparison tool. It parses raw exported datalogs directly—no manual log trimming, no Excel editing, and no intermediate software required. Instead of hardcoding a single ECU's column names, it detects the log format, resolves channels semantically, and normalizes units, so the same tool works across platforms.
 
 ---
 
 ## 📷 Screenshots
 
 ### Full-Screen Interactive Dyno & Telemetry Analysis
-![NSP Dyno Interface](Full_Screen.png)
+![Log2Dyno Interface](Full_Screen.png)
 
 ### High-Resolution Exported Dyno Sheet
-![NSP Dyno Exported Sheet](screenshot_output.png)
+![Log2Dyno Exported Sheet](screenshot_output.png)
 
 ---
 
@@ -39,7 +39,7 @@ Native SD-card `.MS3` logs are a firmware-defined binary stream that is **not** 
 
 ---
 
-## 🏎️ Why NSP Dyno?
+## 🏎️ Why Log2Dyno?
 
 If you tune or analyze ECU logs, the traditional virtual dyno workflow is tedious:
 1. Open raw log in MegaLogViewer
@@ -47,7 +47,7 @@ If you tune or analyze ECU logs, the traditional virtual dyno workflow is tediou
 3. Open CSV in Excel to delete top header metadata lines
 4. Save and load into legacy Virtual Dyno software
 
-**NSP Dyno eliminates all of that.** Just drag and drop your raw, unedited log (designed for logs with 85%+ TPS) directly into your browser.
+**Log2Dyno eliminates all of that.** Just drag and drop your raw, unedited log (designed for logs with 85%+ TPS) directly into your browser.
 
 ---
 
@@ -70,9 +70,9 @@ Ideal for TrueNAS, Unraid, Synology, or any Docker host:
 
 ```yaml
 services:
-  nspdyno:
+  log2dyno:
     build: .
-    container_name: nspdyno
+    container_name: log2dyno
     restart: unless-stopped
     ports:
       - "3300:3300"
@@ -106,7 +106,7 @@ Ideal for standalone tuning laptops:
 ## 🛠️ How to Use
 
 1. Export your log from your ECU software (Haltech NSP, TunerStudio/MegaLogViewer, etc.) as `.csv` or `.msl`.
-2. Drag and drop the file anywhere onto the NSP Dyno webpage (or click **📂 Drop / Open Log**).
+2. Drag and drop the file anywhere onto the Log2Dyno webpage (or click **📂 Drop / Open Log**).
 3. Check the diagnostics bar for the detected format and mapped channels; adjust **Log** type, **WOT** threshold, or **Channel Mapping** if needed.
 4. Select your vehicle profile and transmission gear.
 5. Move your mouse across the graph to inspect live horsepower, torque, boost, and AFR callouts!
@@ -115,4 +115,4 @@ Ideal for standalone tuning laptops:
 
 ## ⚖️ Disclaimer
 
-*NSP Dyno is an independent open-source community tool created for telemetry analysis and is not affiliated with, sponsored by, or endorsed by Haltech, EFI Analytics (TunerStudio/MegaLogViewer), or any ECU manufacturer.*
+*Log2Dyno is an independent open-source community tool created for telemetry analysis and is not affiliated with, sponsored by, or endorsed by Haltech, EFI Analytics (TunerStudio/MegaLogViewer), or any ECU manufacturer.*

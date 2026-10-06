@@ -1,7 +1,7 @@
 {
-  "name": "nsp-dyno",
+  "name": "log2dyno",
   "version": "1.0.0",
-  "description": "Virtual Dyno and Telemetry Analysis Software for Haltech, MegaSquirt/TunerStudio and generic ECU datalogs",
+  "description": "Telemetry analysis and virtual-dyno software for Haltech, MegaSquirt/TunerStudio and generic ECU datalogs",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",

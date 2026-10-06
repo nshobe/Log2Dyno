@@ -712,7 +712,7 @@ class DynoCanvas {
 
     eCtx.fillStyle = '#00e5ff';
     eCtx.font = 'bold 30px system-ui, sans-serif';
-    eCtx.fillText('NSP Dyno - Virtual Dyno & Telemetry Analysis', 50, 45);
+    eCtx.fillText('Log2Dyno - Virtual Dyno & Telemetry Analysis', 50, 45);
 
     eCtx.fillStyle = '#8899a6';
     eCtx.font = '15px monospace';

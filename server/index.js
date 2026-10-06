@@ -1,5 +1,5 @@
 /**
- * NSP Dyno - Local Server & API
+ * Log2Dyno - Local Server & API
  */
 
 const http = require('http');
@@ -220,5 +220,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`NSP Dyno server running at http://localhost:${PORT}`);
+  console.log(`Log2Dyno server running at http://localhost:${PORT}`);
 });
