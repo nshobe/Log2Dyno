@@ -103,11 +103,14 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = 
 
   // Telemetry channels get their own, usually lighter, smoothing window so the
   // lower graph can stay crisp while HP/TQ keep their (heavier) smoothing.
+  // 0 = raw/unsmoothed; 1..10 map to light..heavy Gaussian windows.
   const rawTelemLevel = parseInt(carProfile.telemSmoothing, 10);
   const telemLevel = Number.isFinite(rawTelemLevel) ? Math.max(0, Math.min(10, rawTelemLevel)) : 0;
-  const telemWindowTimeSec = 0.16 + (telemLevel * 0.07);
+  const telemRaw = telemLevel === 0;
+  const telemWindowTimeSec = telemRaw ? 0 : 0.16 + ((telemLevel - 1) * 0.07);
   const telemHalfWindow = telemWindowTimeSec / 2;
-  const telemSigma = telemHalfWindow / 2;
+  // Tiny positive sigma keeps the dt=0 term well-defined when raw (wT === 1).
+  const telemSigma = telemRaw ? 1e-9 : telemHalfWindow / 2;
 
   // 2. Identify sustained acceleration pull range (trim initial throttle tip-in surge/bogging and end lift)
   const dtSamples = [];

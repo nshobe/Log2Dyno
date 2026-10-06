@@ -32,6 +32,30 @@ function buildPull() {
   return pull.data.map((row, i) => ({ ...row, custom: p.series.MAP[pull.startIndex + i] }));
 }
 
+// A deliberately noisy channel (alternating 100/120) so smoothing effects are
+// obvious and independent of the fixture.
+function syntheticPull() {
+  const rows = [];
+  for (let i = 0; i < 80; i++) {
+    rows.push({
+      t: i * 0.02,
+      rpm: 2000 + i * 40,
+      tps: 100,
+      mapPsi: 30,
+      boostPsi: 15,
+      lambda: 0.85,
+      ignition: 20,
+      custom: i % 2 === 0 ? 100 : 120
+    });
+  }
+  return rows;
+}
+
+const variance = (arr) => {
+  const mean = arr.reduce((a, b) => a + b, 0) / arr.length;
+  return arr.reduce((a, b) => a + (b - mean) ** 2, 0) / arr.length;
+};
+
 test('telemetry smoothing changes lower-graph traces but not HP/TQ', () => {
   const pullData = buildPull();
   const light = calculateDyno(pullData, { ...PROFILE, smoothing: 8, telemSmoothing: 0 }, null, 'MAP');
@@ -79,11 +103,23 @@ test('heavy telemetry smoothing reduces trace variance', () => {
   const light = calculateDyno(pullData, { ...PROFILE, smoothing: 4, telemSmoothing: 0 }, null, 'MAP');
   const heavy = calculateDyno(pullData, { ...PROFILE, smoothing: 4, telemSmoothing: 10 }, null, 'MAP');
 
-  const variance = (vals) => {
-    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
-    return vals.reduce((a, b) => a + (b - mean) ** 2, 0) / vals.length;
-  };
   const diffs = (pts) => pts.slice(1).map((pt, i) => Math.abs(pt.custom - pts[i].custom));
 
   assert.ok(variance(diffs(heavy.curvePoints)) <= variance(diffs(light.curvePoints)));
+});
+
+test('telemetry smoothing level 0 is raw and noisier than any smoothed level', () => {
+  const pullData = syntheticPull();
+  const base = { ...PROFILE, smoothing: 4 };
+  const raw = calculateDyno(pullData, { ...base, telemSmoothing: 0 }, null, 'custom');
+  const light = calculateDyno(pullData, { ...base, telemSmoothing: 1 }, null, 'custom');
+  const heavy = calculateDyno(pullData, { ...base, telemSmoothing: 10 }, null, 'custom');
+
+  const vals = (r) => r.curvePoints.map(pt => pt.custom).filter(v => v !== null);
+
+  // 0 is a genuine floor: distinct from the lightest smoothing setting.
+  assert.notDeepEqual(vals(raw), vals(light));
+  // Raw keeps the most spread; each smoothing step tames it further.
+  assert.ok(variance(vals(raw)) > variance(vals(light)), 'raw should be noisier than level 1');
+  assert.ok(variance(vals(light)) > variance(vals(heavy)), 'level 1 should be noisier than level 10');
 });

@@ -57,7 +57,7 @@ If you tune or analyze ECU logs, the traditional virtual dyno workflow is tediou
 - **Side-by-Side Pull Comparison**: Compare two pulls (Run A vs Run B) with live power deltas (`+15.2 WHP`, `+12.8 lb-ft`), curve overlays, and synchronized telemetry.
 - **Live Hover Callouts**: Move your cursor across the graph to inspect instant inline readout badges for HP, torque, boost, lambda, ignition timing, and throttle position.
 - **Custom Channel Graphing**: Beyond the Boost / Lambda / Timing / Throttle toggles, pick **any numeric channel found in the log** from a dropdown and overlay it on the telemetry graph, auto-scaled to its own range.
-- **Independent Telemetry Smoothing**: The lower graph has its own smoothing slider, so boost / lambda / timing / throttle / custom traces can stay crisp while the horsepower & torque calculation keeps its own (usually heavier) smoothing.
+- **Independent Telemetry Smoothing**: The lower graph has its own smoothing slider (**0 = raw / unsmoothed**, 1–10 light→heavy), so boost / lambda / timing / throttle / custom traces can stay crisp while the horsepower & torque calculation keeps its own (usually heavier) smoothing.
 - **Custom Vehicle Profiles**: Save profiles for curb weight, occupant weight, gear ratios, tire dimensions, final drive ratio, and aerodynamic drag.
 - **High-Res Export**: One-click **Print Screen** button generates clean, high-resolution PNG dyno sheets with vehicle parameters and peak stats.
 - **Flexible Access**: Run it locally on your tuning laptop or host it on a home server (TrueNAS, Unraid, Docker) to access it from any browser on your network.

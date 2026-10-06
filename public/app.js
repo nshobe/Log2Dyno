@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const telemSmoothingVal = document.getElementById('telemSmoothingVal');
   if (telemSmoothingSlider) {
     telemSmoothingSlider.value = globalTelemSmoothing;
-    if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing;
+    if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing === 0 ? 'raw' : globalTelemSmoothing;
   }
 
   const runABoostUnit = document.getElementById('runABoostUnit');
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (telemSmoothingSlider) {
     telemSmoothingSlider.addEventListener('input', () => {
       globalTelemSmoothing = parseInt(telemSmoothingSlider.value, 10);
-      if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing;
+      if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing === 0 ? 'raw' : globalTelemSmoothing;
       prefSet('telem_smoothing', globalTelemSmoothing);
       recalculateAllRuns();
     });
