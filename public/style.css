@@ -653,6 +653,38 @@ body {
   color: var(--text-main);
 }
 
+/* Lower-graph telemetry smoothing control (independent of HP/TQ smoothing) */
+.telem-smooth-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  background: var(--bg-surface);
+}
+
+.telem-smooth-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.telem-smooth-range {
+  width: 48px;
+  accent-color: #ff4fd8;
+  cursor: pointer;
+}
+
+.telem-smooth-val {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #ff4fd8;
+  min-width: 10px;
+  text-align: center;
+}
+
 /* Main Display Area (Full Viewport Fit) */
 .main-stage {
   flex: 1;

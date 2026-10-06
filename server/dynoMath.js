@@ -101,6 +101,14 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = 
   const halfWindow = windowTimeSec / 2;
   const sigma = halfWindow / 2;
 
+  // Telemetry channels get their own, usually lighter, smoothing window so the
+  // lower graph can stay crisp while HP/TQ keep their (heavier) smoothing.
+  const rawTelemLevel = parseInt(carProfile.telemSmoothing, 10);
+  const telemLevel = Number.isFinite(rawTelemLevel) ? Math.max(0, Math.min(10, rawTelemLevel)) : 0;
+  const telemWindowTimeSec = 0.16 + (telemLevel * 0.07);
+  const telemHalfWindow = telemWindowTimeSec / 2;
+  const telemSigma = telemHalfWindow / 2;
+
   // 2. Identify sustained acceleration pull range (trim initial throttle tip-in surge/bogging and end lift)
   const dtSamples = [];
   for (let i = 1; i < Math.min(60, rawPoints.length); i++) {
@@ -142,50 +150,63 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = 
     return { error: 'Not enough clean acceleration data in pull' };
   }
 
-  // 3. Robust Gaussian-weighted Local Linear Regression for dv/dt and smooth telemetry variables
+  // 3. Robust Gaussian-weighted Local Linear Regression for dv/dt (dyno window)
+  //    plus a separate, lighter smoothing pass for the telemetry channels.
+  const maxHalfWindow = Math.max(halfWindow, telemHalfWindow);
   const timeSmoothed = [];
   for (let i = 0; i < cleanPoints.length; i++) {
     const t0 = cleanPoints[i].t;
-    let sumW = 0, sumWt = 0, sumWv = 0, sumWtt = 0, sumWtv = 0, sumRpm = 0, sumTps = 0;
+    let sumW = 0, sumWt = 0, sumWv = 0, sumWtt = 0, sumWtv = 0, sumRpm = 0;
+    let telemW = 0, sumTps = 0;
     let sumBoost = 0, sumLambda = 0, sumTargetLambda = 0, sumIgnition = 0, sumVvt = 0, sumOil = 0, sumIat = 0, sumCustom = 0;
     let countBoost = 0, countLambda = 0, countTargetLambda = 0, countIgnition = 0, countVvt = 0, countOil = 0, countIat = 0, countCustom = 0;
 
     for (let j = 0; j < cleanPoints.length; j++) {
       const dt = cleanPoints[j].t - t0;
-      if (Math.abs(dt) > halfWindow) continue;
+      const adt = Math.abs(dt);
+      if (adt > maxHalfWindow) continue;
 
-      const w = Math.exp(-0.5 * Math.pow(dt / sigma, 2));
-      sumW += w;
-      sumWt += w * dt;
-      sumWv += w * cleanPoints[j].v;
-      sumWtt += w * dt * dt;
-      sumWtv += w * dt * cleanPoints[j].v;
-      sumRpm += w * cleanPoints[j].rpm;
-      sumTps += w * (cleanPoints[j].tps || 0);
+      // Dyno window: velocity / acceleration / RPM axis (drives HP + torque).
+      if (adt <= halfWindow) {
+        const w = Math.exp(-0.5 * Math.pow(dt / sigma, 2));
+        sumW += w;
+        sumWt += w * dt;
+        sumWv += w * cleanPoints[j].v;
+        sumWtt += w * dt * dt;
+        sumWtv += w * dt * cleanPoints[j].v;
+        sumRpm += w * cleanPoints[j].rpm;
+      }
 
-      if (cleanPoints[j].boostPsi !== null && cleanPoints[j].boostPsi !== undefined) {
-        sumBoost += w * cleanPoints[j].boostPsi; countBoost += w;
-      }
-      if (cleanPoints[j].lambda !== null && cleanPoints[j].lambda !== undefined) {
-        sumLambda += w * cleanPoints[j].lambda; countLambda += w;
-      }
-      if (cleanPoints[j].targetLambda !== null && cleanPoints[j].targetLambda !== undefined) {
-        sumTargetLambda += w * cleanPoints[j].targetLambda; countTargetLambda += w;
-      }
-      if (cleanPoints[j].ignition !== null && cleanPoints[j].ignition !== undefined) {
-        sumIgnition += w * cleanPoints[j].ignition; countIgnition += w;
-      }
-      if (cleanPoints[j].vvt !== null && cleanPoints[j].vvt !== undefined) {
-        sumVvt += w * cleanPoints[j].vvt; countVvt += w;
-      }
-      if (cleanPoints[j].oilPressurePsi !== null && cleanPoints[j].oilPressurePsi !== undefined) {
-        sumOil += w * cleanPoints[j].oilPressurePsi; countOil += w;
-      }
-      if (cleanPoints[j].iatF !== null && cleanPoints[j].iatF !== undefined) {
-        sumIat += w * cleanPoints[j].iatF; countIat += w;
-      }
-      if (cleanPoints[j].custom !== null && cleanPoints[j].custom !== undefined) {
-        sumCustom += w * cleanPoints[j].custom; countCustom += w;
+      // Telemetry window: lower-graph channels only.
+      if (adt <= telemHalfWindow) {
+        const wT = Math.exp(-0.5 * Math.pow(dt / telemSigma, 2));
+        telemW += wT;
+        sumTps += wT * (cleanPoints[j].tps || 0);
+
+        if (cleanPoints[j].boostPsi !== null && cleanPoints[j].boostPsi !== undefined) {
+          sumBoost += wT * cleanPoints[j].boostPsi; countBoost += wT;
+        }
+        if (cleanPoints[j].lambda !== null && cleanPoints[j].lambda !== undefined) {
+          sumLambda += wT * cleanPoints[j].lambda; countLambda += wT;
+        }
+        if (cleanPoints[j].targetLambda !== null && cleanPoints[j].targetLambda !== undefined) {
+          sumTargetLambda += wT * cleanPoints[j].targetLambda; countTargetLambda += wT;
+        }
+        if (cleanPoints[j].ignition !== null && cleanPoints[j].ignition !== undefined) {
+          sumIgnition += wT * cleanPoints[j].ignition; countIgnition += wT;
+        }
+        if (cleanPoints[j].vvt !== null && cleanPoints[j].vvt !== undefined) {
+          sumVvt += wT * cleanPoints[j].vvt; countVvt += wT;
+        }
+        if (cleanPoints[j].oilPressurePsi !== null && cleanPoints[j].oilPressurePsi !== undefined) {
+          sumOil += wT * cleanPoints[j].oilPressurePsi; countOil += wT;
+        }
+        if (cleanPoints[j].iatF !== null && cleanPoints[j].iatF !== undefined) {
+          sumIat += wT * cleanPoints[j].iatF; countIat += wT;
+        }
+        if (cleanPoints[j].custom !== null && cleanPoints[j].custom !== undefined) {
+          sumCustom += wT * cleanPoints[j].custom; countCustom += wT;
+        }
       }
     }
 
@@ -201,7 +222,7 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = 
       rpm: rpmSm,
       v: vSm,
       a: a,
-      tps: sumTps / sumW,
+      tps: telemW > 0 ? sumTps / telemW : 0,
       boostPsi: countBoost > 0 ? sumBoost / countBoost : null,
       lambda: countLambda > 0 ? sumLambda / countLambda : null,
       targetLambda: countTargetLambda > 0 ? sumTargetLambda / countTargetLambda : null,

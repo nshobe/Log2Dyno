@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let globalDynoType = 'dynojet';
   let globalSmoothing = 4;
+  let globalTelemSmoothing = parseInt(prefGet('telem_smoothing', '0'), 10);
+  if (!Number.isFinite(globalTelemSmoothing)) globalTelemSmoothing = 0;
   let globalRpmStep = prefGet('rpm_step', 'auto');
   let globalBoostUnit = prefGet('boost_unit', 'psi');
   let globalFuelUnit = prefGet('fuel_unit', 'lambda');
@@ -124,6 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const fuelUnitSelect = document.getElementById('fuelUnitSelect');
   const smoothingSlider = document.getElementById('smoothingSlider');
   const smoothingVal = document.getElementById('smoothingVal');
+  const telemSmoothingSlider = document.getElementById('telemSmoothingSlider');
+  const telemSmoothingVal = document.getElementById('telemSmoothingVal');
+  if (telemSmoothingSlider) {
+    telemSmoothingSlider.value = globalTelemSmoothing;
+    if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing;
+  }
 
   const runABoostUnit = document.getElementById('runABoostUnit');
   const runALambdaLabel = document.getElementById('runALambdaLabel');
@@ -348,7 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
       gearRatio: gearRatio,
       extraWeightLbs: settings.extraWeightLbs || 0,
       dynoType: globalDynoType,
-      smoothing: globalSmoothing
+      smoothing: globalSmoothing,
+      telemSmoothing: globalTelemSmoothing
     };
   }
 
@@ -412,6 +421,15 @@ document.addEventListener('DOMContentLoaded', () => {
     smoothingVal.textContent = globalSmoothing;
     recalculateAllRuns();
   });
+
+  if (telemSmoothingSlider) {
+    telemSmoothingSlider.addEventListener('input', () => {
+      globalTelemSmoothing = parseInt(telemSmoothingSlider.value, 10);
+      if (telemSmoothingVal) telemSmoothingVal.textContent = globalTelemSmoothing;
+      prefSet('telem_smoothing', globalTelemSmoothing);
+      recalculateAllRuns();
+    });
+  }
 
   const rpmStepSelect = document.getElementById('rpmStepSelect');
   if (rpmStepSelect) {

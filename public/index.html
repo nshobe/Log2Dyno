@@ -51,8 +51,8 @@
       </div>
 
       <div class="setting-item">
-        <span class="setting-label">Smooth:</span>
-        <input type="range" id="smoothingSlider" min="0" max="10" value="4" style="width:55px;accent-color:#00e5ff;">
+        <span class="setting-label">Dyno Smooth:</span>
+        <input type="range" id="smoothingSlider" min="0" max="10" value="4" style="width:55px;accent-color:#00e5ff;" title="Smoothing applied to the horsepower/torque calculation">
         <span id="smoothingVal" style="font-family:var(--font-mono);font-size:11px;min-width:12px;">4</span>
       </div>
       <div class="setting-item">
@@ -254,6 +254,11 @@
       <select id="customChannelSelect" class="setting-select custom-channel-select" title="Plot any numeric channel found in the log">
         <option value="">＋ Custom field…</option>
       </select>
+      <span class="telem-smooth-control" title="Smoothing applied only to the lower telemetry traces (HP/TQ uses Dyno Smooth)">
+        <span class="telem-smooth-label">Smooth</span>
+        <input type="range" id="telemSmoothingSlider" min="0" max="10" value="0" class="telem-smooth-range">
+        <span id="telemSmoothingVal" class="telem-smooth-val">0</span>
+      </span>
     </div>
 
     <!-- Graph Size Presets -->
