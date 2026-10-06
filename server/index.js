@@ -6,7 +6,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const { parseLog } = require('./parser');
+const { parseLog, parseLogBuffer } = require('./parser');
 const { calculateDyno, DYNO_FACTORS } = require('./dynoMath');
 
 const PORT = parseInt(process.env.PORT, 10) || 3300;
@@ -108,7 +108,14 @@ const server = http.createServer(async (req, res) => {
       const content = typeof data === 'object' ? data.content : data;
       const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
       const options = (typeof data === 'object' && data.options) || {};
-      const parsed = parseLog(content, filename, options);
+      const encoding = typeof data === 'object' ? data.encoding : null;
+      let parsed;
+      if (encoding === 'base64') {
+        const buffer = Buffer.from(content, 'base64');
+        parsed = parseLogBuffer(buffer, filename, options);
+      } else {
+        parsed = parseLog(content, filename, options);
+      }
       return sendJson(res, 200, parsed);
     } catch (err) {
       return sendJson(res, 500, { error: 'Parse failure: ' + err.message });

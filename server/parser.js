@@ -8,6 +8,8 @@
  *
  * Supported text formats: Haltech NSP raw, Haltech flat CSV, TunerStudio/MS
  * CSV, MegaSquirt MSL (tab), and generic CSV.
+ * Supported binary format: TunerStudio/MegaLogViewer MLG (MLVLG v1/v2) via
+ * parseLogBuffer().
  */
 
 'use strict';
@@ -25,12 +27,14 @@ const { identifyChannels, normalizeName, isAfrName } = require('./channelMap');
 const { detectFormat, findHeaderIndex, findUnitsIndex } = require('./formats');
 const { splitLine, parseRows } = require('./formats/delimited');
 const { parseHaltechRaw } = require('./formats/haltechRaw');
+const { parseMlg } = require('./formats/mlg');
 
 const FORMAT_LABELS = {
   haltech_nsp_raw: 'Haltech NSP raw',
   haltech_flat_csv: 'Haltech CSV (units row)',
   megasquirt_msl: 'MegaSquirt MSL / TunerStudio (tab)',
   megasquirt_csv: 'MegaSquirt / TunerStudio CSV',
+  mlg_binary: 'TunerStudio binary MLG',
   generic_csv: 'Generic CSV'
 };
 
@@ -87,6 +91,24 @@ function refreshMappingMeta(mapping, channels, units) {
     ? isAfrName(mapping.targetLambda, mapping.targetLambdaUnit) : false;
 }
 
+/** Resolve channels, then apply user channel overrides (with unit refresh). */
+function resolveMapping(channels, units, options) {
+  const mapping = identifyChannels(channels, units);
+  if (options.channelOverrides && typeof options.channelOverrides === 'object') {
+    for (const key of Object.keys(options.channelOverrides)) {
+      if (!(key in mapping)) continue;
+      const value = options.channelOverrides[key];
+      if (value === null) {
+        mapping[key] = null;
+      } else if (typeof value === 'string' && channels.includes(value)) {
+        mapping[key] = value;
+      }
+    }
+    refreshMappingMeta(mapping, channels, units);
+  }
+  return mapping;
+}
+
 /**
  * Interpret an absolute manifold-pressure channel as { mapPsi, boostPsi }.
  * `maxMap` is used only when no unit is declared, to decide kPa vs psi.
@@ -137,57 +159,13 @@ function isNarrowbandName(name) {
   return /^(o2|ego|lambda sensor)$/.test(normalizeName(name));
 }
 
-function parseLog(fileContent, filename = '', options = {}) {
-  if (!fileContent || typeof fileContent !== 'string') {
-    return { error: 'Empty or invalid file content' };
-  }
-
-  const lines = fileContent.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-  if (lines.length < 3) {
-    return { error: 'File contains insufficient data' };
-  }
-
-  const detection = detectFormat(lines, filename);
-  applyFormatOptions(detection, options, lines, filename);
+/**
+ * Shared normalization + pull extraction. `rawRows` must already be built and
+ * keyed by channel name; `mapping` must already have overrides applied.
+ */
+function finalizeParse({ detection, channels, units, rawRows, mapping, filename, options, extra }) {
   const format = detection.id;
   const family = detection.family;
-
-  let channels = [];
-  let units = [];
-  let rawRows = [];
-
-  if (format === 'haltech_nsp_raw') {
-    const parsed = parseHaltechRaw(lines);
-    channels = parsed.channels;
-    rawRows = parsed.rows;
-  } else {
-    channels = splitLine(lines[detection.headerIndex], detection.delimiter);
-    units = detection.unitsIndex >= 0
-      ? splitLine(lines[detection.unitsIndex], detection.delimiter)
-      : [];
-  }
-
-  const mapping = identifyChannels(channels, units);
-
-  if (options.channelOverrides && typeof options.channelOverrides === 'object') {
-    for (const key of Object.keys(options.channelOverrides)) {
-      if (!(key in mapping)) continue;
-      const value = options.channelOverrides[key];
-      if (value === null) {
-        mapping[key] = null;
-      } else if (typeof value === 'string' && channels.includes(value)) {
-        mapping[key] = value;
-      }
-    }
-    refreshMappingMeta(mapping, channels, units);
-  }
-
-  if (format !== 'haltech_nsp_raw') {
-    rawRows = parseRows(
-      lines, detection.dataIndex, channels, units,
-      mapping.time, detection.delimiter
-    );
-  }
 
   if (rawRows.length === 0) {
     return { error: 'No numeric telemetry rows could be parsed' };
@@ -237,6 +215,9 @@ function parseLog(fileContent, filename = '', options = {}) {
   }
   if (tpsScaleSuggested) {
     warn(unitWarnings, `${tpsScaleSuggested.reason} Apply a ×${tpsScaleSuggested.factor} TPS scale if this is a 0-5V/ADC log.`);
+  }
+  if (extra && extra.warning) {
+    warn(unitWarnings, extra.warning);
   }
 
   let maxTpsSeen = 0;
@@ -364,6 +345,7 @@ function parseLog(fileContent, filename = '', options = {}) {
     formatLabel: FORMAT_LABELS[format] || format,
     family,
     detectedDelimiter: detection.delimiter,
+    binary: !!(extra && extra.binary),
     totalRows: normalizedRows.length,
     channels,
     units,
@@ -376,8 +358,105 @@ function parseLog(fileContent, filename = '', options = {}) {
     maxTpsSeen: Math.round(maxTpsSeen * 10) / 10,
     warning,
     pulls,
-    allRows: normalizedRows
+    allRows: normalizedRows,
+    ...(extra && extra.meta ? extra.meta : {})
   };
+}
+
+function parseLog(fileContent, filename = '', options = {}) {
+  if (!fileContent || typeof fileContent !== 'string') {
+    return { error: 'Empty or invalid file content' };
+  }
+
+  const lines = fileContent.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (lines.length < 3) {
+    return { error: 'File contains insufficient data' };
+  }
+
+  const detection = detectFormat(lines, filename);
+  applyFormatOptions(detection, options, lines, filename);
+
+  let channels = [];
+  let units = [];
+  let rawRows = [];
+
+  if (detection.id === 'haltech_nsp_raw') {
+    const parsed = parseHaltechRaw(lines);
+    channels = parsed.channels;
+    rawRows = parsed.rows;
+  } else {
+    channels = splitLine(lines[detection.headerIndex], detection.delimiter);
+    units = detection.unitsIndex >= 0
+      ? splitLine(lines[detection.unitsIndex], detection.delimiter)
+      : [];
+  }
+
+  const mapping = resolveMapping(channels, units, options);
+
+  if (detection.id !== 'haltech_nsp_raw') {
+    rawRows = parseRows(
+      lines, detection.dataIndex, channels, units,
+      mapping.time, detection.delimiter
+    );
+  }
+
+  return finalizeParse({ detection, channels, units, rawRows, mapping, filename, options });
+}
+
+/**
+ * Parse a binary MLG log. Rejects non-MLVLG buffers with a helpful message.
+ */
+function parseLogBuffer(buffer, filename = '', options = {}) {
+  if (!buffer || buffer.length === 0) {
+    return { error: 'Empty or invalid file content' };
+  }
+
+  let mlg;
+  try {
+    mlg = parseMlg(buffer);
+  } catch (err) {
+    return {
+      error: `${err.message}. Native SD .MS3 logs are not decoded directly; ` +
+        'open/convert them in TunerStudio and export as CSV or MSL.'
+    };
+  }
+
+  const detection = {
+    id: 'mlg_binary',
+    family: 'megasquirt',
+    delimiter: ',',
+    headerIndex: -1,
+    unitsIndex: 0,
+    dataIndex: 1,
+    hasUnits: true,
+    preamble: [],
+    binary: true
+  };
+
+  const channels = mlg.channels;
+  const units = mlg.units;
+  const mapping = resolveMapping(channels, units, options);
+
+  return finalizeParse({
+    detection,
+    channels,
+    units,
+    rawRows: mlg.rows,
+    mapping,
+    filename,
+    options,
+    extra: {
+      binary: true,
+      meta: {
+        mlg: {
+          formatVersion: mlg.formatVersion,
+          timestamp: mlg.timestamp,
+          info: mlg.info,
+          markerCount: mlg.markers.length
+        }
+      }
+    }
+  });
 }
 
 function extractWotPulls(rows, thresholdTps = 85.0) {
@@ -447,6 +526,7 @@ function validateAndAddPull(pullRows, pulls) {
 
 module.exports = {
   parseLog,
+  parseLogBuffer,
   identifyChannels,
   extractWotPulls,
   interpretMapChannel,

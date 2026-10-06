@@ -10,7 +10,7 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 
-const { parseLog } = require('../server/parser');
+const { parseLog, parseLogBuffer } = require('../server/parser');
 const { detectFormat } = require('../server/formats');
 const units = require('../server/units');
 
@@ -255,4 +255,120 @@ test('low max TPS triggers a voltage/ADC scale suggestion', () => {
   assert.ok(p.tpsScaleSuggested, 'expected a tpsScaleSuggested object');
   assert.ok(p.tpsScaleSuggested.factor > 0);
   assert.ok(p.unitWarnings.some(w => /0-5V|ADC|TPS/i.test(w)));
+});
+
+// ---------------------------------------------------------------------------
+// Binary MLG (MLVLG v1/v2)
+// ---------------------------------------------------------------------------
+function writeCString(buf, offset, len, str) {
+  buf.write(str, offset, Math.min(len - 1, str.length), 'latin1');
+}
+
+const TYPE_SIZE = { 0: 1, 1: 1, 2: 2, 3: 2, 4: 4, 5: 4, 6: 8, 7: 4, 10: 1, 11: 2, 12: 4 };
+
+function buildMlg(version, recCount = 40) {
+  const fields = [
+    { type: 2, name: 'RPM', units: 'RPM', scale: 1, transform: 0 },
+    { type: 2, name: 'MAP', units: 'kPa', scale: 1, transform: 0 },
+    { type: 0, name: 'TPS', units: '%', scale: 1, transform: 0 },
+    { type: 2, name: 'MAT', units: 'F', scale: 0.1, transform: 0 }
+  ];
+  const flen = version >= 2 ? 89 : 55;
+  const fixed = version >= 2 ? 24 : 22;
+  const infoStr = 'NSP Dyno test MLG';
+  const infoLen = Buffer.byteLength(infoStr) + 1;
+  const infoDataStart = fixed + fields.length * flen;
+  const dataBeginIndex = infoDataStart + infoLen;
+  const recordLength = fields.reduce((sum, f) => sum + TYPE_SIZE[f.type], 0);
+  const blockSize = 1 + 1 + 2 + recordLength + 1;
+
+  const buf = Buffer.alloc(dataBeginIndex + recCount * blockSize);
+  buf.write('MLVLG\0', 0, 'latin1');
+  buf.writeUInt16BE(version, 6);
+  buf.writeUInt32BE(0, 8);
+  if (version >= 2) buf.writeUInt32BE(infoDataStart, 12);
+  else buf.writeUInt16BE(infoDataStart, 12);
+  let o = version >= 2 ? 16 : 14;
+  buf.writeUInt32BE(dataBeginIndex, o); o += 4;
+  buf.writeUInt16BE(recordLength, o); o += 2;
+  buf.writeUInt16BE(fields.length, o); o += 2;
+
+  fields.forEach((f, i) => {
+    const base = fixed + i * flen;
+    buf.writeUInt8(f.type, base);
+    writeCString(buf, base + 1, 34, f.name);
+    writeCString(buf, base + 35, 10, f.units);
+    buf.writeUInt8(0, base + 45);
+    buf.writeFloatBE(f.scale, base + 46);
+    buf.writeFloatBE(f.transform, base + 50);
+    buf.writeInt8(0, base + 54);
+  });
+  buf.write(infoStr + '\0', infoDataStart, 'latin1');
+
+  let off = dataBeginIndex;
+  for (let i = 0; i < recCount; i++) {
+    const rpm = Math.round(1000 + i * (5500 / (recCount - 1)));
+    const tps = (i >= 5 && i <= recCount - 2) ? 100 : 0;
+    const map = tps > 50 ? Math.round(30 + (rpm / 6500) * 130) : 30;
+    const tick = (i * 2500) & 0xffff; // 25 ms/rec; crosses the 16-bit rollover
+    buf.writeUInt8(0, off); off += 1;
+    buf.writeUInt8(i & 0xff, off); off += 1;
+    buf.writeUInt16BE(tick, off); off += 2;
+    buf.writeUInt16BE(rpm, off); off += 2;
+    buf.writeUInt16BE(map, off); off += 2;
+    buf.writeUInt8(tps, off); off += 1;
+    buf.writeUInt16BE(800, off); off += 2; // MAT raw -> 80 F
+    buf.writeUInt8(0, off); off += 1; // crc
+  }
+  return buf;
+}
+
+for (const version of [1, 2]) {
+  test(`MLG v${version} decodes header, fields, and records`, () => {
+    const buf = buildMlg(version);
+    const p = parseLogBuffer(buf, `test_v${version}.mlg`);
+
+    assert.equal(p.error, undefined);
+    assert.equal(p.format, 'mlg_binary');
+    assert.equal(p.binary, true);
+    assert.equal(p.mlg.formatVersion, version);
+    assert.equal(p.mapping.rpm, 'RPM');
+    assert.equal(p.mapping.map, 'MAP');
+    assert.equal(p.mapping.tps, 'TPS');
+    assert.equal(p.mapping.iat, 'MAT');
+    assert.equal(p.mapping.mapUnit, 'kPa');
+
+    assert.equal(p.totalRows, 40);
+    assert.equal(p.pulls.length, 1);
+    assert.equal(p.pulls[0].startRpm, 1705);
+    assert.equal(p.pulls[0].endRpm, 6359);
+    assert.ok(p.pulls[0].durationSec >= 0.8, `duration ${p.pulls[0].durationSec}`);
+
+    // 10us ticks with 16-bit rollover -> 0.975 s elapsed at the end.
+    assert.equal(p.allRows[39].t, 0.975);
+    // Units honored: peak MAP ~157 kPa -> ~22.8 psi (last record is off-throttle).
+    const peakMapPsi = Math.max(...p.allRows.map(r => r.mapPsi));
+    assert.ok(peakMapPsi > 22 && peakMapPsi < 24, `peak mapPsi ${peakMapPsi}`);
+    // Field scale applied: raw 800 * 0.1 = 80 F.
+    assert.equal(p.allRows[0].iatF, 80);
+  });
+}
+
+test('committed MLG fixture parses', () => {
+  const buf = fs.readFileSync(path.join(FIXTURES, 'nsp_test.mlg'));
+  const p = parseLogBuffer(buf, 'nsp_test.mlg');
+  assert.equal(p.error, undefined);
+  assert.equal(p.format, 'mlg_binary');
+  assert.equal(p.mlg.formatVersion, 2);
+  assert.equal(p.mapping.lambda, 'AFR');
+  assert.equal(p.mapping.lambdaIsAfr, true);
+  assert.equal(p.allRows[0].lambda, 0.95);
+  assert.equal(p.pulls.length, 1);
+});
+
+test('parseLogBuffer rejects non-MLVLG binaries with conversion guidance', () => {
+  const junk = Buffer.from([0x00, 0x01, 0x02, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00]);
+  const p = parseLogBuffer(junk, 'sdcard.MS3');
+  assert.ok(p.error, 'expected an error');
+  assert.ok(/MS3|TunerStudio|CSV|MSL/i.test(p.error), p.error);
 });

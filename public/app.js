@@ -828,12 +828,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/parse-log', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content: log._content, filename: log._filename, options })
+      body: JSON.stringify({ content: log._content, filename: log._filename, encoding: log._encoding || undefined, options })
     })
       .then(r => r.json())
       .then(parsed => {
         if (parsed.error) { alert('Error re-parsing log: ' + parsed.error); return; }
-        const newLog = { ...parsed, _content: log._content, _filename: log._filename, _options: options };
+        const newLog = { ...parsed, _content: log._content, _filename: log._filename, _encoding: log._encoding, _options: options };
         replaceLog(logIdx, newLog);
         renderDiagnostics(logIdx);
         if (parsed.warning) {
@@ -862,6 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ...parsed,
       _content: meta.content,
       _filename: meta.filename || parsed.filename,
+      _encoding: meta.encoding || null,
       _options: meta.options || {}
     });
     activeOverrides = {};
@@ -931,23 +932,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const TEXT_LOG_EXT = /\.(csv|msl|txt|tsv|log)$/i;
+  const TEXT_LOG_EXT = /\.(csv|msl|txt|tsv|log|mlg|ms3)$/i;
 
-  function readLogFile(file, onText, onError) {
+  function isMlgBuffer(buf) {
+    const b = new Uint8Array(buf.slice(0, 5));
+    return b.length === 5 && b[0] === 0x4D && b[1] === 0x4C && b[2] === 0x56 && b[3] === 0x4C && b[4] === 0x47;
+  }
+
+  function toBase64(buf) {
+    const bytes = new Uint8Array(buf);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
+  function readLogFile(file, handlers) {
     const reader = new FileReader();
-    reader.onerror = () => onError(new Error('Could not read file: ' + file.name));
+    reader.onerror = () => handlers.onError(new Error('Could not read file: ' + file.name));
     reader.onload = (evt) => {
       const buf = evt.target.result;
-      const bytes = new Uint8Array(buf.slice(0, 4096));
-      let nullBytes = 0;
-      for (let i = 0; i < bytes.length; i++) {
-        if (bytes[i] === 0) nullBytes++;
-      }
-      if (nullBytes > 8) {
-        onError(new Error(`"${file.name}" looks like a binary log (MLG/MS3). Export it as CSV or MSL from TunerStudio first.`));
+      if (isMlgBuffer(buf)) {
+        handlers.onBinary(toBase64(buf));
         return;
       }
-      onText(new TextDecoder('utf-8').decode(buf));
+      const bytes = new Uint8Array(buf);
+      const scan = Math.min(bytes.length, 4096);
+      let nullBytes = 0;
+      for (let i = 0; i < scan; i++) if (bytes[i] === 0) nullBytes++;
+      if (nullBytes > 8) {
+        handlers.onError(new Error(
+          `"${file.name}" is a binary log NSP Dyno cannot decode directly. ` +
+          'MLG files are supported natively; for native SD .MS3 logs, open/convert them in TunerStudio and export CSV or MSL.'
+        ));
+        return;
+      }
+      handlers.onText(new TextDecoder('utf-8').decode(buf));
     };
     reader.readAsArrayBuffer(file);
   }
@@ -964,17 +986,29 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => alert('Upload error: ' + err.message));
   }
 
+  function parseAndIngestBinary(base64, filename, autoSelect = true) {
+    const options = buildParseOptions();
+    fetch('/api/parse-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: base64, filename, encoding: 'base64', options })
+    })
+      .then(r => r.json())
+      .then(parsed => ingestParsedLog(parsed, autoSelect, { content: base64, filename, options, encoding: 'base64' }))
+      .catch(err => alert('Upload error: ' + err.message));
+  }
+
   function handleFileList(files) {
     for (const file of files) {
       if (!TEXT_LOG_EXT.test(file.name)) {
-        alert(`Unsupported file "${file.name}". Supported: .csv, .msl, .txt, .tsv, .log`);
+        alert(`Unsupported file "${file.name}". Supported: .csv, .msl, .txt, .tsv, .log, .mlg`);
         continue;
       }
-      readLogFile(
-        file,
-        (text) => parseAndIngest(text, file.name, true),
-        (err) => alert(err.message)
-      );
+      readLogFile(file, {
+        onText: (text) => parseAndIngest(text, file.name, true),
+        onBinary: (base64) => parseAndIngestBinary(base64, file.name, true),
+        onError: (err) => alert(err.message)
+      });
     }
   }
 

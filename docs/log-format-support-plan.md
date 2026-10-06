@@ -176,10 +176,24 @@ the mapping panel opens with 14 fields, and a forced override triggers a re-pars
 Known limitation: diagnostics/mapping reflect the most-recently ingested log, not
 whichever log is selected in the Run A/B dropdowns.
 
-### Phase 3 — Binary (optional/later)
+### Phase 3 — Binary — ✅ COMPLETE
 
-- [ ] `.mlg` (MLVLG v1/v2) decoder.
-- [ ] `.MS3` decoder or documented conversion path only.
+- [x] `.mlg` (MLVLG v1/v2) decoder in `server/formats/mlg.js`.
+  - [x] Big-endian header (v1/v2 infoStart width and 55/89-byte fields)
+  - [x] Scalar + bitfield field types; `(raw + transform) * scale`
+  - [x] Type-0 data blocks with 16-bit 10µs timestamp + rollover handling
+  - [x] Type-1 marker blocks, bit-field names, info string
+  - [x] AFR channels converted to lambda via existing unit logic
+- [x] `parseLogBuffer()` entry point in `server/parser.js`, sharing normalization.
+- [x] API `/api/parse-log` accepts `encoding: 'base64'` for binary payloads.
+- [x] Frontend detects MLG magic and uploads base64; `.ms3` (and other binary)
+  rejected with a TunerStudio conversion path.
+- [x] `.MS3` decoder deferred (firmware-defined, undocumented); documented
+  conversion path instead.
+
+Verified: v1 + v2 unit tests (including timestamp rollover and field scaling),
+committed 1.2 KB `tests/fixtures/nsp_test.mlg`, API round-trip, and real browser
+upload (diagnostics show "TunerStudio binary MLG", pull + dyno calculated).
 
 ---
 
@@ -254,7 +268,7 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
 - [x] Write this plan.
 - [x] Phase 1 (parser core + tests) — 11 tests passing.
 - [x] Phase 2 (API options + UI diagnostics/mapping) — CDP-verified in headless Chromium.
-- [ ] Phase 3
+- [x] Phase 3 (binary MLG v1/v2) — 20 tests passing; UI upload verified.
 
 ### Notes / decisions made during work
 
@@ -264,6 +278,8 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
   `ms3_sd.msl`, `ms1_legacy.csv`, `generic.csv`, `haltech_raw.txt`, `haltech_flat.csv`.
 - (2026-10) Verified end-to-end via `/api/parse-log` + `/api/calculate-dyno`
   (peakHp/peakTq returned, `rpmStep` honored).
+- (2026-10) Phase 3: MLVLG v1/v2 decoded. Note snap Chromium cannot read `/tmp`
+  (confinement); browser test fixtures must live under `$HOME`.
 - (2026-10) Phase 2 UI validated via headless snap Chromium over CDP
   (`DOM.setFileInputFiles` on the real `#fileInput`): no page JS errors, diagnostics
   and mapping panel work, override re-parse confirmed. `.mcp.json` was used with a
