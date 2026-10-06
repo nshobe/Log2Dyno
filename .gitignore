@@ -13,6 +13,11 @@ yarn-error.log*
 logs/
 *.csv
 
+# Local runtime state & editor/MCP config
+# data/ is the Docker volume (saved car profiles); it is recreated at runtime.
+data/
+.mcp.json
+
 # Test fixtures are tracked despite the generic data-file ignores above
 !tests/fixtures/**
 
