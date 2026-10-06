@@ -1,10 +1,10 @@
 # ⚡ NSP Dyno
 
-**Lightweight Virtual Dyno & Telemetry Analysis Tool for Haltech ECU Datalogs (Nexus / NSP)**
+**Lightweight Virtual Dyno & Telemetry Analysis Tool for Haltech, MegaSquirt & Generic ECU Datalogs**
 
 ![NSP Dyno Fullscreen Interface](Full_Screen.png)
 
-NSP Dyno is a zero-friction, web-based virtual dyno and telemetry comparison tool built specifically for Haltech datalogs. It parses raw exported Haltech `.csv` files directly—no manual log trimming, no Excel editing, and no intermediate software required.
+NSP Dyno is a zero-friction, web-based virtual dyno and telemetry comparison tool. It parses raw exported datalogs directly—no manual log trimming, no Excel editing, and no intermediate software required. Instead of hardcoding a single ECU's column names, it detects the log format, resolves channels semantically, and normalizes units, so the same tool works across platforms.
 
 ---
 
@@ -18,21 +18,41 @@ NSP Dyno is a zero-friction, web-based virtual dyno and telemetry comparison too
 
 ---
 
+## 📥 Supported Log Formats
+
+| Format | Extensions | Notes |
+|---|---|---|
+| Haltech NSP raw | `.txt`, `.csv` | `%DataLog%` exports with `Channel :` declarations |
+| Haltech flat CSV | `.csv` | Header + optional units row |
+| TunerStudio / MS3 | `.csv`, `.msl` | Comma or tab-delimited; optional units row and `MSn Format` preamble |
+| MS1 / MegaTune legacy | `.csv` | `secL` time, `Spark`, `MAT`, `CLT`, etc. |
+| Generic CSV | `.csv`, `.tsv`, `.txt`, `.log` | Any delimited log with recognizable column names |
+
+Binary TunerStudio formats (`.mlg`, native SD `.MS3`) are **not** decoded directly—export them as CSV or MSL from TunerStudio first.
+
+**Detection tips:**
+- Use the **Log** selector to force a parser if auto-detect guesses wrong.
+- Use the **WOT** input to change the throttle threshold for pull detection.
+- Open **Channel Mapping** in the diagnostics bar to reassign any field (e.g. if your MAP column is named unusually).
+- If TPS looks like 0-5V or ADC counts, the app suggests a scale factor.
+
+---
+
 ## 🏎️ Why NSP Dyno?
 
-If you tune or analyze Haltech logs, the traditional virtual dyno workflow is tedious:
+If you tune or analyze ECU logs, the traditional virtual dyno workflow is tedious:
 1. Open raw log in MegaLogViewer
 2. Extract the pull data
 3. Open CSV in Excel to delete top header metadata lines
 4. Save and load into legacy Virtual Dyno software
 
-**NSP Dyno eliminates all of that.** Just drag and drop your raw, unedited Haltech `.csv` log (designed for logs with 85%+ TPS) directly into your browser.
+**NSP Dyno eliminates all of that.** Just drag and drop your raw, unedited log (designed for logs with 85%+ TPS) directly into your browser.
 
 ---
 
 ## ✨ Key Features
 
-- **Direct Haltech CSV Parser**: Drag & drop raw Haltech NSP `.csv` exports. Automatically detects WOT pulls (85%+ TPS) and calculates Wheel Horsepower (WHP) and Torque (lb-ft).
+- **Multi-Format Log Parser**: Drag & drop raw **Haltech** (NSP raw / flat CSV), **MegaSquirt / TunerStudio** (`.csv` / tab-delimited `.msl`), **MS1 legacy**, or **generic CSV** logs. Format, delimiter, header, and units are auto-detected; channel names are mapped semantically with unit-aware conversion. A diagnostics bar shows what was detected, and a Channel Mapping panel lets you correct any field.
 - **Side-by-Side Pull Comparison**: Compare two pulls (Run A vs Run B) with live power deltas (`+15.2 WHP`, `+12.8 lb-ft`), curve overlays, and synchronized telemetry.
 - **Live Hover Callouts**: Move your cursor across the graph to inspect instant inline readout badges for HP, torque, boost, lambda, ignition timing, and throttle position.
 - **Custom Vehicle Profiles**: Save profiles for curb weight, occupant weight, gear ratios, tire dimensions, final drive ratio, and aerodynamic drag.
@@ -84,13 +104,14 @@ Ideal for standalone tuning laptops:
 
 ## 🛠️ How to Use
 
-1. Export your log from **Haltech NSP** as a `.csv` file.
-2. Drag and drop the `.csv` file anywhere onto the NSP Dyno webpage (or click **📂 Drop / Open CSV**).
-3. Select your vehicle profile and transmission gear.
-4. Move your mouse across the graph to inspect live horsepower, torque, boost, and AFR callouts!
+1. Export your log from your ECU software (Haltech NSP, TunerStudio/MegaLogViewer, etc.) as `.csv` or `.msl`.
+2. Drag and drop the file anywhere onto the NSP Dyno webpage (or click **📂 Drop / Open Log**).
+3. Check the diagnostics bar for the detected format and mapped channels; adjust **Log** type, **WOT** threshold, or **Channel Mapping** if needed.
+4. Select your vehicle profile and transmission gear.
+5. Move your mouse across the graph to inspect live horsepower, torque, boost, and AFR callouts!
 
 ---
 
 ## ⚖️ Disclaimer
 
-*NSP Dyno is an independent open-source community tool created for telemetry analysis and is not affiliated with, sponsored by, or endorsed by Haltech Engine Management Systems.*
+*NSP Dyno is an independent open-source community tool created for telemetry analysis and is not affiliated with, sponsored by, or endorsed by Haltech, EFI Analytics (TunerStudio/MegaLogViewer), or any ECU manufacturer.*
