@@ -1,0 +1,208 @@
+/**
+ * parser.test.js - Phase 1 regression + format tests.
+ * Run with: npm test  (node --test)
+ */
+
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert');
+const fs = require('fs');
+const path = require('path');
+
+const { parseLog } = require('../server/parser');
+const { detectFormat } = require('../server/formats');
+const units = require('../server/units');
+
+const FIXTURES = path.join(__dirname, 'fixtures');
+const SAMPLE = path.join(__dirname, '..', 'Log parsing - re_261001_230131_3rd (1).csv');
+const GOLDEN = path.join(FIXTURES, 'golden', 'haltech_sample.prerefactor.json');
+
+const read = (name) => fs.readFileSync(path.join(FIXTURES, name), 'utf8');
+
+// ---------------------------------------------------------------------------
+// Haltech wide CSV: the pre-refactor parser mis-mapped status/derived columns.
+// ---------------------------------------------------------------------------
+test('Haltech wide CSV resolves real channels, not status flags', () => {
+  const p = parseLog(fs.readFileSync(SAMPLE, 'utf8'), path.basename(SAMPLE));
+
+  assert.equal(p.format, 'generic_csv');
+  assert.equal(p.family, 'haltech');
+  assert.equal(p.totalRows, 755);
+  assert.equal(p.channels.length, 845);
+
+  // The historical mapping picked "MAP from sensor seems valid",
+  // "boostStatus.pTerm" and "IAT: measured resistance". Must not happen now.
+  assert.equal(p.mapping.map, 'MAP');
+  assert.equal(p.mapping.boost, null, 'a status/boolean column must not be chosen as boost');
+  assert.equal(p.mapping.iat, 'Intake Air IAT');
+  assert.equal(p.mapping.lambda, 'Lambda');
+  assert.equal(p.mapping.gear, 'Detected Gear');
+
+  assert.equal(p.maxTpsSeen, 91.8);
+  assert.equal(p.pulls.length, 1);
+  const pull = p.pulls[0];
+  assert.equal(pull.startRpm, 1670);
+  assert.equal(pull.endRpm, 6128);
+  assert.equal(pull.durationSec, 11);
+  assert.equal(pull.pointsCount, 547);
+
+  // MAP is kPa (idle vacuum -> low boost), IAT is Celsius.
+  assert.ok(p.allRows[0].mapPsi > 2 && p.allRows[0].mapPsi < 8, `mapPsi=${p.allRows[0].mapPsi}`);
+  assert.ok(p.allRows[0].boostPsi < 0, 'idle should show vacuum, not positive boost');
+  assert.equal(p.allRows[0].iatF, 80);
+});
+
+test('Haltech golden subset: row count and pull geometry are unchanged', () => {
+  const golden = JSON.parse(fs.readFileSync(GOLDEN, 'utf8'));
+  const p = parseLog(fs.readFileSync(SAMPLE, 'utf8'), path.basename(SAMPLE));
+
+  assert.equal(p.totalRows, golden.totalRows);
+  assert.equal(p.channels.length, golden.channelCount);
+  assert.equal(p.maxTpsSeen, golden.maxTpsSeen);
+  assert.equal(p.pulls.length, golden.pullCount);
+  assert.equal(p.pulls[0].startRpm, golden.pulls[0].startRpm);
+  assert.equal(p.pulls[0].endRpm, golden.pulls[0].endRpm);
+  assert.equal(p.pulls[0].durationSec, golden.pulls[0].durationSec);
+  assert.equal(p.pulls[0].pointsCount, golden.pulls[0].pointsCount);
+});
+
+// ---------------------------------------------------------------------------
+// MegaSquirt / TunerStudio text formats
+// ---------------------------------------------------------------------------
+test('TunerStudio MS3 CSV with units row', () => {
+  const p = parseLog(read('ms3_tunerstudio.csv'), 'ms3_tunerstudio.csv');
+
+  assert.equal(p.format, 'megasquirt_csv');
+  assert.equal(p.family, 'megasquirt');
+  assert.equal(p.detectedDelimiter, ',');
+
+  assert.equal(p.mapping.rpm, 'RPM');
+  assert.equal(p.mapping.map, 'MAP');
+  assert.equal(p.mapping.mapUnit, 'kPa');
+  assert.equal(p.mapping.tps, 'TPS');
+  assert.equal(p.mapping.lambda, 'Lambda 1');
+  assert.equal(p.mapping.ignition, 'Spark Advance');
+  assert.equal(p.mapping.knock, 'Knock Retard');
+  assert.equal(p.mapping.iat, 'MAT');
+  assert.equal(p.mapping.iatUnit, '°F');
+  assert.equal(p.mapping.boost, 'Boost');
+  assert.equal(p.mapping.boostUnit, 'psi');
+
+  assert.equal(p.unitWarnings.length, 0, JSON.stringify(p.unitWarnings));
+  assert.equal(p.totalRows, 40);
+  assert.equal(p.pulls.length, 1);
+  assert.ok(p.pulls[0].endRpm > p.pulls[0].startRpm);
+  assert.equal(p.allRows[0].iatF, 80);
+});
+
+test('MegaSquirt MSL is tab-delimited with a preamble', () => {
+  const p = parseLog(read('ms3_sd.msl'), 'ms3_sd.msl');
+
+  assert.equal(p.format, 'megasquirt_msl');
+  assert.equal(p.family, 'megasquirt');
+  assert.equal(p.detectedDelimiter, '\t');
+  assert.equal(p.channels.length, 12);
+  assert.equal(p.totalRows, 40);
+
+  assert.equal(p.mapping.time, 'Time');
+  assert.equal(p.mapping.map, 'MAP');
+  assert.equal(p.mapping.mapUnit, 'kPa');
+  assert.equal(p.mapping.iat, 'MAT');
+  assert.equal(p.mapping.boost, null);
+  assert.equal(p.pulls.length, 1);
+});
+
+test('MS1 legacy CSV: secL time, Spark ignition, narrowband O2 ignored', () => {
+  const p = parseLog(read('ms1_legacy.csv'), 'ms1_legacy.csv');
+
+  assert.equal(p.format, 'megasquirt_csv');
+  assert.equal(p.mapping.time, 'secL');
+  assert.equal(p.mapping.ignition, 'Spark');
+  assert.equal(p.mapping.iat, 'MAT');
+  assert.equal(p.mapping.lambda, 'O2');
+
+  assert.ok(p.unitWarnings.some(w => /narrowband/i.test(w)), JSON.stringify(p.unitWarnings));
+  assert.equal(p.allRows[0].lambda, null, 'narrowband O2 must not be treated as lambda');
+  assert.equal(p.allRows[0].ignition, 10);
+});
+
+test('generic CSV with unit-suffixed column names', () => {
+  const p = parseLog(read('generic.csv'), 'generic.csv');
+
+  assert.equal(p.format, 'generic_csv');
+  assert.equal(p.mapping.time, 'timestamp');
+  assert.equal(p.mapping.rpm, 'engine_speed');
+  assert.equal(p.mapping.tps, 'throttle_pct');
+  assert.equal(p.mapping.map, 'manifold_pressure_kpa');
+  assert.equal(p.mapping.iat, 'air_temp_c');
+  assert.equal(p.mapping.lambda, 'wideband');
+
+  assert.equal(p.allRows[0].tps, 0);
+  assert.equal(p.allRows[0].rpm, 1000);
+  assert.ok(p.pulls.length >= 1);
+});
+
+test('Haltech NSP raw %DataLog% parses and maps channels', () => {
+  const p = parseLog(read('haltech_raw.txt'), 'haltech_raw.txt');
+  assert.equal(p.format, 'haltech_nsp_raw');
+  assert.equal(p.family, 'haltech');
+  assert.equal(p.channels.length, 6);
+  assert.equal(p.mapping.rpm, 'RPM');
+  assert.equal(p.mapping.tps, 'Throttle Position');
+  assert.equal(p.mapping.map, 'Manifold Pressure');
+  assert.equal(p.mapping.lambda, 'Wideband');
+  assert.equal(p.mapping.ignition, 'Ignition Angle');
+  assert.equal(p.totalRows, 40);
+  assert.equal(p.pulls.length, 1);
+});
+
+test('Haltech flat CSV with units row honors declared units', () => {
+  const p = parseLog(read('haltech_flat.csv'), 'haltech_flat.csv');
+  assert.equal(p.format, 'haltech_flat_csv');
+  assert.equal(p.mapping.mapUnit, 'kPa');
+  assert.equal(p.mapping.iatUnit, 'C');
+  assert.equal(p.mapping.speedUnit, 'km/h');
+  assert.equal(p.unitWarnings.length, 0, JSON.stringify(p.unitWarnings));
+  // 33 km/h -> ~20.5 mph
+  assert.equal(p.allRows[0].speedMph, 20.5);
+  // 26 C -> 78.8 -> 79 F
+  assert.equal(p.allRows[0].iatF, 79);
+});
+
+// ---------------------------------------------------------------------------
+// Detection + units
+// ---------------------------------------------------------------------------
+test('detectFormat identifies Haltech raw signature', () => {
+  const lines = ['%DataLog%', 'Channel : RPM', 'Channel : TPS', '00:00:00,1000,0'];
+  const det = detectFormat(lines, 'raw.csv');
+  assert.equal(det.id, 'haltech_nsp_raw');
+  assert.equal(det.family, 'haltech');
+});
+
+test('sniffs delimiter and units row on a simple flat CSV', () => {
+  const lines = [
+    'Time,RPM,MAP',
+    's,rpm,kPa',
+    '0,1000,30',
+    '0.1,1200,40'
+  ];
+  const det = detectFormat(lines, 'flat.csv');
+  assert.equal(det.delimiter, ',');
+  assert.equal(det.headerIndex, 0);
+  assert.equal(det.unitsIndex, 1);
+  assert.equal(det.dataIndex, 2);
+});
+
+test('unit conversions are unit-driven, unknown units return null', () => {
+  assert.ok(Math.abs(units.pressureToPsi(101.325, 'kPa') - 14.696) < 0.01);
+  assert.equal(units.pressureToPsi(14.7, 'psi'), 14.7);
+  assert.equal(units.pressureToPsi(1, 'furlongs'), null);
+  assert.equal(units.temperatureToF(100, '°C'), 212);
+  assert.equal(units.temperatureToF(32, 'F'), 32);
+  assert.equal(units.temperatureToF(300, 'not-a-unit'), null);
+  assert.ok(Math.abs(units.speedToMph(100, 'km/h') - 62.1371) < 0.01);
+  assert.equal(units.speedToMph(60, 'bogus'), null);
+  assert.ok(Math.abs(units.fuelRatioToLambda(14.7, true) - 1) < 0.0001);
+  assert.equal(units.fuelRatioToLambda(0.85, false), 0.85);
+});

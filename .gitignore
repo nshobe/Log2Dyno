@@ -13,6 +13,9 @@ yarn-error.log*
 logs/
 *.csv
 
+# Test fixtures are tracked despite the generic data-file ignores above
+!tests/fixtures/**
+
 # OS metadata
 .DS_Store
 Thumbs.db

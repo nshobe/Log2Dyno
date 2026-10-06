@@ -1,0 +1,69 @@
+{
+  "fixture": "Log parsing - re_261001_230131_3rd (1).csv",
+  "format": "generic_csv",
+  "totalRows": 755,
+  "maxTpsSeen": 91.8,
+  "warning": null,
+  "channelCount": 845,
+  "mapping": {
+    "time": "Time",
+    "rpm": "RPM",
+    "tps": "TPS",
+    "map": "MAP from sensor seems valid",
+    "mapUnit": "",
+    "boost": "boostStatus.pTerm",
+    "lambda": "Lambda",
+    "knock": "Knock: Current level",
+    "gear": "Gearbox Ratio",
+    "speed": "Vehicle Speed",
+    "speedUnit": "",
+    "vvt": "VVT: bank 1 intake",
+    "oilPressure": "Oil Pressure",
+    "iat": "IAT: measured resistance"
+  },
+  "pullCount": 1,
+  "pulls": [
+    {
+      "pullIndex": 1,
+      "gear": 3,
+      "startRpm": 1670,
+      "endRpm": 6128,
+      "durationSec": 11,
+      "pointsCount": 547
+    }
+  ],
+  "allRowsSha256": "64ec290c2560713ce4ddc84d701612e87fcb7f9e66bddd9aafc9a5575e22b749",
+  "allRowsLength": 755,
+  "firstRow": {
+    "t": 2201.313,
+    "rpm": 763,
+    "tps": 0.4,
+    "mapPsi": 14.7,
+    "boostPsi": 0,
+    "lambda": 0.944,
+    "targetLambda": null,
+    "ignition": null,
+    "knock": -40.77,
+    "gear": 0,
+    "speedMph": 316.4,
+    "vvt": 0,
+    "oilPressurePsi": 10,
+    "iatF": 3711
+  },
+  "lastRow": {
+    "t": 2216.513,
+    "rpm": 3670,
+    "tps": 0,
+    "mapPsi": 14.7,
+    "boostPsi": 0,
+    "lambda": 2,
+    "targetLambda": null,
+    "ignition": null,
+    "knock": -37,
+    "gear": 0,
+    "speedMph": 300.9,
+    "vvt": 0,
+    "oilPressurePsi": 55,
+    "iatF": 3895
+  }
+}

@@ -1,8 +1,92 @@
 /**
- * parser.js - Universal Haltech Nexus R3 & Tuning Log Parser
+ * parser.js - Universal tuning-log parser.
+ *
+ * Pipeline: detect format -> parse rows -> resolve channels -> normalize units.
+ * Downstream (dynoMath.js, public/app.js) consumes the normalized row shape:
+ *   { t, rpm, tps, mapPsi, boostPsi, lambda, targetLambda, ignition,
+ *     knock, gear, speedMph, vvt, oilPressurePsi, iatF }
+ *
+ * Supported text formats: Haltech NSP raw, Haltech flat CSV, TunerStudio/MS
+ * CSV, MegaSquirt MSL (tab), and generic CSV.
  */
 
-const KPA_TO_PSI = 0.1450377;
+'use strict';
+
+const {
+  KPA_TO_PSI,
+  BAR_TO_PSI,
+  normUnit,
+  pressureToPsi,
+  temperatureToF,
+  speedToMph,
+  fuelRatioToLambda
+} = require('./units');
+const { identifyChannels, normalizeName } = require('./channelMap');
+const { detectFormat } = require('./formats');
+const { splitLine, parseRows } = require('./formats/delimited');
+const { parseHaltechRaw } = require('./formats/haltechRaw');
+
+const FORMAT_LABELS = {
+  haltech_nsp_raw: 'Haltech NSP raw',
+  haltech_flat_csv: 'Haltech CSV (units row)',
+  megasquirt_msl: 'MegaSquirt MSL / TunerStudio (tab)',
+  megasquirt_csv: 'MegaSquirt / TunerStudio CSV',
+  generic_csv: 'Generic CSV'
+};
+
+function warn(list, msg) {
+  if (!list.includes(msg)) list.push(msg);
+}
+
+/**
+ * Interpret an absolute manifold-pressure channel as { mapPsi, boostPsi }.
+ * `maxMap` is used only when no unit is declared, to decide kPa vs psi.
+ */
+function interpretMapChannel(value, unit, family, maxMap) {
+  const u = normUnit(unit);
+  if (u.includes('kpa')) {
+    const p = value * KPA_TO_PSI;
+    return { mapPsi: p, boostPsi: p - 14.7 };
+  }
+  if (u.includes('bar')) {
+    const p = value * BAR_TO_PSI;
+    return { mapPsi: p, boostPsi: p - 14.7 };
+  }
+  if (u.includes('psi')) {
+    // Haltech convention: gauge MAP logged in psi (0 psi = atmospheric)
+    return { mapPsi: value + 14.7, boostPsi: value };
+  }
+  if (family === 'megasquirt') {
+    const p = value * KPA_TO_PSI;
+    return { mapPsi: p, boostPsi: p - 14.7 };
+  }
+  if (maxMap > 80) {
+    const p = value * KPA_TO_PSI;
+    return { mapPsi: p, boostPsi: p - 14.7 };
+  }
+  if (maxMap <= 45 && maxMap >= -15) {
+    return { mapPsi: value + 14.7, boostPsi: value };
+  }
+  return { mapPsi: value, boostPsi: value - 14.7 };
+}
+
+function interpretBoostChannel(value, unit) {
+  const u = normUnit(unit);
+  if (u.includes('kpa')) {
+    const p = (value - 101.325) * KPA_TO_PSI;
+    return { boostPsi: p, mapPsi: p + 14.7 };
+  }
+  if (u.includes('bar')) {
+    const gauge = (value - 1.01325) * BAR_TO_PSI;
+    return { boostPsi: gauge, mapPsi: gauge + 14.7 };
+  }
+  // psi or unknown: assume gauge psi
+  return { boostPsi: value, mapPsi: value + 14.7 };
+}
+
+function isNarrowbandName(name) {
+  return /^(o2|ego|lambda sensor)$/.test(normalizeName(name));
+}
 
 function parseLog(fileContent, filename = '') {
   if (!fileContent || typeof fileContent !== 'string') {
@@ -14,41 +98,61 @@ function parseLog(fileContent, filename = '') {
     return { error: 'File contains insufficient data' };
   }
 
+  const detection = detectFormat(lines, filename);
+  const format = detection.id;
+  const family = detection.family;
+
   let channels = [];
   let units = [];
   let rawRows = [];
-  let format = 'unknown';
 
-  if (lines[0].startsWith('%DataLog%')) {
-    format = 'haltech_nsp_raw';
+  if (format === 'haltech_nsp_raw') {
     const parsed = parseHaltechRaw(lines);
     channels = parsed.channels;
     rawRows = parsed.rows;
   } else {
-    const line0 = lines[0].split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-    const line1 = lines[1].split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+    channels = splitLine(lines[detection.headerIndex], detection.delimiter);
+    units = detection.unitsIndex >= 0
+      ? splitLine(lines[detection.unitsIndex], detection.delimiter)
+      : [];
+  }
 
-    const hasUnitsRow = line1.some(val => 
-      /^(s\.|rpm|%|kpa|psi|v|deg|c|f|afr|:1)$/i.test(val) || val.includes('°')
+  const mapping = identifyChannels(channels, units);
+
+  if (format !== 'haltech_nsp_raw') {
+    rawRows = parseRows(
+      lines, detection.dataIndex, channels, units,
+      mapping.time, detection.delimiter
     );
-
-    if (hasUnitsRow) {
-      format = 'haltech_flat_csv';
-      channels = line0;
-      units = line1;
-      rawRows = parseStandardRows(lines.slice(2), channels);
-    } else {
-      format = 'generic_csv';
-      channels = line0;
-      rawRows = parseStandardRows(lines.slice(1), channels);
-    }
   }
 
   if (rawRows.length === 0) {
     return { error: 'No numeric telemetry rows could be parsed' };
   }
 
-  const mapping = identifyChannels(channels, units);
+  // Column stats needed only when units are undeclared.
+  const mapColumn = mapping.map;
+  let maxMap = 0;
+  if (mapColumn) {
+    for (const r of rawRows) {
+      const v = r[mapColumn];
+      if (typeof v === 'number' && Math.abs(v) > Math.abs(maxMap)) maxMap = v;
+    }
+  }
+
+  const unitWarnings = [];
+  if (mapColumn && !normUnit(mapping.mapUnit)) {
+    warn(unitWarnings, `MAP column "${mapColumn}" has no declared unit; inferred from range/family.`);
+  }
+  if (mapping.iat && !normUnit(mapping.iatUnit)) {
+    warn(unitWarnings, `Intake-air column "${mapping.iat}" has no declared unit; applied ${family === 'megasquirt' ? 'Fahrenheit (MegaSquirt default)' : 'Celsius'}.`);
+  }
+  if (mapping.speed && !normUnit(mapping.speedUnit)) {
+    warn(unitWarnings, `Vehicle speed column "${mapping.speed}" has no declared unit; left unconverted.`);
+  }
+  if (mapping.lambda && isNarrowbandName(mapping.lambda)) {
+    warn(unitWarnings, `Fuel channel "${mapping.lambda}" looks like a narrowband O2/EGO signal; lambda left blank.`);
+  }
 
   let maxTpsSeen = 0;
   const normalizedRows = [];
@@ -57,98 +161,77 @@ function parseLog(fileContent, filename = '') {
     const r = rawRows[i];
     const t = r[mapping.time];
     const rpm = r[mapping.rpm];
-    let tps = r[mapping.tps];
-    let map = r[mapping.map];
-    let boost = r[mapping.boost];
-    let lambda = r[mapping.lambda];
-    let targetLambda = r[mapping.targetLambda];
-    let ignition = r[mapping.ignition];
-    let knock = r[mapping.knock];
-    let gear = r[mapping.gear];
-    let speed = r[mapping.speed];
-    let vvt = r[mapping.vvt];
-    let oilPressure = r[mapping.oilPressure];
-    let iat = r[mapping.iat];
+    const tpsRaw = r[mapping.tps];
+    const mapRaw = r[mapping.map];
+    const boostRaw = r[mapping.boost];
+    const lambdaRaw = r[mapping.lambda];
+    const targetLambdaRaw = r[mapping.targetLambda];
+    const ignitionRaw = r[mapping.ignition];
+    const knockRaw = r[mapping.knock];
+    const gearRaw = r[mapping.gear];
+    const speedRaw = r[mapping.speed];
+    const vvtRaw = r[mapping.vvt];
+    const oilRaw = r[mapping.oilPressure];
+    const iatRaw = r[mapping.iat];
 
     if (t === undefined || isNaN(t) || rpm === undefined || isNaN(rpm)) continue;
 
+    let tps = tpsRaw;
     if (tps !== undefined && !isNaN(tps)) {
       if (tps > maxTpsSeen) maxTpsSeen = tps;
     } else {
       tps = 100;
     }
 
-    // Imperial pressure normalization (All in PSI)
+    // Pressure: prefer an explicit boost channel, else interpret MAP.
     let mapPsi = null;
     let boostPsi = null;
-
-    if (boost !== undefined && !isNaN(boost)) {
-      boostPsi = boost;
-      mapPsi = boostPsi + 14.7;
-    } else if (map !== undefined && !isNaN(map)) {
-      const mapUnit = mapping.mapUnit ? mapping.mapUnit.toLowerCase() : '';
-      if (mapUnit === 'psi') {
-        // Haltech exports gauge MAP in psi (0 psi = atmospheric, 21 psi = 21 psi boost)
-        boostPsi = map;
-        mapPsi = boostPsi + 14.7;
-      } else if (mapUnit === 'kpa' || map > 80) {
-        mapPsi = map * KPA_TO_PSI;
-        boostPsi = (map - 101.325) * KPA_TO_PSI;
-      } else if (map <= 45 && map >= -15) {
-        boostPsi = map;
-        mapPsi = boostPsi + 14.7;
-      } else {
-        mapPsi = map;
-        boostPsi = mapPsi - 14.7;
-      }
+    if (boostRaw !== undefined && !isNaN(boostRaw)) {
+      const b = interpretBoostChannel(boostRaw, mapping.boostUnit);
+      boostPsi = b.boostPsi;
+      mapPsi = b.mapPsi;
+    } else if (mapRaw !== undefined && !isNaN(mapRaw)) {
+      const m = interpretMapChannel(mapRaw, mapping.mapUnit, family, maxMap);
+      mapPsi = m.mapPsi;
+      boostPsi = m.boostPsi;
     }
 
-    // Lambda normalization (ensure Lambda format 0.60 - 1.30)
-    if (lambda !== undefined && !isNaN(lambda)) {
-      if (lambda > 5.0) {
-        lambda = lambda / 14.7;
-      }
-    } else {
-      lambda = null;
+    // Fuel ratio: only convert AFR->lambda when explicitly known.
+    let lambda = null;
+    if (lambdaRaw !== undefined && !isNaN(lambdaRaw) && !isNarrowbandName(mapping.lambda)) {
+      lambda = fuelRatioToLambda(lambdaRaw, mapping.lambdaIsAfr);
     }
 
-    if (targetLambda !== undefined && !isNaN(targetLambda)) {
-      if (targetLambda > 5.0) {
-        targetLambda = targetLambda / 14.7;
-      }
-    } else {
-      targetLambda = null;
+    let targetLambda = null;
+    if (targetLambdaRaw !== undefined && !isNaN(targetLambdaRaw)) {
+      targetLambda = fuelRatioToLambda(targetLambdaRaw, mapping.targetLambdaIsAfr);
     }
 
-    // Oil pressure in PSI
+    // Oil pressure -> PSI (unit-aware; no magnitude guessing).
     let oilPressurePsi = null;
-    if (oilPressure !== undefined && !isNaN(oilPressure)) {
-      oilPressurePsi = oilPressure > 100 ? oilPressure * KPA_TO_PSI : oilPressure;
+    if (oilRaw !== undefined && !isNaN(oilRaw)) {
+      const converted = pressureToPsi(oilRaw, mapping.oilPressureUnit);
+      oilPressurePsi = converted !== null ? converted : oilRaw;
     }
 
-    // IAT in Fahrenheit
+    // Intake air -> Fahrenheit.
     let iatF = null;
-    if (iat !== undefined && !isNaN(iat)) {
-      if (iat > 200) {
-        iatF = (iat - 273.15) * 1.8 + 32;
+    if (iatRaw !== undefined && !isNaN(iatRaw)) {
+      const converted = temperatureToF(iatRaw, mapping.iatUnit);
+      if (converted !== null) {
+        iatF = converted;
+      } else if (family === 'megasquirt') {
+        iatF = iatRaw; // MS defaults to °F
       } else {
-        iatF = iat * 1.8 + 32;
+        iatF = iatRaw * 1.8 + 32; // assume Celsius
       }
     }
 
-    // Speed in MPH
+    // Speed -> MPH (unit-aware; otherwise left as-is).
     let speedMph = null;
-    if (speed !== undefined && !isNaN(speed)) {
-      const spdUnit = mapping.speedUnit ? mapping.speedUnit.toLowerCase() : '';
-      if (spdUnit.includes('km') || spdUnit.includes('kph')) {
-        speedMph = speed * 0.621371;
-      } else if (spdUnit.includes('mph')) {
-        speedMph = speed;
-      } else {
-        // Default telemetry fallback: if top speeds in logs exceed typical mph in 3rd/4th gear
-        speedMph = speed > 115 ? speed * 0.621371 : speed;
-      }
-      speedMph = Math.round(speedMph * 10) / 10;
+    if (speedRaw !== undefined && !isNaN(speedRaw)) {
+      const converted = speedToMph(speedRaw, mapping.speedUnit);
+      speedMph = Math.round((converted !== null ? converted : speedRaw) * 10) / 10;
     }
 
     normalizedRows.push({
@@ -159,11 +242,11 @@ function parseLog(fileContent, filename = '') {
       boostPsi: boostPsi !== null ? Math.round(boostPsi * 10) / 10 : null,
       lambda: lambda !== null ? Math.round(lambda * 1000) / 1000 : null,
       targetLambda: targetLambda !== null ? Math.round(targetLambda * 1000) / 1000 : null,
-      ignition: ignition !== undefined && !isNaN(ignition) ? Math.round(ignition * 10) / 10 : null,
-      knock: knock !== undefined && !isNaN(knock) ? knock : 0,
-      gear: gear !== undefined && !isNaN(gear) ? Math.round(gear) : null,
+      ignition: ignitionRaw !== undefined && !isNaN(ignitionRaw) ? Math.round(ignitionRaw * 10) / 10 : null,
+      knock: knockRaw !== undefined && !isNaN(knockRaw) ? knockRaw : 0,
+      gear: gearRaw !== undefined && !isNaN(gearRaw) ? Math.round(gearRaw) : null,
       speedMph,
-      vvt: vvt !== undefined && !isNaN(vvt) ? Math.round(vvt * 10) / 10 : null,
+      vvt: vvtRaw !== undefined && !isNaN(vvtRaw) ? Math.round(vvtRaw * 10) / 10 : null,
       oilPressurePsi: oilPressurePsi !== null ? Math.round(oilPressurePsi * 10) / 10 : null,
       iatF: iatF !== null ? Math.round(iatF) : null
     });
@@ -182,144 +265,28 @@ function parseLog(fileContent, filename = '') {
     }
   }
 
+  const unmappedRequired = ['rpm', 'tps', 'map'].filter(k => !mapping[k]);
+  if (unmappedRequired.length) {
+    const msg = `Warning: Could not identify required channel(s): ${unmappedRequired.join(', ')}. Available: ${channels.slice(0, 12).join(', ')}${channels.length > 12 ? ', …' : ''}`;
+    warning = warning ? `${warning} ${msg}` : msg;
+  }
+
   return {
     filename,
     format,
+    formatLabel: FORMAT_LABELS[format] || format,
+    family,
+    detectedDelimiter: detection.delimiter,
     totalRows: normalizedRows.length,
     channels,
+    units,
     mapping,
+    unmappedRequired,
+    unitWarnings,
     maxTpsSeen: Math.round(maxTpsSeen * 10) / 10,
     warning,
     pulls,
     allRows: normalizedRows
-  };
-}
-
-function parseHaltechRaw(lines) {
-  const channels = [];
-  let dataStartIndex = -1;
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.startsWith('Channel : ')) {
-      channels.push(line.replace('Channel : ', '').trim());
-    } else if (/^\d{2}:\d{2}:\d{2}/.test(line)) {
-      dataStartIndex = i;
-      break;
-    }
-  }
-
-  const rows = [];
-  let t0 = null;
-
-  for (let i = dataStartIndex; i < lines.length; i++) {
-    const parts = lines[i].split(',');
-    if (parts.length < 2) continue;
-
-    const timeStr = parts[0].trim();
-    const timeMatch = timeStr.match(/^(\d{2}):(\d{2}):(\d{2}(?:\.\d+)?)/);
-    if (!timeMatch) continue;
-
-    const totalSec = parseInt(timeMatch[1], 10) * 3600 + 
-                     parseInt(timeMatch[2], 10) * 60 + 
-                     parseFloat(timeMatch[3]);
-    if (t0 === null) t0 = totalSec;
-
-    const rowObj = { 'Time': Math.round((totalSec - t0) * 1000) / 1000 };
-
-    for (let c = 0; c < channels.length; c++) {
-      const ch = channels[c];
-      let val = parseFloat(parts[c + 1]);
-      if (isNaN(val)) continue;
-
-      if (/throttle|tps/i.test(ch) && val > 100) val /= 10;
-      if (/wideband|target lambda|lambda/i.test(ch) && val > 10) val /= 1000;
-      if (/manifold pressure|map/i.test(ch) && val > 500) val /= 10; // kPa
-      if (/ignition angle/i.test(ch) && Math.abs(val) > 100) val /= 10;
-      if (/cam control/i.test(ch) && Math.abs(val) > 100) val /= 10;
-      if (/vehicle speed/i.test(ch) && val > 500) val /= 10;
-      if (/intake air temperature|iat/i.test(ch) && val > 1000) val /= 10;
-
-      rowObj[ch] = val;
-    }
-
-    rows.push(rowObj);
-  }
-
-  return { channels: ['Time', ...channels], rows };
-}
-
-function parseStandardRows(dataLines, channels) {
-  const rows = [];
-  let t0 = null;
-
-  for (let i = 0; i < dataLines.length; i++) {
-    const line = dataLines[i];
-    if (!line) continue;
-    const parts = line.split(',');
-    if (parts.length < 2) continue;
-
-    const rowObj = {};
-    for (let c = 0; c < channels.length; c++) {
-      const ch = channels[c];
-      const valStr = parts[c]?.trim();
-      if (!valStr) continue;
-
-      if (/time/i.test(ch) && /^\d{2}:\d{2}:\d{2}/.test(valStr)) {
-        const m = valStr.match(/^(\d{2}):(\d{2}):(\d{2}(?:\.\d+)?)/);
-        if (m) {
-          const sec = parseInt(m[1], 10) * 3600 + parseInt(m[2], 10) * 60 + parseFloat(m[3]);
-          if (t0 === null) t0 = sec;
-          rowObj[ch] = Math.round((sec - t0) * 1000) / 1000;
-        }
-      } else {
-        const num = parseFloat(valStr);
-        if (!isNaN(num)) {
-          rowObj[ch] = num;
-        }
-      }
-    }
-
-    const timeKey = channels.find(c => /time/i.test(c));
-    if (timeKey && rowObj[timeKey] !== undefined) {
-      if (rowObj[timeKey] > 10000 && i > 0 && (rowObj[timeKey] - rows[0]?.[timeKey]) > 1000) {
-        rowObj[timeKey] /= 1000;
-      }
-    }
-
-    rows.push(rowObj);
-  }
-
-  return rows;
-}
-
-function identifyChannels(channels, units = []) {
-  const find = (regex) => channels.find(c => regex.test(c.toLowerCase()));
-  const findIdx = (regex) => channels.findIndex(c => regex.test(c.toLowerCase()));
-
-  const mapIdx = findIdx(/^(manifold pressure|map|manifold absolute pressure)/i);
-  let mapUnit = mapIdx >= 0 && units[mapIdx] ? units[mapIdx] : '';
-
-  const speedIdx = findIdx(/^(vehicle speed|speed)/i);
-  let speedUnit = speedIdx >= 0 && units[speedIdx] ? units[speedIdx] : '';
-
-  return {
-    time: find(/^time/i) || channels[0],
-    rpm: find(/^(rpm|engine speed)/i),
-    tps: find(/^(tps|throttle position|throttle opening)/i),
-    map: channels[mapIdx],
-    mapUnit: mapUnit,
-    boost: find(/^(boost pressure|manifold relative pressure|relative pressure|boost(?!.*(?:duty|solenoid|target|temp|air)))/i),
-    lambda: find(/^(wideband|wideband o2|lambda|afr|a\/f sensor)/i),
-    targetLambda: find(/^(target lambda|final fueling base|target afr)/i),
-    ignition: find(/^(ignition angle|ignition total timing|base ignition)/i),
-    knock: find(/^(knock|feedback knock|fine learning knock)/i),
-    gear: find(/^gear/i),
-    speed: channels[speedIdx],
-    speedUnit: speedUnit,
-    vvt: find(/^(cam control|vvt|intake vvt)/i),
-    oilPressure: find(/^oil pressure/i),
-    iat: find(/^(intake air temperature|iat)/i)
   };
 }
 
@@ -391,5 +358,7 @@ function validateAndAddPull(pullRows, pulls) {
 module.exports = {
   parseLog,
   identifyChannels,
-  extractWotPulls
+  extractWotPulls,
+  interpretMapChannel,
+  interpretBoostChannel
 };

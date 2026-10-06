@@ -106,42 +106,57 @@ from `parser.js` (or re-export) so nothing importing those breaks.
 
 ## 5. Implementation phases
 
-### Phase 1 — Parser core (MVP)
+### Phase 1 — Parser core (MVP) — ✅ COMPLETE
 
 Deliverable: TunerStudio/MS1/generic text logs parse correctly; Haltech unchanged;
-tests exist.
+tests exist. See `../server/formats/`, `../server/channelMap.js`, `../server/units.js`,
+`../tests/parser.test.js`.
 
-- [ ] Create `server/formats/` and `server/units.js`, `server/channelMap.js`.
-- [ ] Implement `detectFormat(lines)`:
-  - [ ] `%DataLog%` → `haltech_nsp_raw`
-  - [ ] first line matches `/^"?MS\d\s*Format/` or contains `MS3 Format`/`MS2 Format` → `megasquirt_msl`
-  - [ ] delimiter sniff (tab vs comma vs semicolon) outside quotes across first ~5 lines
-  - [ ] `headerIndex` = first ~5 row with most non-numeric cells
-  - [ ] `unitsIndex` = row after header if ≥70% cells look like units
-  - [ ] `dataIndex` = first mostly-numeric row after header/units
-  - [ ] time column by name (`Time`, `Secl`, `SecL`, `sec`, `Seconds`); use units when present
-- [ ] Implement `delimited.js` honoring detected `delimiter` (quote-aware split).
-- [ ] Implement `channelMap.js` resolver (priority order):
-  1. exact canonical alias (case/space/underscore-insensitive)
+- [x] Create `server/formats/` and `server/units.js`, `server/channelMap.js`.
+- [x] Implement `detectFormat(lines)`:
+  - [x] `%DataLog%` → `haltech_nsp_raw`
+  - [x] `"MSn Format"` / MegaSquirt preamble → `megasquirt_msl`
+  - [x] delimiter sniff (tab vs comma vs semicolon) outside quotes across first ~5 lines
+  - [x] `headerIndex` = first ~5 row that is ≥50% non-numeric
+  - [x] `unitsIndex` = row after header if ≥60% cells look like units
+  - [x] `dataIndex` = first row after header/units
+  - [x] time column by name (`Time`, `Secl`, `SecL`, `sec`, `Seconds`); units drive ms→s
+- [x] Implement `delimited.js` honoring detected `delimiter` (quote-aware split).
+- [x] Implement `channelMap.js` resolver (scored, reject-awareness):
+  1. exact canonical alias (case/space/underscore/unit-suffix-insensitive)
   2. family synonym
   3. regex fallback
   4. unit-confirmed semantic match
   5. else `null` — **never guess**
-- [ ] Implement `units.js`: kPa↔psi, °C↔°F, lambda↔AFR (only when AFR confirmed),
-  mph↔km/h. Emit `unitWarnings[]`.
-- [ ] Remove/mute magnitude guessing in normalization (`lambda > 5`, `map > 80`,
-  `speed > 115`, time `>10000`). Drive purely from names/units with conservative defaults.
-- [ ] Refactor `parseLog` into the orchestrator; preserve output fields
-  (`filename, format, totalRows, channels, mapping, maxTpsSeen, warning, pulls, allRows`).
-- [ ] Add `npm test` (built-in `node:test`) + fixtures + golden regression on the
-  existing sample.
+- [x] Implement `units.js`: kPa↔psi, °C↔°F, lambda↔AFR (only when AFR confirmed),
+  mph↔km/h. Emits `unitWarnings[]`.
+- [x] Remove magnitude guessing (removed `lambda > 5`, `speed > 115`, time `>10000`;
+  MAP keeps a range check only as a last resort when no unit/family is known).
+- [x] Refactor `parseLog` into the orchestrator; preserved output fields and added
+  `formatLabel`, `family`, `detectedDelimiter`, `units`, `unmappedRequired`, `unitWarnings`.
+- [x] Add `npm test` (built-in `node:test`) + fixtures + golden regression.
+
+Deviations / discoveries (important):
+- The **pre-refactor parser mis-mapped the wide Haltech sample**: `map` resolved to the
+  boolean `MAP from sensor seems valid`, `boost` to `boostStatus.pTerm`, `iat` to
+  `IAT: measured resistance`, `gear` to `Gearbox Ratio`. The golden snapshot
+  (`tests/fixtures/golden/haltech_sample.prerefactor.json`) records this old behavior.
+  The regression test intentionally asserts the *corrected* semantics for mapped
+  channels while freezing stable fields (row count, pull geometry, max TPS).
+- `normalizeName()` strips trailing unit/suffix tokens (`_kpa`, `_c`, `_pct`) so
+  names like `manifold_pressure_kpa` resolve to the base concept.
+- `detectFamily()` prefers Haltech markers over MegaSquirt markers to avoid
+  misclassifying Haltech logs that use `CLT`/`MAT`-style short names.
+- Unknown-temperature default: MegaSquirt → °F, otherwise °C, and a warning is emitted.
+- `boostPsi`/`mapPsi` for the wide sample now show vacuum (~-9 psi at idle) instead of
+  a flat 0/14.7 from the boolean column.
 
 ### Phase 2 — MSL polish, UI, overrides
 
-- [ ] Native `.msl` tab-delimited + preamble end-to-end.
-- [ ] API: `/api/parse-log` accepts `options` (`format`, `delimiter`, `wotThreshold`,
-  `tpsScale`); return `formatLabel`, `detectedDelimiter`, `unitWarnings`,
-  `unmappedRequired`.
+- [x] Native `.msl` tab-delimited + preamble end-to-end (parser side).
+- [~] API: response now includes `formatLabel`, `detectedDelimiter`, `unitWarnings`,
+  `unmappedRequired`; still TODO: accept `options` (`format`, `delimiter`, `wotThreshold`,
+  `tpsScale`).
 - [ ] API: `GET /api/formats`.
 - [ ] Frontend accepts `.csv,.msl,.txt,.tsv,.log`; binary sniff + friendly rejection.
 - [ ] Frontend "Log type: Auto / Haltech / MegaSquirt / Generic" selector.
@@ -226,10 +241,15 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
   `public/index.html`, `server/dynoMath.js`; inspected sample Haltech CSV.
 - [x] Research MegaSquirt/TunerStudio formats (MSL preamble, tab delimiter, field names).
 - [x] Write this plan.
-- [ ] Phase 1
+- [x] Phase 1 (parser core + tests) — 11 tests passing.
 - [ ] Phase 2
 - [ ] Phase 3
 
 ### Notes / decisions made during work
 
-- (add entries here as they happen)
+- (2026-10) Pre-refactor golden snapshot captured with `node tests/capture-golden.js`.
+  It revealed the wide Haltech sample was mis-mapped; see Phase 1 deviations above.
+- (2026-10) Test fixtures are synthetic and small: `ms3_tunerstudio.csv`,
+  `ms3_sd.msl`, `ms1_legacy.csv`, `generic.csv`, `haltech_raw.txt`, `haltech_flat.csv`.
+- (2026-10) Verified end-to-end via `/api/parse-log` + `/api/calculate-dyno`
+  (peakHp/peakTq returned, `rpmStep` honored).
