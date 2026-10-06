@@ -21,10 +21,26 @@ const INCH_TO_METER = 0.0254;
 const WATTS_PER_HP = 745.699872;
 const KPA_TO_PSI = 0.1450377;
 
+
+function calculateOptimalRpmStep(timeSmoothed, manualStep) {
+  if (manualStep) return manualStep;
+  if (timeSmoothed.length < 10) return 25;
+  let total = 0, count = 0;
+  for (let i = 1; i < timeSmoothed.length; i++) {
+    const dt = timeSmoothed[i].t - timeSmoothed[i - 1].t;
+    if (dt > 0.0001) { total += dt; count++; }
+  }
+  if (count < 2) return 25;
+  const hz = 1 / (total / count);
+  if (hz >= 50) return 5;
+  if (hz >= 20) return 10;
+  return 25;
+}
+
 /**
  * Calculate dyno curves from WOT pull data points
  */
-function calculateDyno(pullData, carProfile) {
+function calculateDyno(pullData, carProfile, manualRpmStep = null) {
   if (!pullData || pullData.length < 5) {
     return { error: 'Insufficient pull data' };
   }
@@ -197,11 +213,12 @@ function calculateDyno(pullData, carProfile) {
   }
 
   // 4. Uniform Monotonic RPM Grid Normalization
-  // Evaluated at clean 25 RPM increments so the curve is strictly monotonic and free of zig-zags
+  // Step size is adaptive: auto-detected from data sample rate, or overridden by the user.
   const minRpmInPull = timeSmoothed[0].rpm;
   const maxRpmInPull = timeSmoothed[timeSmoothed.length - 1].rpm;
-  const gridStartRpm = Math.ceil((minRpmInPull + 30) / 25) * 25;
-  const gridEndRpm = Math.floor((maxRpmInPull - 30) / 25) * 25;
+  const rpmStep = calculateOptimalRpmStep(timeSmoothed, manualRpmStep);
+  const gridStartRpm = Math.ceil((minRpmInPull + 30) / rpmStep) * rpmStep;
+  const gridEndRpm = Math.floor((maxRpmInPull - 30) / rpmStep) * rpmStep;
 
   const curvePoints = [];
   let peakHp = 0;
@@ -212,7 +229,7 @@ function calculateDyno(pullData, carProfile) {
   let avgLambda = 0;
   let lambdaCount = 0;
 
-  for (let r = gridStartRpm; r <= gridEndRpm; r += 25) {
+  for (let r = gridStartRpm; r <= gridEndRpm; r += rpmStep) {
     let idx = 0;
     while (idx < timeSmoothed.length - 1 && timeSmoothed[idx + 1].rpm < r) {
       idx++;
@@ -312,7 +329,8 @@ function calculateDyno(pullData, carProfile) {
     gear: carProfile.gear || 3,
     startRpm: curvePoints[0]?.rpm || 0,
     endRpm: curvePoints[curvePoints.length - 1]?.rpm || 0,
-    durationSec: Math.round((cleanPoints[cleanPoints.length - 1].t - cleanPoints[0].t) * 100) / 100
+    durationSec: Math.round((cleanPoints[cleanPoints.length - 1].t - cleanPoints[0].t) * 100) / 100,
+    rpmStep
   };
 }
 

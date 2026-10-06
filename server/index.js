@@ -117,11 +117,12 @@ const server = http.createServer(async (req, res) => {
   // 4. Calculate Dyno Curve
   if (pathname === '/api/calculate-dyno' && req.method === 'POST') {
     try {
-      const { pullData, carProfile } = await parseBody(req);
+      const { pullData, carProfile, rpmStep } = await parseBody(req);
       if (!pullData || !carProfile) {
         return sendJson(res, 400, { error: 'Missing pullData or carProfile' });
       }
-      const dynoResult = calculateDyno(pullData, carProfile);
+      const manualRpmStep = [5,10,25].includes(Number(rpmStep)) ? Number(rpmStep) : null;
+      const dynoResult = calculateDyno(pullData, carProfile, manualRpmStep);
       return sendJson(res, 200, dynoResult);
     } catch (err) {
       return sendJson(res, 500, { error: 'Dyno calculation failure: ' + err.message });

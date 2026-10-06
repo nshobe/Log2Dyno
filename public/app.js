@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let globalDynoType = 'dynojet';
   let globalSmoothing = 4;
+  let globalRpmStep = localStorage.getItem('nsp_rpm_step') || 'auto';
   let globalBoostUnit = localStorage.getItem('nsp_boost_unit') || 'psi';
   let globalFuelUnit = localStorage.getItem('nsp_fuel_unit') || 'lambda';
   dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
@@ -369,6 +370,16 @@ document.addEventListener('DOMContentLoaded', () => {
     recalculateAllRuns();
   });
 
+  const rpmStepSelect = document.getElementById('rpmStepSelect');
+  if (rpmStepSelect) {
+    rpmStepSelect.value = globalRpmStep;
+    rpmStepSelect.addEventListener('change', () => {
+      globalRpmStep = rpmStepSelect.value;
+      localStorage.setItem('nsp_rpm_step', globalRpmStep);
+      recalculateAllRuns();
+    });
+  }
+
   // Run A Parameter Listeners
   runACarSelect.addEventListener('change', () => {
     runASettings.carId = runACarSelect.value;
@@ -559,7 +570,8 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         pullData: pull.data,
-        carProfile: profile
+        carProfile: profile,
+        rpmStep: globalRpmStep === 'auto' ? null : Number(globalRpmStep)
       })
     }).then(r => r.json());
   }

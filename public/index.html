@@ -55,6 +55,15 @@
         <input type="range" id="smoothingSlider" min="0" max="10" value="4" style="width:55px;accent-color:#00e5ff;">
         <span id="smoothingVal" style="font-family:var(--font-mono);font-size:11px;min-width:12px;">4</span>
       </div>
+      <div class="setting-item">
+        <span class="setting-label">RPM Step:</span>
+        <select id="rpmStepSelect" class="setting-select" title="RPM grid resolution (Auto detects from log sample rate)">
+          <option value="auto" selected>Auto</option>
+          <option value="5">5 RPM</option>
+          <option value="10">10 RPM</option>
+          <option value="25">25 RPM</option>
+        </select>
+      </div>
     </div>
 
     <!-- Actions -->
