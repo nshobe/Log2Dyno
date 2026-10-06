@@ -151,19 +151,30 @@ Deviations / discoveries (important):
 - `boostPsi`/`mapPsi` for the wide sample now show vacuum (~-9 psi at idle) instead of
   a flat 0/14.7 from the boolean column.
 
-### Phase 2 — MSL polish, UI, overrides
+### Phase 2 — MSL polish, UI, overrides — ✅ COMPLETE
 
 - [x] Native `.msl` tab-delimited + preamble end-to-end (parser side).
-- [~] API: response now includes `formatLabel`, `detectedDelimiter`, `unitWarnings`,
-  `unmappedRequired`; still TODO: accept `options` (`format`, `delimiter`, `wotThreshold`,
-  `tpsScale`).
-- [ ] API: `GET /api/formats`.
-- [ ] Frontend accepts `.csv,.msl,.txt,.tsv,.log`; binary sniff + friendly rejection.
-- [ ] Frontend "Log type: Auto / Haltech / MegaSquirt / Generic" selector.
-- [ ] Frontend diagnostics chip: detected format, delimiter, row count, mapped channels,
-  warnings.
-- [ ] Frontend mapping override dropdowns when auto-detect is wrong.
-- [ ] TPS scale detection/warning (volts/ADC vs 0–100%) + WOT threshold override.
+- [x] API: `/api/parse-log` accepts `options` (`format`, `delimiter`, `wotThreshold`,
+  `tpsScale`, `channelOverrides`); response includes `formatLabel`, `family`,
+  `detectedDelimiter`, `units`, `unitWarnings`, `unmappedRequired`, `tpsScale`,
+  `tpsScaleSuggested`, `wotThreshold`.
+- [x] API: `GET /api/formats` (Auto / Haltech / MegaSquirt / Generic).
+- [x] Frontend accepts `.csv,.msl,.txt,.tsv,.log`; binary sniff + friendly rejection
+  (null-byte detection via `ArrayBuffer` + `TextDecoder`).
+- [x] Frontend "Log type: Auto / Haltech / MegaSquirt / Generic" selector (persisted).
+- [x] Frontend diagnostics bar: format label, row/pull count, mapped channels, warnings;
+  toggles a 14-field Channel Mapping panel.
+- [x] Frontend mapping override dropdowns — re-parses the server-side log with
+  `channelOverrides` and refreshes any run referencing it.
+- [x] TPS scale detection/warning (0-5V/ADC heuristic) + WOT threshold override
+  (`options.wotThreshold`, re-parses on change).
+
+Verified end-to-end in headless Chromium over CDP: page loads with no JS errors, the
+real `#fileInput` ingests a TunerStudio CSV, diagnostics render, Run A auto-calculates,
+the mapping panel opens with 14 fields, and a forced override triggers a re-parse.
+
+Known limitation: diagnostics/mapping reflect the most-recently ingested log, not
+whichever log is selected in the Run A/B dropdowns.
 
 ### Phase 3 — Binary (optional/later)
 
@@ -242,7 +253,7 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
 - [x] Research MegaSquirt/TunerStudio formats (MSL preamble, tab delimiter, field names).
 - [x] Write this plan.
 - [x] Phase 1 (parser core + tests) — 11 tests passing.
-- [ ] Phase 2
+- [x] Phase 2 (API options + UI diagnostics/mapping) — CDP-verified in headless Chromium.
 - [ ] Phase 3
 
 ### Notes / decisions made during work
@@ -253,3 +264,7 @@ kPa↔psi, °C↔°F, AFR→lambda, km/h→mph.
   `ms3_sd.msl`, `ms1_legacy.csv`, `generic.csv`, `haltech_raw.txt`, `haltech_flat.csv`.
 - (2026-10) Verified end-to-end via `/api/parse-log` + `/api/calculate-dyno`
   (peakHp/peakTq returned, `rpmStep` honored).
+- (2026-10) Phase 2 UI validated via headless snap Chromium over CDP
+  (`DOM.setFileInputFiles` on the real `#fileInput`): no page JS errors, diagnostics
+  and mapping panel work, override re-parse confirmed. `.mcp.json` was used with a
+  temporary `--executablePath` and restored afterward.

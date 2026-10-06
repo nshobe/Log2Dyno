@@ -107,11 +107,22 @@ const server = http.createServer(async (req, res) => {
       const data = await parseBody(req);
       const content = typeof data === 'object' ? data.content : data;
       const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
-      const parsed = parseLog(content, filename);
+      const options = (typeof data === 'object' && data.options) || {};
+      const parsed = parseLog(content, filename, options);
       return sendJson(res, 200, parsed);
     } catch (err) {
       return sendJson(res, 500, { error: 'Parse failure: ' + err.message });
     }
+  }
+
+  // 2. Supported log formats / type hints for the UI selector
+  if (pathname === '/api/formats' && req.method === 'GET') {
+    return sendJson(res, 200, [
+      { id: 'auto', label: 'Auto-detect' },
+      { id: 'haltech', label: 'Haltech (NSP / Nexus)' },
+      { id: 'megasquirt', label: 'MegaSquirt / TunerStudio' },
+      { id: 'generic', label: 'Generic CSV' }
+    ]);
   }
 
   // 4. Calculate Dyno Curve

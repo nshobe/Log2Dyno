@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let globalRpmStep = localStorage.getItem('nsp_rpm_step') || 'auto';
   let globalBoostUnit = localStorage.getItem('nsp_boost_unit') || 'psi';
   let globalFuelUnit = localStorage.getItem('nsp_fuel_unit') || 'lambda';
+  let globalLogFormat = localStorage.getItem('nsp_log_format') || 'auto';
   dynoCanvas.setUnits(globalBoostUnit, globalFuelUnit);
 
   let isPlaying = false;
@@ -54,6 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const warningBanner = document.getElementById('warningBanner');
   const warningText = document.getElementById('warningText');
   const warningDismiss = document.getElementById('warningDismiss');
+
+  // Log diagnostics / mapping elements
+  const logFormatSelect = document.getElementById('logFormatSelect');
+  const wotThresholdInput = document.getElementById('wotThresholdInput');
+  const logDiagnostics = document.getElementById('logDiagnostics');
+  const diagFormat = document.getElementById('diagFormat');
+  const diagRows = document.getElementById('diagRows');
+  const diagMapped = document.getElementById('diagMapped');
+  const diagWarnings = document.getElementById('diagWarnings');
+  const diagMappingBtn = document.getElementById('diagMappingBtn');
+  const diagDismiss = document.getElementById('diagDismiss');
+  const mappingPanel = document.getElementById('mappingPanel');
+  if (logFormatSelect) logFormatSelect.value = globalLogFormat;
 
   // Run A Elements
   const runASelect = document.getElementById('runASelect');
@@ -691,7 +705,146 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function ingestParsedLog(parsed, autoSelect = true) {
+  // ---------------------------------------------------------------------------
+  // Log diagnostics, channel mapping, and re-parsing
+  // ---------------------------------------------------------------------------
+  const MAPPABLE_FIELDS = [
+    ['rpm', 'RPM'], ['tps', 'TPS'], ['map', 'MAP'], ['boost', 'Boost'],
+    ['lambda', 'Lambda/AFR'], ['targetLambda', 'Target Lambda'],
+    ['ignition', 'Ignition'], ['knock', 'Knock'], ['gear', 'Gear'],
+    ['speed', 'Speed'], ['iat', 'IAT'], ['coolant', 'Coolant'],
+    ['oilPressure', 'Oil Pressure'], ['vvt', 'VVT']
+  ];
+
+  let diagLogIndex = -1;
+  let activeOverrides = {};
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function buildParseOptions() {
+    const options = {};
+    if (globalLogFormat && globalLogFormat !== 'auto') options.format = globalLogFormat;
+    const wot = parseFloat(wotThresholdInput && wotThresholdInput.value);
+    if (Number.isFinite(wot) && wot > 0 && wot <= 100) options.wotThreshold = wot;
+    return options;
+  }
+
+  function renderDiagnostics(logIdx) {
+    const log = loadedLogs[logIdx];
+    if (!log || !logDiagnostics) return;
+    diagLogIndex = logIdx;
+
+    diagFormat.textContent = log.formatLabel || log.format || 'Unknown';
+    diagRows.textContent = `${log.totalRows} rows · ${log.pulls.length} pull${log.pulls.length === 1 ? '' : 's'}`;
+    const mapped = MAPPABLE_FIELDS.map(([k]) => k).filter(k => log.mapping[k]);
+    diagMapped.textContent = 'Mapped: ' + (mapped.length ? mapped.join(', ') : 'none');
+
+    const warnings = [...(log.unitWarnings || [])];
+    if (log.unmappedRequired && log.unmappedRequired.length) {
+      warnings.push(`Required channel(s) unmapped: ${log.unmappedRequired.join(', ')}. Use Channel Mapping to assign them.`);
+    }
+    diagWarnings.innerHTML = warnings.map(w => `<div>⚠ ${escapeHtml(w)}</div>`).join('');
+    diagWarnings.classList.toggle('hidden', warnings.length === 0);
+
+    if (!mappingPanel.classList.contains('hidden')) buildMappingPanel(log);
+    logDiagnostics.classList.remove('hidden');
+  }
+
+  function buildMappingPanel(log) {
+    mappingPanel.innerHTML = '';
+    MAPPABLE_FIELDS.forEach(([key, label]) => {
+      const field = document.createElement('div');
+      field.className = 'mapping-field';
+      const lab = document.createElement('label');
+      lab.textContent = label;
+      const sel = document.createElement('select');
+      const current = log.mapping[key];
+
+      const autoOpt = document.createElement('option');
+      autoOpt.value = '';
+      autoOpt.textContent = current ? `Auto (${current})` : 'Auto (unmapped)';
+      sel.appendChild(autoOpt);
+
+      const noneOpt = document.createElement('option');
+      noneOpt.value = '__none__';
+      noneOpt.textContent = '— none —';
+      sel.appendChild(noneOpt);
+
+      (log.channels || []).forEach(ch => {
+        const o = document.createElement('option');
+        o.value = ch;
+        o.textContent = ch;
+        sel.appendChild(o);
+      });
+
+      if (Object.prototype.hasOwnProperty.call(activeOverrides, key)) {
+        sel.value = activeOverrides[key] === null ? '__none__' : activeOverrides[key];
+      }
+
+      sel.addEventListener('change', () => {
+        const v = sel.value;
+        if (v === '') delete activeOverrides[key];
+        else if (v === '__none__') activeOverrides[key] = null;
+        else activeOverrides[key] = v;
+        reparseLog(diagLogIndex, activeOverrides);
+      });
+
+      field.appendChild(lab);
+      field.appendChild(sel);
+      mappingPanel.appendChild(field);
+    });
+  }
+
+  function replaceLog(logIdx, newLog) {
+    const old = loadedLogs[logIdx];
+    loadedLogs[logIdx] = newLog;
+
+    const aVal = runASelect.value;
+    const bVal = runBSelect.value;
+    populateRunDropdowns();
+    if ([...runASelect.options].some(o => o.value === aVal)) runASelect.value = aVal;
+    if ([...runBSelect.options].some(o => o.value === bVal)) runBSelect.value = bVal;
+
+    if (runA && runA.log === old) {
+      runA.log = newLog;
+      if (!newLog.pulls[runA.pullIndex]) runA.pullIndex = 0;
+      if (newLog.pulls.length) recalculateRun('A'); else clearRun('A');
+    }
+    if (runB && runB.log === old) {
+      runB.log = newLog;
+      if (!newLog.pulls[runB.pullIndex]) runB.pullIndex = 0;
+      if (newLog.pulls.length) recalculateRun('B'); else clearRun('B');
+    }
+  }
+
+  function reparseLog(logIdx, overrides) {
+    const log = loadedLogs[logIdx];
+    if (!log || !log._content) return;
+    const options = { ...buildParseOptions(), channelOverrides: overrides };
+    fetch('/api/parse-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: log._content, filename: log._filename, options })
+    })
+      .then(r => r.json())
+      .then(parsed => {
+        if (parsed.error) { alert('Error re-parsing log: ' + parsed.error); return; }
+        const newLog = { ...parsed, _content: log._content, _filename: log._filename, _options: options };
+        replaceLog(logIdx, newLog);
+        renderDiagnostics(logIdx);
+        if (parsed.warning) {
+          warningText.textContent = parsed.warning;
+          warningBanner.classList.remove('hidden');
+        }
+      })
+      .catch(err => alert('Re-parse error: ' + err.message));
+  }
+
+  function ingestParsedLog(parsed, autoSelect = true, meta = {}) {
     if (parsed.error) {
       alert('Error parsing log: ' + parsed.error);
       return;
@@ -704,11 +857,20 @@ document.addEventListener('DOMContentLoaded', () => {
       warningBanner.classList.add('hidden');
     }
 
-    if (parsed.pulls.length === 0) return;
-
     const logIdx = loadedLogs.length;
-    loadedLogs.push(parsed);
+    loadedLogs.push({
+      ...parsed,
+      _content: meta.content,
+      _filename: meta.filename || parsed.filename,
+      _options: meta.options || {}
+    });
+    activeOverrides = {};
+    mappingPanel.classList.add('hidden');
+
     populateRunDropdowns();
+    renderDiagnostics(logIdx);
+
+    if (parsed.pulls.length === 0) return;
 
     if (autoSelect) {
       if (!runA) {
@@ -723,7 +885,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   warningDismiss.addEventListener('click', () => warningBanner.classList.add('hidden'));
 
-  warningDismiss.addEventListener('click', () => warningBanner.classList.add('hidden'));
+  if (diagDismiss) {
+    diagDismiss.addEventListener('click', () => logDiagnostics.classList.add('hidden'));
+  }
+  if (diagMappingBtn) {
+    diagMappingBtn.addEventListener('click', () => {
+      const opening = mappingPanel.classList.contains('hidden');
+      if (opening && diagLogIndex >= 0) buildMappingPanel(loadedLogs[diagLogIndex]);
+      mappingPanel.classList.toggle('hidden', !opening);
+      diagMappingBtn.textContent = opening ? 'Channel Mapping ▴' : 'Channel Mapping ▾';
+    });
+  }
+  if (logFormatSelect) {
+    logFormatSelect.addEventListener('change', () => {
+      globalLogFormat = logFormatSelect.value;
+      localStorage.setItem('nsp_log_format', globalLogFormat);
+      if (diagLogIndex >= 0) reparseLog(diagLogIndex, activeOverrides);
+    });
+  }
+  if (wotThresholdInput) {
+    wotThresholdInput.addEventListener('change', () => {
+      if (diagLogIndex >= 0) reparseLog(diagLogIndex, activeOverrides);
+    });
+  }
 
   // Robust Drag & Drop Handling
   let dragCounter = 0;
@@ -747,49 +931,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const TEXT_LOG_EXT = /\.(csv|msl|txt|tsv|log)$/i;
+
+  function readLogFile(file, onText, onError) {
+    const reader = new FileReader();
+    reader.onerror = () => onError(new Error('Could not read file: ' + file.name));
+    reader.onload = (evt) => {
+      const buf = evt.target.result;
+      const bytes = new Uint8Array(buf.slice(0, 4096));
+      let nullBytes = 0;
+      for (let i = 0; i < bytes.length; i++) {
+        if (bytes[i] === 0) nullBytes++;
+      }
+      if (nullBytes > 8) {
+        onError(new Error(`"${file.name}" looks like a binary log (MLG/MS3). Export it as CSV or MSL from TunerStudio first.`));
+        return;
+      }
+      onText(new TextDecoder('utf-8').decode(buf));
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function parseAndIngest(content, filename, autoSelect = true) {
+    const options = buildParseOptions();
+    fetch('/api/parse-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content, filename, options })
+    })
+      .then(r => r.json())
+      .then(parsed => ingestParsedLog(parsed, autoSelect, { content, filename, options }))
+      .catch(err => alert('Upload error: ' + err.message));
+  }
+
+  function handleFileList(files) {
+    for (const file of files) {
+      if (!TEXT_LOG_EXT.test(file.name)) {
+        alert(`Unsupported file "${file.name}". Supported: .csv, .msl, .txt, .tsv, .log`);
+        continue;
+      }
+      readLogFile(
+        file,
+        (text) => parseAndIngest(text, file.name, true),
+        (err) => alert(err.message)
+      );
+    }
+  }
+
   window.addEventListener('drop', (e) => {
     e.preventDefault();
     dragCounter = 0;
     dropzoneOverlay.classList.add('hidden');
-
     const files = e.dataTransfer.files;
-    if (files && files.length > 0) {
-      for (const file of files) {
-        if (file.name.toLowerCase().endsWith('.csv')) {
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            fetch('/api/parse-log', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ content: evt.target.result, filename: file.name })
-            })
-            .then(r => r.json())
-            .then(parsed => ingestParsedLog(parsed, true))
-            .catch(err => alert('Upload error: ' + err.message));
-          };
-          reader.readAsText(file);
-        }
-      }
-    }
+    if (files && files.length > 0) handleFileList(files);
   });
 
   document.getElementById('fileUploadBtn').addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-      const file = fileInput.files[0];
-      const reader = new FileReader();
-      reader.onload = (evt) => {
-        fetch('/api/parse-log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ content: evt.target.result, filename: file.name })
-        })
-        .then(r => r.json())
-        .then(parsed => ingestParsedLog(parsed, true))
-        .catch(err => alert('Upload error: ' + err.message));
-      };
-      reader.readAsText(file);
-    }
+    if (fileInput.files.length > 0) handleFileList(fileInput.files);
+    fileInput.value = '';
   });
 
   // Print Screen

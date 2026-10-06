@@ -261,6 +261,7 @@ function identifyChannels(channels, units = []) {
     timeIndex: indexOf(time) >= 0 ? indexOf(time) : 0,
     rpm: nameOf(rpm, null),
     tps: nameOf(tps, null),
+    tpsUnit: unitAt(units, indexOf(tps)),
     map: nameOf(map, null),
     mapUnit: unitAt(units, indexOf(map)),
     boost: nameOf(boost, null),
@@ -271,6 +272,7 @@ function identifyChannels(channels, units = []) {
     lambdaUnit: unitAt(units, indexOf(lambda)),
     lambdaIsAfr: lambda ? isAfrName(lambda.name, unitAt(units, indexOf(lambda))) : false,
     targetLambda: nameOf(targetLambda, null),
+    targetLambdaUnit: unitAt(units, indexOf(targetLambda)),
     targetLambdaIsAfr: targetLambda
       ? isAfrName(targetLambda.name, unitAt(units, indexOf(targetLambda)))
       : false,
@@ -298,4 +300,4 @@ function identifyChannels(channels, units = []) {
   };
 }
 
-module.exports = { identifyChannels, normalizeName, SPECS };
+module.exports = { identifyChannels, normalizeName, isAfrName, SPECS };

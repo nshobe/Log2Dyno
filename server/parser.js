@@ -21,8 +21,8 @@ const {
   speedToMph,
   fuelRatioToLambda
 } = require('./units');
-const { identifyChannels, normalizeName } = require('./channelMap');
-const { detectFormat } = require('./formats');
+const { identifyChannels, normalizeName, isAfrName } = require('./channelMap');
+const { detectFormat, findHeaderIndex, findUnitsIndex } = require('./formats');
 const { splitLine, parseRows } = require('./formats/delimited');
 const { parseHaltechRaw } = require('./formats/haltechRaw');
 
@@ -36,6 +36,55 @@ const FORMAT_LABELS = {
 
 function warn(list, msg) {
   if (!list.includes(msg)) list.push(msg);
+}
+
+const FORMAT_HINTS = new Set(['haltech', 'megasquirt', 'generic']);
+const VALID_DELIMITERS = new Set(['\t', ',', ';']);
+
+/** Apply user-supplied format/delimiter hints to a detection result. */
+function applyFormatOptions(detection, options, lines, filename) {
+  if (options.delimiter && VALID_DELIMITERS.has(options.delimiter)) {
+    detection.delimiter = options.delimiter;
+    detection.headerIndex = findHeaderIndex(lines, detection.delimiter);
+    detection.unitsIndex = findUnitsIndex(lines, detection.headerIndex, detection.delimiter);
+    detection.hasUnits = detection.unitsIndex >= 0;
+    detection.dataIndex = detection.hasUnits ? detection.unitsIndex + 1 : detection.headerIndex + 1;
+  }
+  if (options.format && FORMAT_HINTS.has(options.format)) {
+    detection.family = options.format;
+    if (options.format === 'megasquirt') {
+      detection.id = (detection.delimiter === '\t' || /\.msl$/i.test(filename))
+        ? 'megasquirt_msl' : 'megasquirt_csv';
+    } else if (options.format === 'haltech') {
+      detection.id = detection.hasUnits ? 'haltech_flat_csv' : 'generic_csv';
+    } else {
+      detection.id = 'generic_csv';
+    }
+  }
+}
+
+function unitFor(channels, units, name) {
+  if (!name) return '';
+  const i = channels.indexOf(name);
+  return i >= 0 && units[i] != null ? String(units[i]).trim() : '';
+}
+
+/** Recompute unit/type metadata after channel overrides are applied. */
+function refreshMappingMeta(mapping, channels, units) {
+  mapping.tpsUnit = unitFor(channels, units, mapping.tps);
+  mapping.mapUnit = unitFor(channels, units, mapping.map);
+  mapping.boostUnit = unitFor(channels, units, mapping.boost);
+  mapping.baroUnit = unitFor(channels, units, mapping.baro);
+  mapping.lambdaUnit = unitFor(channels, units, mapping.lambda);
+  mapping.targetLambdaUnit = unitFor(channels, units, mapping.targetLambda);
+  mapping.speedUnit = unitFor(channels, units, mapping.speed);
+  mapping.iatUnit = unitFor(channels, units, mapping.iat);
+  mapping.coolantUnit = unitFor(channels, units, mapping.coolant);
+  mapping.oilPressureUnit = unitFor(channels, units, mapping.oilPressure);
+  mapping.ethanolUnit = unitFor(channels, units, mapping.ethanol);
+  mapping.lambdaIsAfr = mapping.lambda ? isAfrName(mapping.lambda, mapping.lambdaUnit) : false;
+  mapping.targetLambdaIsAfr = mapping.targetLambda
+    ? isAfrName(mapping.targetLambda, mapping.targetLambdaUnit) : false;
 }
 
 /**
@@ -88,7 +137,7 @@ function isNarrowbandName(name) {
   return /^(o2|ego|lambda sensor)$/.test(normalizeName(name));
 }
 
-function parseLog(fileContent, filename = '') {
+function parseLog(fileContent, filename = '', options = {}) {
   if (!fileContent || typeof fileContent !== 'string') {
     return { error: 'Empty or invalid file content' };
   }
@@ -99,6 +148,7 @@ function parseLog(fileContent, filename = '') {
   }
 
   const detection = detectFormat(lines, filename);
+  applyFormatOptions(detection, options, lines, filename);
   const format = detection.id;
   const family = detection.family;
 
@@ -118,6 +168,19 @@ function parseLog(fileContent, filename = '') {
   }
 
   const mapping = identifyChannels(channels, units);
+
+  if (options.channelOverrides && typeof options.channelOverrides === 'object') {
+    for (const key of Object.keys(options.channelOverrides)) {
+      if (!(key in mapping)) continue;
+      const value = options.channelOverrides[key];
+      if (value === null) {
+        mapping[key] = null;
+      } else if (typeof value === 'string' && channels.includes(value)) {
+        mapping[key] = value;
+      }
+    }
+    refreshMappingMeta(mapping, channels, units);
+  }
 
   if (format !== 'haltech_nsp_raw') {
     rawRows = parseRows(
@@ -140,6 +203,25 @@ function parseLog(fileContent, filename = '') {
     }
   }
 
+  // TPS scaling (e.g. 0-5V -> 0-100%). Detect a likely voltage/ADC scale.
+  const tpsScale = Number.isFinite(Number(options.tpsScale)) && Number(options.tpsScale) > 0
+    ? Number(options.tpsScale) : 1;
+  let rawTpsMax = 0;
+  if (mapping.tps) {
+    for (const r of rawRows) {
+      const v = r[mapping.tps];
+      if (typeof v === 'number' && v > rawTpsMax) rawTpsMax = v;
+    }
+  }
+  let tpsScaleSuggested = null;
+  if (mapping.tps && tpsScale === 1 && rawTpsMax > 0 && rawTpsMax <= 6) {
+    const factor = Math.round((100 / rawTpsMax) * 10) / 10;
+    tpsScaleSuggested = {
+      factor,
+      reason: `TPS channel "${mapping.tps}" peaks at ${rawTpsMax}; looks like 0-5V or ADC counts.`
+    };
+  }
+
   const unitWarnings = [];
   if (mapColumn && !normUnit(mapping.mapUnit)) {
     warn(unitWarnings, `MAP column "${mapColumn}" has no declared unit; inferred from range/family.`);
@@ -152,6 +234,9 @@ function parseLog(fileContent, filename = '') {
   }
   if (mapping.lambda && isNarrowbandName(mapping.lambda)) {
     warn(unitWarnings, `Fuel channel "${mapping.lambda}" looks like a narrowband O2/EGO signal; lambda left blank.`);
+  }
+  if (tpsScaleSuggested) {
+    warn(unitWarnings, `${tpsScaleSuggested.reason} Apply a ×${tpsScaleSuggested.factor} TPS scale if this is a 0-5V/ADC log.`);
   }
 
   let maxTpsSeen = 0;
@@ -178,6 +263,7 @@ function parseLog(fileContent, filename = '') {
 
     let tps = tpsRaw;
     if (tps !== undefined && !isNaN(tps)) {
+      tps = tps * tpsScale;
       if (tps > maxTpsSeen) maxTpsSeen = tps;
     } else {
       tps = 100;
@@ -252,16 +338,17 @@ function parseLog(fileContent, filename = '') {
     });
   }
 
-  // WOT Pull Extraction: requires >= 85% TPS
-  const WOT_THRESHOLD = 85.0;
+  // WOT Pull Extraction
+  const WOT_THRESHOLD = Number(options.wotThreshold) > 0 && Number(options.wotThreshold) <= 100
+    ? Number(options.wotThreshold) : 85.0;
   const pulls = extractWotPulls(normalizedRows, WOT_THRESHOLD);
 
   let warning = null;
   if (pulls.length === 0) {
     if (maxTpsSeen < WOT_THRESHOLD) {
-      warning = `Warning: No 85%+ Throttle Position detected in this log. Peak throttle observed was ${Math.round(maxTpsSeen * 10) / 10}%. Virtual dyno calculations require wide-open throttle (>= 85%).`;
+      warning = `Warning: No ${WOT_THRESHOLD}%+ Throttle Position detected in this log. Peak throttle observed was ${Math.round(maxTpsSeen * 10) / 10}%. Virtual dyno calculations require wide-open throttle (>= ${WOT_THRESHOLD}%).`;
     } else {
-      warning = `Warning: 85%+ throttle was observed, but no sustained RPM ascent pull was found.`;
+      warning = `Warning: ${WOT_THRESHOLD}%+ throttle was observed, but no sustained RPM ascent pull was found.`;
     }
   }
 
@@ -283,6 +370,9 @@ function parseLog(fileContent, filename = '') {
     mapping,
     unmappedRequired,
     unitWarnings,
+    tpsScale,
+    tpsScaleSuggested,
+    wotThreshold: WOT_THRESHOLD,
     maxTpsSeen: Math.round(maxTpsSeen * 10) / 10,
     warning,
     pulls,

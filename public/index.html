@@ -14,7 +14,7 @@
       <div class="logo-text">
         <span>⚡ NSP Dyno</span>
       </div>
-      <span class="tag-badge nexus">HALTECH</span>
+      <span class="tag-badge nexus">HALTECH · MEGASQUIRT · CSV</span>
     </div>
 
     <!-- Quick Dyno Parameters & Vehicle Management -->
@@ -64,24 +64,51 @@
           <option value="25">25 RPM</option>
         </select>
       </div>
+      <div class="setting-item">
+        <span class="setting-label">Log:</span>
+        <select id="logFormatSelect" class="setting-select" title="Force a log parser; Auto-detect is recommended">
+          <option value="auto" selected>Auto</option>
+          <option value="haltech">Haltech</option>
+          <option value="megasquirt">MegaSquirt</option>
+          <option value="generic">Generic</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">WOT:</span>
+        <input type="number" id="wotThresholdInput" class="setting-input num-sm" value="85" min="1" max="100" step="1" style="width:46px;" title="Minimum throttle % considered wide-open for pull detection">
+        <span class="stat-unit">%</span>
+      </div>
     </div>
 
     <!-- Actions -->
     <div class="header-actions">
       <button id="fileUploadBtn" class="btn">
-        📂 Drop / Open CSV
+        📂 Drop / Open Log
       </button>
       <button id="printScreenBtn" class="btn btn-print" title="Save high-resolution Dyno Sheet">
         📸 Print Screen
       </button>
-      <input type="file" id="fileInput" accept=".csv" style="display:none;">
+      <input type="file" id="fileInput" accept=".csv,.msl,.txt,.tsv,.log" style="display:none;">
     </div>
   </header>
 
-  <!-- Warning Banner for No 85%+ TPS -->
+  <!-- Warning Banner for No WOT Pull -->
   <div id="warningBanner" class="warning-banner hidden">
-    <span id="warningText">Warning: No 85%+ WOT pull detected in this log.</span>
+    <span id="warningText">Warning: No WOT pull detected in this log.</span>
     <button id="warningDismiss" class="btn" style="background:rgba(0,0,0,0.3);padding:2px 8px;font-size:11px;">Dismiss</button>
+  </div>
+
+  <!-- Log Diagnostics / Channel Mapping -->
+  <div id="logDiagnostics" class="diag-bar hidden">
+    <div class="diag-row">
+      <span id="diagFormat" class="diag-chip">--</span>
+      <span id="diagRows" class="diag-chip">--</span>
+      <span id="diagMapped" class="diag-text">--</span>
+      <button id="diagMappingBtn" class="btn" style="padding:2px 8px;font-size:11px;">Channel Mapping ▾</button>
+      <button id="diagDismiss" class="btn" style="padding:2px 8px;font-size:11px;margin-left:auto;">✕</button>
+    </div>
+    <div id="diagWarnings" class="diag-warnings hidden"></div>
+    <div id="mappingPanel" class="mapping-panel hidden"></div>
   </div>
 
   <!-- Run Comparison Bar -->
@@ -364,7 +391,7 @@
 
   <!-- Drag & Drop Fullscreen Overlay -->
   <div id="dropzoneOverlay" class="dropzone-active hidden">
-    Drop Haltech CSV Log to Ingest
+    Drop Log to Ingest — Haltech · MegaSquirt · TunerStudio · CSV
   </div>
 
   <!-- Scripts -->

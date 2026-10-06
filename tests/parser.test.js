@@ -206,3 +206,53 @@ test('unit conversions are unit-driven, unknown units return null', () => {
   assert.ok(Math.abs(units.fuelRatioToLambda(14.7, true) - 1) < 0.0001);
   assert.equal(units.fuelRatioToLambda(0.85, false), 0.85);
 });
+
+// ---------------------------------------------------------------------------
+// Parse options (Phase 2)
+// ---------------------------------------------------------------------------
+test('format hint forces the parser family', () => {
+  const content = read('generic.csv');
+  const ms = parseLog(content, 'generic.csv', { format: 'megasquirt' });
+  assert.equal(ms.family, 'megasquirt');
+  const haltech = parseLog(content, 'generic.csv', { format: 'haltech' });
+  assert.equal(haltech.family, 'haltech');
+});
+
+test('wotThreshold option changes pull extraction', () => {
+  const content = read('ms3_tunerstudio.csv');
+  const normal = parseLog(content, 'ms3_tunerstudio.csv');
+  assert.equal(normal.pulls.length, 1, 'default 85% WOT should find a pull');
+
+  // Scale TPS to max ~80%: a strict 85% threshold finds nothing, 75% does.
+  const strict = parseLog(content, 'ms3_tunerstudio.csv', { tpsScale: 0.8, wotThreshold: 85 });
+  assert.equal(strict.pulls.length, 0);
+  const relaxed = parseLog(content, 'ms3_tunerstudio.csv', { tpsScale: 0.8, wotThreshold: 75 });
+  assert.equal(relaxed.pulls.length, 1);
+});
+
+test('channelOverrides reassign a canonical field', () => {
+  const content = read('ms3_tunerstudio.csv');
+  const p = parseLog(content, 'ms3_tunerstudio.csv', {
+    channelOverrides: { map: 'CLT', gear: null }
+  });
+  assert.equal(p.mapping.map, 'CLT');
+  assert.equal(p.mapping.gear, null);
+});
+
+test('tpsScale option scales TPS before pull detection', () => {
+  const content = read('ms3_tunerstudio.csv');
+  const p = parseLog(content, 'ms3_tunerstudio.csv', { tpsScale: 0.5 });
+  assert.equal(p.tpsScale, 0.5);
+  assert.equal(p.maxTpsSeen, 50);
+});
+
+test('low max TPS triggers a voltage/ADC scale suggestion', () => {
+  const lines = ['Time,RPM,TPS'];
+  for (let i = 0; i < 30; i++) {
+    lines.push(`${(i * 0.1).toFixed(1)},${1000 + i * 100},${(0.4 + (i / 29) * 4).toFixed(2)}`);
+  }
+  const p = parseLog(lines.join('\n'), 'volts.csv');
+  assert.ok(p.tpsScaleSuggested, 'expected a tpsScaleSuggested object');
+  assert.ok(p.tpsScaleSuggested.factor > 0);
+  assert.ok(p.unitWarnings.some(w => /0-5V|ADC|TPS/i.test(w)));
+});
