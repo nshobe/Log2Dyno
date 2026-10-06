@@ -148,6 +148,17 @@
         </div>
       </div>
 
+      <!-- Run A RPM trim window -->
+      <div class="run-trim-row">
+        <span class="setting-label" title="Trim the pull's RPM range for Run A; data outside the window is excluded">RPM:</span>
+        <input type="range" id="runARpmMin" class="rpm-trim-range" min="0" max="100" value="0" step="10" disabled>
+        <span class="rpm-trim-val" id="runARpmMinVal">--</span>
+        <span class="rpm-trim-sep">–</span>
+        <input type="range" id="runARpmMax" class="rpm-trim-range" min="0" max="100" value="100" step="10" disabled>
+        <span class="rpm-trim-val" id="runARpmMaxVal">--</span>
+        <button id="runARpmReset" class="btn-run-action" title="Reset the Run A RPM trim to the full pull" disabled>⟲</button>
+      </div>
+
       <div class="run-details-row">
         <div class="stat-group">
           <span class="stat-val" id="runAHp">--</span>
@@ -205,6 +216,17 @@
           <input type="number" id="runBExtraWeight" class="setting-input num-sm" value="0" step="10" title="Extra weight in lbs">
           <span class="stat-unit">lbs</span>
         </div>
+      </div>
+
+      <!-- Run B RPM trim window -->
+      <div class="run-trim-row">
+        <span class="setting-label" title="Trim the pull's RPM range for Run B; data outside the window is excluded">RPM:</span>
+        <input type="range" id="runBRpmMin" class="rpm-trim-range" min="0" max="100" value="0" step="10" disabled>
+        <span class="rpm-trim-val" id="runBRpmMinVal">--</span>
+        <span class="rpm-trim-sep">–</span>
+        <input type="range" id="runBRpmMax" class="rpm-trim-range" min="0" max="100" value="100" step="10" disabled>
+        <span class="rpm-trim-val" id="runBRpmMaxVal">--</span>
+        <button id="runBRpmReset" class="btn-run-action" title="Reset the Run B RPM trim to the full pull" disabled>⟲</button>
       </div>
 
       <div id="runBDetailsRow" class="run-details-row">

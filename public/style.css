@@ -456,6 +456,42 @@ body {
   gap: 5px;
 }
 
+.run-trim-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0 5px;
+  flex-wrap: wrap;
+}
+
+.rpm-trim-range {
+  width: 96px;
+  accent-color: #00e5ff;
+  cursor: pointer;
+}
+
+.run-b .rpm-trim-range {
+  accent-color: #ff9100;
+}
+
+.rpm-trim-range:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.rpm-trim-val {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-main);
+  min-width: 34px;
+  text-align: center;
+}
+
+.rpm-trim-sep {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
 .run-car-select {
   max-width: 175px;
   text-overflow: ellipsis;

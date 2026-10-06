@@ -148,7 +148,10 @@ function calculateDyno(pullData, carProfile, manualRpmStep = null, customName = 
     }
   }
 
-  const cleanPoints = rawPoints.slice(startIdx, endIdx + 1);
+  let cleanPoints = rawPoints.slice(startIdx, endIdx + 1);
+  // A user-trimmed (narrow) window may be too short for the tip-in / lift
+  // heuristics; in that case honour the whole remaining window instead.
+  if (cleanPoints.length < 5) cleanPoints = rawPoints.slice();
   if (cleanPoints.length < 5) {
     return { error: 'Not enough clean acceleration data in pull' };
   }

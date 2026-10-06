@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let runA = null;
   let runB = null;
 
+  // Per-run RPM trim windows (null = full pull range).
+  let runATrim = { minRpm: null, maxRpm: null };
+  let runBTrim = { minRpm: null, maxRpm: null };
+
   let runASettings = {
     carId: 'sti_04_usdm',
     gear: 3,
@@ -96,6 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const runAExtraWeight = document.getElementById('runAExtraWeight');
   const runAEthanol = document.getElementById('runAEthanol');
   const runANotes = document.getElementById('runANotes');
+  const runARpmMin = document.getElementById('runARpmMin');
+  const runARpmMax = document.getElementById('runARpmMax');
+  const runARpmMinVal = document.getElementById('runARpmMinVal');
+  const runARpmMaxVal = document.getElementById('runARpmMaxVal');
+  const runARpmReset = document.getElementById('runARpmReset');
 
   const runAHp = document.getElementById('runAHp');
   const runATq = document.getElementById('runATq');
@@ -111,6 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const runBExtraWeight = document.getElementById('runBExtraWeight');
   const runBEthanol = document.getElementById('runBEthanol');
   const runBNotes = document.getElementById('runBNotes');
+  const runBRpmMin = document.getElementById('runBRpmMin');
+  const runBRpmMax = document.getElementById('runBRpmMax');
+  const runBRpmMinVal = document.getElementById('runBRpmMinVal');
+  const runBRpmMaxVal = document.getElementById('runBRpmMaxVal');
+  const runBRpmReset = document.getElementById('runBRpmReset');
 
   const runBHp = document.getElementById('runBHp');
   const runBTq = document.getElementById('runBTq');
@@ -587,6 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ethanol: runAEthanol.value || 'E85',
         notes: runANotes.value
       };
+      syncRunTrim('A', true);
       recalculateRun('A');
     }
   });
@@ -618,6 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ethanol: runBEthanol.value,
         notes: runBNotes.value
       };
+      syncRunTrim('B', true);
       recalculateRun('B');
     }
   });
@@ -632,12 +648,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (target === 'A') {
       runA = null;
       runASelect.value = '';
+      syncRunTrim('A', false);
       updateRunDisplay('A', null);
       dynoCanvas.setRuns(null, runB);
       updateDeltas();
     } else {
       runB = null;
       runBSelect.value = '';
+      syncRunTrim('B', false);
       comparisonContainer.classList.add('single-mode');
       runBCard.classList.add('inactive');
       updateRunDisplay('B', null);
@@ -674,6 +692,123 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- Per-run RPM trim window ---
+  function getRunTrim(target) { return target === 'A' ? runATrim : runBTrim; }
+  function setRunTrim(target, trim) {
+    if (target === 'A') runATrim = trim; else runBTrim = trim;
+  }
+  function trimElements(target) {
+    return target === 'A'
+      ? { min: runARpmMin, max: runARpmMax, minV: runARpmMinVal, maxV: runARpmMaxVal, reset: runARpmReset }
+      : { min: runBRpmMin, max: runBRpmMax, minV: runBRpmMinVal, maxV: runBRpmMaxVal, reset: runBRpmReset };
+  }
+  function updateTrimLabels(target) {
+    const els = trimElements(target);
+    const trim = getRunTrim(target);
+    const minText = trim.minRpm == null ? '--' : trim.minRpm;
+    const maxText = trim.maxRpm == null ? '--' : trim.maxRpm;
+    if (els.minV) els.minV.textContent = minText;
+    if (els.maxV) els.maxV.textContent = maxText;
+  }
+
+  // Align the sliders to the current pull. resetToFull snaps back to the whole
+  // pull; otherwise an existing trim is kept and clamped to the new bounds.
+  function syncRunTrim(target, resetToFull) {
+    const els = trimElements(target);
+    const run = target === 'A' ? runA : runB;
+    const pull = run && run.log ? (run.log.pulls[run.pullIndex] || run.log.pulls[0]) : null;
+    if (!pull || !pull.data || !pull.data.length) {
+      setRunTrim(target, { minRpm: null, maxRpm: null });
+      [els.min, els.max, els.reset].forEach(e => { if (e) e.disabled = true; });
+      updateTrimLabels(target);
+      return;
+    }
+
+    let lo = Infinity, hi = -Infinity;
+    for (const r of pull.data) {
+      if (typeof r.rpm === 'number') {
+        if (r.rpm < lo) lo = r.rpm;
+        if (r.rpm > hi) hi = r.rpm;
+      }
+    }
+    if (!Number.isFinite(lo) || !Number.isFinite(hi)) lo = hi = 0;
+
+    // Round outward to the slider step so the full-range setting includes every row.
+    const step = 10;
+    const sliderLo = Math.floor(lo / step) * step;
+    const sliderHi = Math.ceil(hi / step) * step;
+
+    if (els.min) { els.min.min = sliderLo; els.min.max = sliderHi; }
+    if (els.max) { els.max.min = sliderLo; els.max.max = sliderHi; }
+
+    let trim = getRunTrim(target);
+    if (resetToFull || trim.minRpm == null || trim.maxRpm == null) {
+      trim = { minRpm: sliderLo, maxRpm: sliderHi };
+    } else {
+      trim = {
+        minRpm: Math.max(sliderLo, Math.min(sliderHi, trim.minRpm)),
+        maxRpm: Math.max(sliderLo, Math.min(sliderHi, trim.maxRpm))
+      };
+      if (trim.minRpm > trim.maxRpm) trim = { minRpm: sliderLo, maxRpm: sliderHi };
+    }
+    setRunTrim(target, trim);
+    if (els.min) els.min.value = trim.minRpm;
+    if (els.max) els.max.value = trim.maxRpm;
+    [els.min, els.max, els.reset].forEach(e => { if (e) e.disabled = false; });
+    updateTrimLabels(target);
+  }
+
+  function applyTrimInput(target, changed) {
+    const els = trimElements(target);
+    const boundLo = Number(els.min.min);
+    const boundHi = Number(els.min.max);
+    let lo = parseInt(els.min.value, 10);
+    let hi = parseInt(els.max.value, 10);
+
+    // Keep at least ~6 samples in the window so a curve is always computable.
+    const minSpan = minTrimSpan(target);
+    if (changed === 'min' && hi - lo < minSpan) lo = hi - minSpan;
+    if (changed === 'max' && hi - lo < minSpan) hi = lo + minSpan;
+
+    lo = Math.max(boundLo, Math.min(boundHi, lo));
+    hi = Math.max(boundLo, Math.min(boundHi, hi));
+    if (hi - lo < minSpan) {
+      if (changed === 'min') hi = Math.min(boundHi, lo + minSpan);
+      else lo = Math.max(boundLo, hi - minSpan);
+    }
+    if (lo > hi) lo = hi;
+
+    els.min.value = lo;
+    els.max.value = hi;
+    setRunTrim(target, { minRpm: lo, maxRpm: hi });
+    updateTrimLabels(target);
+    recalculateRun(target);
+  }
+
+  // Minimum usable RPM window for a run, derived from its sample density.
+  function minTrimSpan(target) {
+    const run = target === 'A' ? runA : runB;
+    const pull = run && run.log ? (run.log.pulls[run.pullIndex] || run.log.pulls[0]) : null;
+    if (!pull || !pull.data || pull.data.length < 2) return 0;
+    let lo = Infinity, hi = -Infinity;
+    for (const r of pull.data) {
+      if (typeof r.rpm === 'number') {
+        if (r.rpm < lo) lo = r.rpm;
+        if (r.rpm > hi) hi = r.rpm;
+      }
+    }
+    if (!Number.isFinite(lo) || !Number.isFinite(hi)) return 0;
+    const gaps = Math.max(1, pull.data.length - 1);
+    return Math.ceil(((hi - lo) / gaps) * 5 / 10) * 10;
+  }
+
+  [[ 'A', runARpmMin, runARpmMax, runARpmReset ],
+   [ 'B', runBRpmMin, runBRpmMax, runBRpmReset ]].forEach(([t, mn, mx, rs]) => {
+    if (mn) mn.addEventListener('input', () => applyTrimInput(t, 'min'));
+    if (mx) mx.addEventListener('input', () => applyTrimInput(t, 'max'));
+    if (rs) rs.addEventListener('click', () => { syncRunTrim(t, true); recalculateRun(t); });
+  });
+
   function calcSingleRun(runObj, target) {
     if (!runObj || !runObj.log) return Promise.resolve(null);
     const pull = runObj.log.pulls[runObj.pullIndex] || runObj.log.pulls[0];
@@ -686,9 +821,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const ch = globalCustomChannel;
     const series = ch && runObj.log._series ? runObj.log._series[ch] : null;
     const start = Number.isFinite(pull.startIndex) ? pull.startIndex : 0;
-    const pullData = series
+    let pullData = series
       ? pull.data.map((row, i) => ({ ...row, custom: series[start + i] }))
       : pull.data;
+
+    // Apply the per-run RPM trim window after custom alignment so both stay in sync.
+    const trim = getRunTrim(target);
+    if (trim && trim.minRpm != null && trim.maxRpm != null) {
+      pullData = pullData.filter(r => r.rpm >= trim.minRpm && r.rpm <= trim.maxRpm);
+    }
 
     return fetch('/api/calculate-dyno', {
       method: 'POST',
@@ -727,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateRunDisplay(target, runObj) {
-    const dyno = runObj?.dynoResult;
+    const dyno = runObj?.dynoResult && !runObj.dynoResult.error ? runObj.dynoResult : null;
     if (target === 'A') {
       runAHp.textContent = dyno ? `${dyno.peakHp}` : '--';
       runATq.textContent = dyno ? `${dyno.peakTorque}` : '--';
@@ -922,11 +1063,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (runA && runA.log === old) {
       runA.log = newLog;
       if (!newLog.pulls[runA.pullIndex]) runA.pullIndex = 0;
+      syncRunTrim('A', false);
       if (newLog.pulls.length) recalculateRun('A'); else clearRun('A');
     }
     if (runB && runB.log === old) {
       runB.log = newLog;
       if (!newLog.pulls[runB.pullIndex]) runB.pullIndex = 0;
+      syncRunTrim('B', false);
       if (newLog.pulls.length) recalculateRun('B'); else clearRun('B');
     }
   }
