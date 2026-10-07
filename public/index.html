@@ -140,6 +140,7 @@
         <div class="run-config-item">
           <span class="setting-label">Gear:</span>
           <select id="runAGearSelect" class="setting-select run-gear-select" title="Transmission gear for Run A"></select>
+          <span class="gear-warn" id="runAGearWarn" hidden></span>
         </div>
         <div class="run-config-item">
           <span class="setting-label">+Wt:</span>
@@ -210,6 +211,7 @@
         <div class="run-config-item">
           <span class="setting-label">Gear:</span>
           <select id="runBGearSelect" class="setting-select run-gear-select" title="Transmission gear for Run B"></select>
+          <span class="gear-warn" id="runBGearWarn" hidden></span>
         </div>
         <div class="run-config-item">
           <span class="setting-label">+Wt:</span>
@@ -334,6 +336,7 @@
         <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;background:var(--bg-surface);padding:8px 12px;border-radius:6px;border:1px solid var(--border-color);">
           <label class="form-label" style="margin-bottom:0;white-space:nowrap;">Active Profile:</label>
           <select id="carModalProfileSelect" class="setting-select" style="flex:1;"></select>
+          <span class="gear-warn" id="carModalGearWarn" hidden></span>
           <button id="newCarBtn" class="btn btn-primary" style="padding:3px 8px;font-size:11px;">+ New</button>
         </div>
 
@@ -427,6 +430,7 @@
   <!-- Scripts -->
   <script src="tachometer.js"></script>
   <script src="dynoCanvas.js"></script>
+  <script src="vehiclePicker.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

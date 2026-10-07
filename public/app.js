@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const runARemoveBtn = document.getElementById('runARemoveBtn');
   const runACarSelect = document.getElementById('runACarSelect');
   const runAGearSelect = document.getElementById('runAGearSelect');
+  const runAGearWarn = document.getElementById('runAGearWarn');
   const runAExtraWeight = document.getElementById('runAExtraWeight');
   const runAEthanol = document.getElementById('runAEthanol');
   const runANotes = document.getElementById('runANotes');
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const runBRemoveBtn = document.getElementById('runBRemoveBtn');
   const runBCarSelect = document.getElementById('runBCarSelect');
   const runBGearSelect = document.getElementById('runBGearSelect');
+  const runBGearWarn = document.getElementById('runBGearWarn');
   const runBExtraWeight = document.getElementById('runBExtraWeight');
   const runBEthanol = document.getElementById('runBEthanol');
   const runBNotes = document.getElementById('runBNotes');
@@ -196,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteCarBtn = document.getElementById('deleteCarBtn');
   const newCarBtn = document.getElementById('newCarBtn');
   const carModalProfileSelect = document.getElementById('carModalProfileSelect');
+  const carModalGearWarn = document.getElementById('carModalGearWarn');
 
   // Print Screen Button
   const printScreenBtn = document.getElementById('printScreenBtn');
@@ -288,6 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(console.error);
   }
 
+  // Searchable pickers are attached after the run/modal DOM refs exist; the native
+  // <select> elements remain the value holders so the rest of the controller is
+  // unchanged.
+  let carPickers = null;
+
   function populateCarSelects(activeModalId = null) {
     [runACarSelect, runBCarSelect, carModalProfileSelect].forEach(sel => {
       const prevVal = sel.value;
@@ -312,20 +320,39 @@ document.addEventListener('DOMContentLoaded', () => {
       carModalProfileSelect.value = availableCars[0].id;
     }
 
-    populateGearSelect(runAGearSelect, runASettings.carId, runASettings.gear);
-    populateGearSelect(runBGearSelect, runBSettings.carId, runBSettings.gear);
+    // Pass null so each vehicle's defaultGear is honored, then sync the run
+    // settings to whatever the selects actually landed on (they can diverge
+    // when a car lacks the previously selected gear).
+    populateGearSelect(runAGearSelect, runASettings.carId, null);
+    populateGearSelect(runBGearSelect, runBSettings.carId, null);
+    runASettings.gear = parseInt(runAGearSelect.value, 10) || 3;
+    runBSettings.gear = parseInt(runBGearSelect.value, 10) || 4;
+
+    if (carPickers) Object.values(carPickers).forEach(p => p.refresh());
+    updateGearWarning(runAGearWarn, runASettings.carId, runASettings.gear);
+    updateGearWarning(runBGearWarn, runBSettings.carId, runBSettings.gear);
+    updateGearWarning(carModalGearWarn, carModalProfileSelect.value);
+  }
+
+  function gearOrdinal(gNum) {
+    const n = Number(gNum);
+    const suffix = (n % 100 >= 11 && n % 100 <= 13) ? 'th'
+      : n % 10 === 1 ? 'st' : n % 10 === 2 ? 'nd' : n % 10 === 3 ? 'rd' : 'th';
+    return `${n}${suffix}`;
   }
 
   function populateGearSelect(selectElem, carId, selectedGear) {
     const car = availableCars.find(c => c.id === carId) || availableCars[0];
     selectElem.innerHTML = '';
-    if (car && car.gears && Object.keys(car.gears).length > 0) {
-      Object.keys(car.gears).sort((a, b) => Number(a) - Number(b)).forEach(gNum => {
+    const gears = car && car.gears ? Object.keys(car.gears).sort((a, b) => Number(a) - Number(b)) : [];
+    const isSingle = !!(car && ((car.transmission && car.transmission.type === 'single') || gears.length === 1));
+
+    if (gears.length > 0) {
+      gears.forEach(gNum => {
         const ratio = car.gears[gNum];
-        const ord = gNum === '1' ? '1st' : gNum === '2' ? '2nd' : gNum === '3' ? '3rd' : `${gNum}th`;
         const opt = document.createElement('option');
         opt.value = gNum;
-        opt.textContent = `${ord} (${ratio})`;
+        opt.textContent = isSingle ? `Single Speed (${ratio})` : `${gearOrdinal(gNum)} (${ratio})`;
         selectElem.appendChild(opt);
       });
     } else {
@@ -335,10 +362,45 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    if (selectedGear && selectElem.querySelector(`option[value="${selectedGear}"]`)) {
-      selectElem.value = String(selectedGear);
+    const wanted = selectedGear != null ? String(selectedGear) : '';
+    const fallback = car && car.defaultGear != null ? String(car.defaultGear) : '';
+    if (wanted && selectElem.querySelector(`option[value="${wanted}"]`)) {
+      selectElem.value = wanted;
+    } else if (fallback && selectElem.querySelector(`option[value="${fallback}"]`)) {
+      selectElem.value = fallback;
     } else if (selectElem.options.length > 0) {
       selectElem.selectedIndex = 0;
+    }
+  }
+
+  /**
+   * Flag gear-data problems for the selected vehicle.
+   * The sharper case is a gear with no stored ratio: getRunProfile() silently falls
+   * back to a default 3rd/4th ratio there, which would corrupt the dyno math.
+   */
+  function updateGearWarning(warnEl, carId, gear) {
+    if (!warnEl) return;
+    const car = availableCars.find(c => c.id === carId);
+    if (!car) {
+      warnEl.hidden = true;
+      warnEl.textContent = '';
+      warnEl.removeAttribute('title');
+      return;
+    }
+    const hasGearRatio = gear == null || !!(car.gears && car.gears[String(gear)] != null);
+    if (!hasGearRatio) {
+      warnEl.hidden = false;
+      warnEl.textContent = '\u26a0';
+      warnEl.title = `${gearOrdinal(gear)} gear ratio is not in this profile \u2014 a fallback ratio is used, so results in this gear will be wrong.`;
+    } else if (car.gearDataComplete === false) {
+      const known = Object.keys(car.gears).map(Number).sort((a, b) => a - b).map(gearOrdinal).join(', ');
+      warnEl.hidden = false;
+      warnEl.textContent = '\u26a0';
+      warnEl.title = `Gear data incomplete \u2014 only ${known} known for this vehicle.`;
+    } else {
+      warnEl.hidden = true;
+      warnEl.textContent = '';
+      warnEl.removeAttribute('title');
     }
   }
 
@@ -458,13 +520,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Run A Parameter Listeners
   runACarSelect.addEventListener('change', () => {
     runASettings.carId = runACarSelect.value;
-    populateGearSelect(runAGearSelect, runASettings.carId, runASettings.gear);
+    populateGearSelect(runAGearSelect, runASettings.carId, null);
     runASettings.gear = parseInt(runAGearSelect.value, 10) || 3;
+    updateGearWarning(runAGearWarn, runASettings.carId, runASettings.gear);
     if (runA) recalculateRun('A');
   });
 
   runAGearSelect.addEventListener('change', () => {
     runASettings.gear = parseInt(runAGearSelect.value, 10) || 3;
+    updateGearWarning(runAGearWarn, runASettings.carId, runASettings.gear);
     if (runA) recalculateRun('A');
   });
 
@@ -476,13 +540,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Run B Parameter Listeners
   runBCarSelect.addEventListener('change', () => {
     runBSettings.carId = runBCarSelect.value;
-    populateGearSelect(runBGearSelect, runBSettings.carId, runBSettings.gear);
+    populateGearSelect(runBGearSelect, runBSettings.carId, null);
     runBSettings.gear = parseInt(runBGearSelect.value, 10) || 4;
+    updateGearWarning(runBGearWarn, runBSettings.carId, runBSettings.gear);
     if (runB) recalculateRun('B');
   });
 
   runBGearSelect.addEventListener('change', () => {
     runBSettings.gear = parseInt(runBGearSelect.value, 10) || 4;
+    updateGearWarning(runBGearWarn, runBSettings.carId, runBSettings.gear);
     if (runB) recalculateRun('B');
   });
 
@@ -1319,6 +1385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   carModalProfileSelect.addEventListener('change', () => {
     const selCar = availableCars.find(c => c.id === carModalProfileSelect.value);
+    updateGearWarning(carModalGearWarn, carModalProfileSelect.value, selCar && selCar.defaultGear);
     loadCarIntoModal(selCar);
   });
 
@@ -1337,6 +1404,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gear5Input').value = 0.971;
     document.getElementById('gear6Input').value = 0.756;
     carModalProfileSelect.value = '';
+    if (carPickers) carPickers.modal.refresh();
+    updateGearWarning(carModalGearWarn, '');
   });
 
   closeCarBtn.addEventListener('click', () => carProfileModal.classList.remove('active'));
@@ -1407,6 +1476,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const dia = (2 * (w * a / 100)) / 25.4 + r;
     document.getElementById('tireHeightInput').value = Math.round(dia * 100) / 100;
   });
+
+  // --- Searchable vehicle pickers -------------------------------------------
+  // Progressive enhancement: the native selects stay in the DOM as value holders,
+  // so every existing `.value` read and `change` listener keeps working.
+  carPickers = {
+    runA: createVehiclePicker({
+      select: runACarSelect,
+      getCars: () => availableCars,
+      placeholder: 'Make / model / trim…'
+    }),
+    runB: createVehiclePicker({
+      select: runBCarSelect,
+      getCars: () => availableCars,
+      placeholder: 'Make / model / trim…'
+    }),
+    modal: createVehiclePicker({
+      select: carModalProfileSelect,
+      getCars: () => availableCars,
+      placeholder: 'Search all vehicles…',
+      wide: true
+    })
+  };
 
   // Initial Load: Cars first, then auto-load latest network log
   loadCars().then(() => {
