@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cadillac-sts-v-2006-2009-6at",
+    "name": "2006-2009 Cadillac STS V [6AT]",
+    "make": "Cadillac",
+    "model": "STS",
+    "yearStart": 2006,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "gm-6l80"
+    },
+    "weightLbs": 4295,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.66,
+    "finalDrive": 3.23,
+    "gears": {
+      "1": 4.027,
+      "2": 2.364,
+      "3": 1.532,
+      "4": 1.152,
+      "5": 0.852,
+      "6": 0.667
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 24.94,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Cadillac/STS/STS-V_06-09.xml",
+      "index": 0,
+      "gearSource": "preset:gm-6l80"
+    },
+    "trim": "V"
+  }
+]

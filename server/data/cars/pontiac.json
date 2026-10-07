@@ -1,0 +1,496 @@
+[
+  {
+    "id": "pontiac-g8-gt-2008-2009-6at",
+    "name": "2008-2009 Pontiac G8 GT [6AT]",
+    "make": "Pontiac",
+    "model": "G8",
+    "yearStart": 2008,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "gm-6l80"
+    },
+    "weightLbs": 3945,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.717,
+    "finalDrive": 2.92,
+    "gears": {
+      "1": 4.027,
+      "2": 2.364,
+      "3": 1.532,
+      "4": 1.152,
+      "5": 0.852,
+      "6": 0.667
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/G8/G8_GT_08-09.xml",
+      "index": 0,
+      "gearSource": "preset:gm-6l80"
+    },
+    "trim": "GT"
+  },
+  {
+    "id": "pontiac-g8-gxp-2009-2009-6at",
+    "name": "2009 Pontiac G8 GXP [6AT]",
+    "make": "Pontiac",
+    "model": "G8",
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "gm-6l80"
+    },
+    "weightLbs": 4050,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.717,
+    "finalDrive": 3.27,
+    "gears": {
+      "1": 4.027,
+      "2": 2.364,
+      "3": 1.532,
+      "4": 1.152,
+      "5": 0.852,
+      "6": 0.667
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/G8/G8_GXP_09-09.xml",
+      "index": 1,
+      "gearSource": "preset:gm-6l80"
+    },
+    "trim": "GXP"
+  },
+  {
+    "id": "pontiac-g8-gxp-2009-2009-6mt",
+    "name": "2009 Pontiac G8 GXP [6MT]",
+    "make": "Pontiac",
+    "model": "G8",
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-tr6060"
+    },
+    "weightLbs": 4050,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.717,
+    "finalDrive": 3.7,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/G8/G8_GXP_09-09.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "G8 GXP (LS3) uses the Tremec TR-6060; VD 3rd (1.43) conflicts with published 1.30."
+    },
+    "trim": "GXP"
+  },
+  {
+    "id": "pontiac-grand-prix-gtp-1997-2003-4at",
+    "name": "1997-2003 Pontiac Grand Prix GTP [4AT]",
+    "make": "Pontiac",
+    "model": "Grand Prix",
+    "yearStart": 1997,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4t65e"
+    },
+    "weightLbs": 3450,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.63,
+    "finalDrive": 2.93,
+    "gears": {
+      "1": 2.921,
+      "2": 1.56,
+      "3": 1,
+      "4": 0.705
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/Grand Prix/GrandPrix_97-03.xml",
+      "index": 0,
+      "gearSource": "preset:gm-4t65e"
+    },
+    "trim": "GTP"
+  },
+  {
+    "id": "pontiac-grand-prix-gtp-2004-2007-4at",
+    "name": "2004-2007 Pontiac Grand Prix GTP [4AT]",
+    "make": "Pontiac",
+    "model": "Grand Prix",
+    "yearStart": 2004,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4t65e"
+    },
+    "weightLbs": 3632,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.74,
+    "finalDrive": 2.93,
+    "gears": {
+      "1": 2.921,
+      "2": 1.56,
+      "3": 1,
+      "4": 0.705
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/Grand Prix/GrandPrix_04-07.xml",
+      "index": 0,
+      "gearSource": "preset:gm-4t65e"
+    },
+    "trim": "GTP"
+  },
+  {
+    "id": "pontiac-grand-prix-gtp-comp-g-2004-2007-4at",
+    "name": "2004-2007 Pontiac Grand Prix GTP Comp-G [4AT]",
+    "make": "Pontiac",
+    "model": "Grand Prix",
+    "yearStart": 2004,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4t65e"
+    },
+    "weightLbs": 3632,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.74,
+    "finalDrive": 3.29,
+    "gears": {
+      "1": 2.921,
+      "2": 1.56,
+      "3": 1,
+      "4": 0.705
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/Grand Prix/GrandPrix_04-07.xml",
+      "index": 1,
+      "gearSource": "preset:gm-4t65e"
+    },
+    "trim": "GTP Comp-G"
+  },
+  {
+    "id": "pontiac-gto-5-7-17s-2004-2004-4at",
+    "name": "2004 Pontiac GTO 5.7 (17s) [4AT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2004,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 0,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "5.7 (17s)"
+  },
+  {
+    "id": "pontiac-gto-5-7-17s-2004-2004-6mt",
+    "name": "2004 Pontiac GTO 5.7 (17s) [6MT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2004,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 1,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "5.7 (17s)"
+  },
+  {
+    "id": "pontiac-gto-6-0-17s-2005-2006-4at",
+    "name": "2005-2006 Pontiac GTO 6.0 (17s) [4AT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2005,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 2,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "6.0 (17s)"
+  },
+  {
+    "id": "pontiac-gto-6-0-17s-2005-2006-6mt",
+    "name": "2005-2006 Pontiac GTO 6.0 (17s) [6MT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2005,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 3,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "6.0 (17s)"
+  },
+  {
+    "id": "pontiac-gto-6-0-18s-2005-2006-4at",
+    "name": "2005-2006 Pontiac GTO 6.0 (18s) [4AT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2005,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 4,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "6.0 (18s)"
+  },
+  {
+    "id": "pontiac-gto-6-0-18s-2005-2006-6mt",
+    "name": "2005-2006 Pontiac GTO 6.0 (18s) [6MT]",
+    "make": "Pontiac",
+    "model": "GTO",
+    "yearStart": 2005,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3725,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.63,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/GTO/GTO_04-06.xml",
+      "index": 5,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "6.0 (18s)"
+  },
+  {
+    "id": "pontiac-solstice-2006-2009-5mt",
+    "name": "2006-2009 Pontiac Solstice [5MT]",
+    "make": "Pontiac",
+    "model": "Solstice",
+    "yearStart": 2006,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "gm-ar5-5mt"
+    },
+    "weightLbs": 2877,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.7,
+    "finalDrive": 3.91,
+    "gears": {
+      "1": 3.75,
+      "2": 2.26,
+      "3": 1.37,
+      "4": 1,
+      "5": 0.73
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.44,
+    "frontalAreaSqFt": 21.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Pontiac/Solstice/Solstice_06-09.xml",
+      "index": 0,
+      "gearSource": "preset:gm-ar5-5mt"
+    }
+  }
+]

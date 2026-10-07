@@ -1,0 +1,115 @@
+[
+  {
+    "id": "eagle-talon-tsi-awd-1990-1994-4at",
+    "name": "1990-1994 Eagle Talon TSi AWD [4AT]",
+    "make": "Eagle",
+    "model": "Talon",
+    "yearStart": 1990,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "mitsubishi-dsm-awd-4at"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 2.846,
+      "2": 1.581,
+      "3": 1,
+      "4": 0.685
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Eagle/Talon/Talon_TSi_90-94.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-dsm-awd-4at"
+    },
+    "trim": "TSi AWD"
+  },
+  {
+    "id": "eagle-talon-tsi-awd-1990-1994-5mt",
+    "name": "1990-1994 Eagle Talon TSi AWD [5MT]",
+    "make": "Eagle",
+    "model": "Talon",
+    "yearStart": 1990,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Eagle/Talon/Talon_TSi_90-94.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "TSi AWD"
+  },
+  {
+    "id": "eagle-talon-tsi-1995-1999-5mt",
+    "name": "1995-1999 Eagle Talon TSi [5MT]",
+    "make": "Eagle",
+    "model": "Talon",
+    "yearStart": 1995,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3157,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.46,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.4,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Eagle/Talon/Talon_TSi_95-99.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "TSi"
+  }
+]

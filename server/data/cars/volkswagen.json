@@ -1,0 +1,269 @@
+[
+  {
+    "id": "volkswagen-golf-tdi-2010-2010-mt",
+    "name": "2010 Volkswagen Golf TDI [MT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2994,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25,
+    "finalDrive": 3.45,
+    "gears": {
+      "3": 1.26,
+      "4": 0.87
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 25.61,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_TDI_10.xml",
+      "index": 0
+    },
+    "trim": "TDI"
+  },
+  {
+    "id": "volkswagen-golf-r-euro-dsg-4-door-2012-2013-mt",
+    "name": "2012-2013 Volkswagen Golf R Euro DSG (4 Door) [MT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2012,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3397,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.47,
+    "finalDrive": 4.769,
+    "gears": {
+      "3": 1.4,
+      "4": 1.032
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.335,
+    "frontalAreaSqFt": 24.112,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_R_12-13.xml",
+      "index": 0
+    },
+    "trim": "R Euro DSG (4 Door)"
+  },
+  {
+    "id": "volkswagen-golf-r-usdm-6spd-2012-2013-6mt",
+    "name": "2012-2013 Volkswagen Golf R USDM 6spd [6MT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2012,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6
+    },
+    "weightLbs": 3325,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.47,
+    "finalDrive": 4.24,
+    "gears": {
+      "1": 3.36,
+      "2": 2.09,
+      "3": 1.47,
+      "4": 1.09,
+      "5": 1.1,
+      "6": 0.91
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.335,
+    "frontalAreaSqFt": 24.112,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_R_12-13.xml",
+      "index": 1
+    },
+    "trim": "R USDM 6spd"
+  },
+  {
+    "id": "volkswagen-golf-mk7-2door-2015-2017-at",
+    "name": "2015-2017 Volkswagen Golf MK7 (2door) [AT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2015,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3027,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25,
+    "finalDrive": 3.24,
+    "gears": {
+      "3": 1.14,
+      "4": 0.78
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.96,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_MK7_15-17.xml",
+      "index": 3
+    },
+    "trim": "MK7 (2door)"
+  },
+  {
+    "id": "volkswagen-golf-mk7-2door-2015-2017-mt",
+    "name": "2015-2017 Volkswagen Golf MK7 (2Door) [MT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2015,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2972,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25,
+    "finalDrive": 3.24,
+    "gears": {
+      "3": 1.46,
+      "4": 1.08
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.96,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_MK7_15-17.xml",
+      "index": 1
+    },
+    "trim": "MK7 (2Door)"
+  },
+  {
+    "id": "volkswagen-golf-mk7-4door-2015-2017-at",
+    "name": "2015-2017 Volkswagen Golf MK7 (4door) [AT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2015,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3086,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25,
+    "finalDrive": 3.24,
+    "gears": {
+      "3": 1.14,
+      "4": 0.78
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.96,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_MK7_15-17.xml",
+      "index": 2
+    },
+    "trim": "MK7 (4door)"
+  },
+  {
+    "id": "volkswagen-golf-mk7-4door-2015-2017-mt",
+    "name": "2015-2017 Volkswagen Golf MK7 (4door) [MT]",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "yearStart": 2015,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3031,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25,
+    "finalDrive": 3.24,
+    "gears": {
+      "3": 1.46,
+      "4": 1.08
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 27.96,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Golf/Golf_MK7_15-17.xml",
+      "index": 0
+    },
+    "trim": "MK7 (4door)"
+  },
+  {
+    "id": "volkswagen-jetta-gl-2-0l-1999-2004-5mt",
+    "name": "1999-2004 Volkswagen Jetta GL 2.0L [5MT]",
+    "make": "Volkswagen",
+    "model": "Jetta",
+    "yearStart": 1999,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "vw-02j-5mt"
+    },
+    "weightLbs": 2653,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.98,
+    "finalDrive": 4.235,
+    "gears": {
+      "1": 3.778,
+      "2": 2.118,
+      "3": 1.36,
+      "4": 1.029,
+      "5": 0.837
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volkswagen/Jetta/Jetta_GL2.0_99-04.xml",
+      "index": 0,
+      "gearSource": "preset:vw-02j-5mt"
+    },
+    "trim": "GL 2.0L"
+  }
+]

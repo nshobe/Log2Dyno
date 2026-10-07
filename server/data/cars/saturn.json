@@ -1,0 +1,40 @@
+[
+  {
+    "id": "saturn-ion-redline-2004-2007-5mt",
+    "name": "2004-2007 Saturn ION Redline [5MT]",
+    "make": "Saturn",
+    "model": "ION",
+    "yearStart": 2004,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "gm-f35-5mt"
+    },
+    "weightLbs": 2962,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 4.05,
+    "gears": {
+      "1": 3.38,
+      "2": 1.76,
+      "3": 1.18,
+      "4": 0.89,
+      "5": 0.7
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 22.28,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Saturn/ION_Redline_04-09.xml",
+      "index": 0,
+      "gearSource": "preset:gm-f35-5mt"
+    },
+    "trim": "Redline"
+  }
+]

@@ -1,0 +1,370 @@
+[
+  {
+    "id": "dodge-challenger-rt-18s-2009-2011-6mt",
+    "name": "2009-2011 Dodge Challenger RT - 18s [6MT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2009,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-tr6060-challenger"
+    },
+    "weightLbs": 4041,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.7,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 2.97,
+      "2": 2.1,
+      "3": 1.46,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_RT_09-11.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-tr6060-challenger"
+    },
+    "trim": "RT - 18s"
+  },
+  {
+    "id": "dodge-challenger-rt-20s-2009-2011-6mt",
+    "name": "2009-2011 Dodge Challenger RT - 20s [6MT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2009,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-tr6060-challenger"
+    },
+    "weightLbs": 4041,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.2,
+    "finalDrive": 3.92,
+    "gears": {
+      "1": 2.97,
+      "2": 2.1,
+      "3": 1.46,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_RT_09-11.xml",
+      "index": 1,
+      "gearSource": "preset:tremec-tr6060-challenger"
+    },
+    "trim": "RT - 20s"
+  },
+  {
+    "id": "dodge-challenger-srt8-2009-2011-6mt",
+    "name": "2009-2011 Dodge Challenger SRT8 [6MT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2009,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-tr6060-challenger"
+    },
+    "weightLbs": 4132,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.2,
+    "finalDrive": 3.92,
+    "gears": {
+      "1": 2.97,
+      "2": 2.1,
+      "3": 1.46,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.356,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_SRT8_09-11.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-tr6060-challenger"
+    },
+    "trim": "SRT8"
+  },
+  {
+    "id": "dodge-challenger-rt-18s-2011-2011-5at",
+    "name": "2011 Dodge Challenger RT - 18s [5AT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "dodge-nag1-5at"
+    },
+    "weightLbs": 4041,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.7,
+    "finalDrive": 3.06,
+    "gears": {
+      "1": 3.588,
+      "2": 2.186,
+      "3": 1.405,
+      "4": 1,
+      "5": 0.831
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_RT_09-11.xml",
+      "index": 2,
+      "gearSource": "preset:dodge-nag1-5at"
+    },
+    "trim": "RT - 18s"
+  },
+  {
+    "id": "dodge-challenger-rt-20s-2011-2011-5at",
+    "name": "2011 Dodge Challenger RT - 20s [5AT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "dodge-nag1-5at"
+    },
+    "weightLbs": 4041,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.2,
+    "finalDrive": 3.06,
+    "gears": {
+      "1": 3.588,
+      "2": 2.186,
+      "3": 1.405,
+      "4": 1,
+      "5": 0.831
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_RT_09-11.xml",
+      "index": 3,
+      "gearSource": "preset:dodge-nag1-5at"
+    },
+    "trim": "RT - 20s"
+  },
+  {
+    "id": "dodge-challenger-srt8-2011-2011-5at",
+    "name": "2011 Dodge Challenger SRT8 [5AT]",
+    "make": "Dodge",
+    "model": "Challenger",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "dodge-nag1-5at"
+    },
+    "weightLbs": 4132,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.2,
+    "finalDrive": 3.06,
+    "gears": {
+      "1": 3.588,
+      "2": 2.186,
+      "3": 1.405,
+      "4": 1,
+      "5": 0.831
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.356,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Challenger/Challenger_SRT8_09-11.xml",
+      "index": 1,
+      "gearSource": "preset:dodge-nag1-5at"
+    },
+    "trim": "SRT8"
+  },
+  {
+    "id": "dodge-neon-sport-1995-1999-mt",
+    "name": "1995-1999 Dodge Neon Sport [MT]",
+    "make": "Dodge",
+    "model": "Neon",
+    "yearStart": 1995,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2519,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23.47,
+    "finalDrive": 3.94,
+    "gears": {
+      "3": 1.367,
+      "4": 1.03
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 21.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Neon/Neon_Sport_95-99.xml",
+      "index": 0
+    },
+    "trim": "Sport"
+  },
+  {
+    "id": "dodge-neon-srt4-2003-2005-mt",
+    "name": "2003-2005 Dodge Neon SRT4 [MT]",
+    "make": "Dodge",
+    "model": "Neon",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2900,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.526,
+    "gears": {
+      "2": 2.045,
+      "3": 1.367,
+      "4": 0.947,
+      "5": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 22.28,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Neon/Neon_SRT4_03-05.xml",
+      "index": 0
+    },
+    "trim": "SRT4"
+  },
+  {
+    "id": "dodge-neon-sxt-2003-2005-mt",
+    "name": "2003-2005 Dodge Neon SXT [MT]",
+    "make": "Dodge",
+    "model": "Neon",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2626,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23.47,
+    "finalDrive": 3.55,
+    "gears": {
+      "3": 1.367,
+      "4": 1.03
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Neon/Neon_SXT_03-05.xml",
+      "index": 0
+    },
+    "trim": "SXT"
+  },
+  {
+    "id": "dodge-viper-gts-1996-2002-6mt",
+    "name": "1996-2002 Dodge Viper GTS [6MT]",
+    "make": "Dodge",
+    "model": "Viper",
+    "yearStart": 1996,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3380,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.2,
+    "finalDrive": 3.07,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 20.56,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Dodge/Viper/Viper_GTS_96-02.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "GTS"
+  }
+]

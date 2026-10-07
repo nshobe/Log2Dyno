@@ -1,0 +1,1035 @@
+[
+  {
+    "id": "chevrolet-camaro-z28-convertable-1993-1997-6mt",
+    "name": "1993-1997 Chevrolet Camaro Z28 Convertable [6MT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 1993,
+    "yearEnd": 1997,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3600,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.338,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_93-97.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "Z28 Convertable"
+  },
+  {
+    "id": "chevrolet-camaro-v6-1998-2002-4at",
+    "name": "1998-2002 Chevrolet Camaro V6 [4AT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 1998,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3460,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.66,
+    "finalDrive": 3.23,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_98-02.xml",
+      "index": 2,
+      "gearSource": "override",
+      "note": "1998-2002 V6 Camaro automatic is the 4L60E; VD 3rd/4th (1.41/1.0) conflict with 4L60E."
+    },
+    "trim": "V6"
+  },
+  {
+    "id": "chevrolet-camaro-z28-1998-2002-4at",
+    "name": "1998-2002 Chevrolet Camaro Z28 [4AT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 1998,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3485,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.65,
+    "finalDrive": 3.23,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_98-02.xml",
+      "index": 1,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "Z28"
+  },
+  {
+    "id": "chevrolet-camaro-z28-1998-2002-6mt",
+    "name": "1998-2002 Chevrolet Camaro Z28 [6MT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 1998,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3460,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.66,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_98-02.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "Z28"
+  },
+  {
+    "id": "chevrolet-camaro-ls-lt-rs-2010-2011-6mt",
+    "name": "2010-2011 Chevrolet Camaro LS/LT/RS [6MT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 2010,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "aisin-ay6-mv5"
+    },
+    "weightLbs": 3741,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.79,
+    "finalDrive": 3.27,
+    "gears": {
+      "1": 4.48,
+      "2": 2.58,
+      "3": 1.63,
+      "4": 1.19,
+      "5": 1,
+      "6": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_10-11.xml",
+      "index": 2,
+      "gearSource": "override",
+      "note": "2010-2011 V6 Camaro uses the Aisin AY6 (RPO MV5); VD 2nd/3rd/4th/5th match."
+    },
+    "trim": "LS/LT/RS"
+  },
+  {
+    "id": "chevrolet-camaro-ls-lt-rs-2010-2011-at",
+    "name": "2010-2011 Chevrolet Camaro LS/LT/RS [AT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 2010,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3769,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.79,
+    "finalDrive": 3.27,
+    "gears": {
+      "3": 1.55,
+      "4": 1.16
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_10-11.xml",
+      "index": 3
+    },
+    "trim": "LS/LT/RS"
+  },
+  {
+    "id": "chevrolet-camaro-ss-2010-2011-6at",
+    "name": "2010-2011 Chevrolet Camaro SS [6AT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 2010,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "gm-6l80"
+    },
+    "weightLbs": 3913,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.79,
+    "finalDrive": 3.27,
+    "gears": {
+      "1": 4.027,
+      "2": 2.364,
+      "3": 1.532,
+      "4": 1.152,
+      "5": 0.852,
+      "6": 0.667
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_10-11.xml",
+      "index": 0,
+      "gearSource": "preset:gm-6l80"
+    },
+    "trim": "SS"
+  },
+  {
+    "id": "chevrolet-camaro-ss-2010-2011-6mt",
+    "name": "2010-2011 Chevrolet Camaro SS [6MT]",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "yearStart": 2010,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3860,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.79,
+    "finalDrive": 3.27,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Camaro/Camaro_10-11.xml",
+      "index": 1,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "SS"
+  },
+  {
+    "id": "chevrolet-cavalier-ecotec-2-2-2002-2005-5mt",
+    "name": "2002-2005 Chevrolet Cavalier Ecotec 2.2 [5MT]",
+    "make": "Chevrolet",
+    "model": "Cavalier",
+    "yearStart": 2002,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "getrag-f23-m86"
+    },
+    "weightLbs": 2600,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.9,
+    "finalDrive": 3.84,
+    "gears": {
+      "1": 3.58,
+      "2": 2.02,
+      "3": 1.35,
+      "4": 0.98,
+      "5": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 20.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Cavalier/Cavalier_02-05.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "2002-2005 Cavalier Ecotec uses the Getrag F23 (RPO M86); VD 3rd/4th (1.35/0.98) match."
+    },
+    "trim": "Ecotec 2.2"
+  },
+  {
+    "id": "chevrolet-cobalt-ss-supercharged-2005-2007-5mt",
+    "name": "2005-2007 Chevrolet Cobalt SS Supercharged [5MT]",
+    "make": "Chevrolet",
+    "model": "Cobalt",
+    "yearStart": 2005,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "gm-f35-5mt"
+    },
+    "weightLbs": 2925,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.63,
+    "finalDrive": 4.05,
+    "gears": {
+      "1": 3.38,
+      "2": 1.76,
+      "3": 1.18,
+      "4": 0.89,
+      "5": 0.7
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.324,
+    "frontalAreaSqFt": 22.02,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Cobalt/Cobalt_SS_05-07.xml",
+      "index": 0,
+      "gearSource": "preset:gm-f35-5mt"
+    },
+    "trim": "SS Supercharged"
+  },
+  {
+    "id": "chevrolet-cobalt-ss-turbo-2008-2010-5mt",
+    "name": "2008-2010 Chevrolet Cobalt SS Turbo [5MT]",
+    "make": "Chevrolet",
+    "model": "Cobalt",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "gm-f35-5mt"
+    },
+    "weightLbs": 2975,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.08,
+    "finalDrive": 3.82,
+    "gears": {
+      "1": 3.38,
+      "2": 1.76,
+      "3": 1.18,
+      "4": 0.89,
+      "5": 0.7
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.324,
+    "frontalAreaSqFt": 20.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Cobalt/Cobalt_SS_08-10.xml",
+      "index": 0,
+      "gearSource": "preset:gm-f35-5mt"
+    },
+    "trim": "SS Turbo"
+  },
+  {
+    "id": "chevrolet-corvette-5-7l-ls1-1997-2004-4at",
+    "name": "1997-2004 Chevrolet Corvette 5.7L LS1 [4AT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 1997,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 3245,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.74,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C5.xml",
+      "index": 1,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "5.7L LS1"
+  },
+  {
+    "id": "chevrolet-corvette-5-7l-ls1-1997-2004-6mt",
+    "name": "1997-2004 Chevrolet Corvette 5.7L LS1 [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 1997,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3245,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.74,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C5.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "5.7L LS1"
+  },
+  {
+    "id": "chevrolet-corvette-5-7l-ls6-z06-2001-2004-6mt",
+    "name": "2001-2004 Chevrolet Corvette 5.7L LS6 (Z06) [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2001,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3118,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.13,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 20.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C5.xml",
+      "index": 2,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "5.7L LS6 (Z06)"
+  },
+  {
+    "id": "chevrolet-corvette-6-0l-ls2-2005-2007-6mt",
+    "name": "2005-2007 Chevrolet Corvette 6.0L LS2 [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2005,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3170,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.85,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C6.xml",
+      "index": 1,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "6.0L LS2"
+  },
+  {
+    "id": "chevrolet-corvette-6-0l-ls2-z51-2005-2007-6mt",
+    "name": "2005-2007 Chevrolet Corvette 6.0L LS2 (Z51) [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2005,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3170,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.85,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C6.xml",
+      "index": 2,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "6.0L LS2 (Z51)"
+  },
+  {
+    "id": "chevrolet-corvette-7-0l-ls7-z06-2005-2011-6mt",
+    "name": "2005-2011 Chevrolet Corvette 7.0L LS7 (Z06) [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2005,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3132,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.68,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C6.xml",
+      "index": 0,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "7.0L LS7 (Z06)"
+  },
+  {
+    "id": "chevrolet-corvette-6-2l-ls3-2008-2011-6mt",
+    "name": "2008-2011 Chevrolet Corvette 6.2L LS3 [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2008,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-base"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.85,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C6.xml",
+      "index": 3,
+      "gearSource": "preset:tremec-t56-base"
+    },
+    "trim": "6.2L LS3"
+  },
+  {
+    "id": "chevrolet-corvette-6-2l-ls3-z51-2008-2011-6mt",
+    "name": "2008-2011 Chevrolet Corvette 6.2L LS3 (Z51) [6MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "yearStart": 2008,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-t56-close"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.85,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.97,
+      "2": 2.07,
+      "3": 1.43,
+      "4": 1,
+      "5": 0.84,
+      "6": 0.56
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Corvette/Corvette_C6.xml",
+      "index": 4,
+      "gearSource": "preset:tremec-t56-close"
+    },
+    "trim": "6.2L LS3 (Z51)"
+  },
+  {
+    "id": "corvette_15_z06",
+    "name": "2015 Chevrolet Corvette Z06 [7MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "trim": "Z06",
+    "generation": "C7",
+    "yearStart": 2015,
+    "yearEnd": 2015,
+    "bodyStyle": "Coupe",
+    "drive": "RWD",
+    "transmission": {
+      "type": "manual",
+      "speeds": 7,
+      "code": "TR-6070"
+    },
+    "weightLbs": 3524,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.6,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.289,
+      "2": 1.611,
+      "3": 1.208,
+      "4": 1,
+      "5": 0.814,
+      "6": 0.672,
+      "7": 0.45
+    },
+    "defaultGear": 4,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 21.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "log2dyno",
+      "note": "Hand-curated (not present in the Virtual Dyno dataset)."
+    }
+  },
+  {
+    "id": "chevrolet-hhr-ss-turbo-2008-2010-5mt",
+    "name": "2008-2010 Chevrolet HHR SS Turbo [5MT]",
+    "make": "Chevrolet",
+    "model": "HHR",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "gm-f35-5mt"
+    },
+    "weightLbs": 3321,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.1,
+    "finalDrive": 4.05,
+    "gears": {
+      "1": 3.38,
+      "2": 1.76,
+      "3": 1.18,
+      "4": 0.89,
+      "5": 0.7
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.4,
+    "frontalAreaSqFt": 25.49,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/HHR/HHR_SS_08-10.xml",
+      "index": 0,
+      "gearSource": "preset:gm-f35-5mt"
+    },
+    "trim": "SS Turbo"
+  },
+  {
+    "id": "chevrolet-silverado-gen-iii-classic-4l60e-1997-2007-4at",
+    "name": "1997-2007 Chevrolet Silverado Gen III Classic 4L60E [4AT]",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "yearStart": 1997,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 4800,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.41,
+    "frontalAreaSqFt": 29,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Silverado/Silverado_Classic_99-07.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "4L60E published ratios; VD 2nd/3rd (1.52/1.0) conflict with 1.625/1.000."
+    },
+    "trim": "Gen III Classic 4L60E"
+  },
+  {
+    "id": "chevrolet-silverado-gen-iii-classic-4l80e-1997-2007-4at",
+    "name": "1997-2007 Chevrolet Silverado Gen III Classic 4L80E [4AT]",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "yearStart": 1997,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l80e"
+    },
+    "weightLbs": 4800,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 2.482,
+      "2": 1.482,
+      "3": 1,
+      "4": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.41,
+    "frontalAreaSqFt": 29,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Silverado/Silverado_Classic_99-07.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "4L80E published ratios; VD 2nd/3rd (1.0/0.75) conflict with 1.482/1.000."
+    },
+    "trim": "Gen III Classic 4L80E"
+  },
+  {
+    "id": "chevrolet-silverado-gen-iv-nbs-4l70e-2007-2011-4at",
+    "name": "2007-2011 Chevrolet Silverado Gen IV NBS 4L70E [4AT]",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "yearStart": 2007,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l70e"
+    },
+    "weightLbs": 4800,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.42,
+    "frontalAreaSqFt": 30,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Silverado/Silverado_NewBodyStyle_07-11.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "4L70E is a 4L60E variant and shares its ratios; VD 2nd/3rd (1.52/1.0) conflict."
+    },
+    "trim": "Gen IV NBS 4L70E"
+  },
+  {
+    "id": "chevrolet-silverado-gen-iv-nbs-4l80e-2007-2011-4at",
+    "name": "2007-2011 Chevrolet Silverado Gen IV NBS 4L80E [4AT]",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "yearStart": 2007,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l80e"
+    },
+    "weightLbs": 4900,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.482,
+      "2": 1.482,
+      "3": 1,
+      "4": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.42,
+    "frontalAreaSqFt": 30,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Silverado/Silverado_NewBodyStyle_07-11.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "4L80E published ratios; VD 2nd/3rd (1.53/1.15) conflict with 1.482/1.000."
+    },
+    "trim": "Gen IV NBS 4L80E"
+  },
+  {
+    "id": "chevrolet-trailblazer-ss-awd-2006-2009-4at",
+    "name": "2006-2009 Chevrolet Trailblazer SS (AWD) [4AT]",
+    "make": "Chevrolet",
+    "model": "Trailblazer",
+    "yearStart": 2006,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 4730,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 30.04,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.42,
+    "frontalAreaSqFt": 25,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Trailblazer/Trailblazer_SS_06-09.xml",
+      "index": 0,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "SS (AWD)"
+  },
+  {
+    "id": "chevrolet-trailblazer-ss-rwd-2006-2009-4at",
+    "name": "2006-2009 Chevrolet Trailblazer SS (RWD) [4AT]",
+    "make": "Chevrolet",
+    "model": "Trailblazer",
+    "yearStart": 2006,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "weightLbs": 4550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 30.04,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.42,
+    "frontalAreaSqFt": 25,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Chevrolet/Trailblazer/Trailblazer_SS_06-09.xml",
+      "index": 1,
+      "gearSource": "preset:gm-4l60e"
+    },
+    "trim": "SS (RWD)"
+  }
+]

@@ -1,0 +1,1183 @@
+[
+  {
+    "id": "ford-falcon-xr6-turbo-utility-bf-2005-2007-6at",
+    "name": "2005-2007 Ford Falcon XR6 Turbo Utility (BF) [6AT]",
+    "make": "Ford",
+    "model": "Falcon",
+    "yearStart": 2005,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 4189,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.6,
+    "finalDrive": 2.73,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 26.46,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Falcon/Falcon_XR6-05-07.xml",
+      "index": 0,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "XR6 Turbo Utility (BF)"
+  },
+  {
+    "id": "ford-falcon-bf-mk-ii-gt-2007-2008-6at",
+    "name": "2007-2008 Ford Falcon BF Mk II GT [6AT]",
+    "make": "Ford",
+    "model": "Falcon",
+    "yearStart": 2007,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 4103,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.75,
+    "finalDrive": 2.73,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 26.46,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Falcon/Falcon_BF_Mk_II_GT_07-08.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "BF Mk II GT"
+  },
+  {
+    "id": "ford-falcon-bf-mk-ii-gt-2007-2008-6mt",
+    "name": "2007-2008 Ford Falcon BF Mk II GT [6MT]",
+    "make": "Ford",
+    "model": "Falcon",
+    "yearStart": 2007,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-falcon"
+    },
+    "weightLbs": 4103,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.75,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 26.46,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Falcon/Falcon_BF_Mk_II_GT_07-08.xml",
+      "index": 0,
+      "gearSource": "preset:ford-tr6060-falcon"
+    },
+    "trim": "BF Mk II GT"
+  },
+  {
+    "id": "ford-fiesta-st-2014-2017-6mt",
+    "name": "2014-2017 Ford Fiesta ST [6MT]",
+    "make": "Ford",
+    "model": "Fiesta",
+    "yearStart": 2014,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-ib6-6mt"
+    },
+    "weightLbs": 2700,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23.46,
+    "finalDrive": 3.82,
+    "gears": {
+      "1": 3.727,
+      "2": 2.048,
+      "3": 1.357,
+      "4": 1.03,
+      "5": 0.821,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Fiesta/Fiesta_ST-14-17.xml",
+      "index": 0,
+      "gearSource": "preset:ford-ib6-6mt"
+    },
+    "trim": "ST"
+  },
+  {
+    "id": "ford-focus-zx3-2000-2004-mt",
+    "name": "2000-2004 Ford Focus ZX3 [MT]",
+    "make": "Ford",
+    "model": "Focus",
+    "yearStart": 2000,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2551,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.98,
+    "finalDrive": 3.82,
+    "gears": {
+      "3": 1.448,
+      "4": 1.028
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 26.33,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Focus/Focus_ZX3_00-04.xml",
+      "index": 0
+    },
+    "trim": "ZX3"
+  },
+  {
+    "id": "ford-focus-ses-2008-2011-mt",
+    "name": "2008-2011 Ford Focus SES [MT]",
+    "make": "Ford",
+    "model": "Focus",
+    "yearStart": 2008,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2659,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.98,
+    "finalDrive": 3.82,
+    "gears": {
+      "3": 1.448,
+      "4": 1.028
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Focus/Focus_SES_08-11.xml",
+      "index": 0
+    },
+    "trim": "SES"
+  },
+  {
+    "id": "ford-focus-st-2013-2013-mt",
+    "name": "2013 Ford Focus ST [MT]",
+    "make": "Ford",
+    "model": "Focus",
+    "yearStart": 2013,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3223,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 4.063,
+    "gears": {
+      "3": 1.321,
+      "4": 1.029
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 25.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Focus/Focus_ST_13-13.xml",
+      "index": 0
+    },
+    "trim": "ST"
+  },
+  {
+    "id": "ford-mustang-cobra-1996-1998-5mt",
+    "name": "1996-1998 Ford Mustang Cobra [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 1996,
+    "yearEnd": 1998,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-t45"
+    },
+    "weightLbs": 3391,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.27,
+    "gears": {
+      "1": 3.37,
+      "2": 2.03,
+      "3": 1.33,
+      "4": 1,
+      "5": 0.67
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 21.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_Cobra_96-98.xml",
+      "index": 0,
+      "gearSource": "preset:ford-t45"
+    },
+    "trim": "Cobra"
+  },
+  {
+    "id": "ford-mustang-cobra-convertible-2003-2004-6mt",
+    "name": "2003-2004 Ford Mustang Cobra (Convertible) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2003,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-t56-cobra"
+    },
+    "weightLbs": 3780,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.66,
+    "finalDrive": 3.55,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 21.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_Cobra_03-04.xml",
+      "index": 1,
+      "gearSource": "preset:ford-t56-cobra"
+    },
+    "trim": "Cobra (Convertible)"
+  },
+  {
+    "id": "ford-mustang-cobra-coupe-2003-2004-6mt",
+    "name": "2003-2004 Ford Mustang Cobra (Coupe) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2003,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-t56-cobra"
+    },
+    "weightLbs": 3665,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.66,
+    "finalDrive": 3.55,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.74,
+      "6": 0.5
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 21.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_Cobra_03-04.xml",
+      "index": 0,
+      "gearSource": "preset:ford-t56-cobra"
+    },
+    "trim": "Cobra (Coupe)"
+  },
+  {
+    "id": "ford-mustang-gt-4-6-2005-2009-5at",
+    "name": "2005-2009 Ford Mustang GT 4.6 [5AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "ford-5r55s"
+    },
+    "weightLbs": 3525,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 3.22,
+      "2": 2.1,
+      "3": 1.545,
+      "4": 1,
+      "5": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_05-09.xml",
+      "index": 0,
+      "gearSource": "preset:ford-5r55s"
+    },
+    "trim": "GT 4.6"
+  },
+  {
+    "id": "ford-mustang-gt-4-6-2005-2009-5mt",
+    "name": "2005-2009 Ford Mustang GT 4.6 [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-tr3650"
+    },
+    "weightLbs": 3480,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.55,
+    "gears": {
+      "1": 3.38,
+      "2": 2,
+      "3": 1.32,
+      "4": 1,
+      "5": 0.62
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_05-09.xml",
+      "index": 1,
+      "gearSource": "preset:ford-tr3650"
+    },
+    "trim": "GT 4.6"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-18s-2010-2010-5at",
+    "name": "2010 Ford Mustang GT 5.0 (18s) [5AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "ford-5r55s"
+    },
+    "weightLbs": 3525,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 3.22,
+      "2": 2.1,
+      "3": 1.545,
+      "4": 1,
+      "5": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 0,
+      "gearSource": "preset:ford-5r55s"
+    },
+    "trim": "GT 5.0 (18s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-18s-2010-2010-5mt",
+    "name": "2010 Ford Mustang GT 5.0 (18s) [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-tr3650"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 3.38,
+      "2": 2,
+      "3": 1.32,
+      "4": 1,
+      "5": 0.62
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 2,
+      "gearSource": "preset:ford-tr3650"
+    },
+    "trim": "GT 5.0 (18s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-19s-2010-2010-5at",
+    "name": "2010 Ford Mustang GT 5.0 (19s) [5AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "ford-5r55s"
+    },
+    "weightLbs": 3525,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 3.22,
+      "2": 2.1,
+      "3": 1.545,
+      "4": 1,
+      "5": 0.75
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 1,
+      "gearSource": "preset:ford-5r55s"
+    },
+    "trim": "GT 5.0 (19s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-19s-2010-2010-5mt",
+    "name": "2010 Ford Mustang GT 5.0 (19s) [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-tr3650"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.68,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 3.38,
+      "2": 2,
+      "3": 1.32,
+      "4": 1,
+      "5": 0.62
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 3,
+      "gearSource": "preset:ford-tr3650"
+    },
+    "trim": "GT 5.0 (19s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-3-73-w-18s-2010-2010-5mt",
+    "name": "2010 Ford Mustang GT 5.0 (3.73 w/18s) [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-tr3650"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.25,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 3.38,
+      "2": 2,
+      "3": 1.32,
+      "4": 1,
+      "5": 0.62
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 4,
+      "gearSource": "preset:ford-tr3650"
+    },
+    "trim": "GT 5.0 (3.73 w/18s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-3-73-w-19s-2010-2010-5mt",
+    "name": "2010 Ford Mustang GT 5.0 (3.73 w/19s) [5MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "ford-tr3650"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.68,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 3.38,
+      "2": 2,
+      "3": 1.32,
+      "4": 1,
+      "5": 0.62
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_10.xml",
+      "index": 5,
+      "gearSource": "preset:ford-tr3650"
+    },
+    "trim": "GT 5.0 (3.73 w/19s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-18s-2011-2013-6mt",
+    "name": "2011-2013 Ford Mustang GT 5.0 (18s) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-coyote"
+    },
+    "weightLbs": 3600,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 3.66,
+      "2": 2.43,
+      "3": 1.69,
+      "4": 1.32,
+      "5": 1,
+      "6": 0.65
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_11-13.xml",
+      "index": 0,
+      "gearSource": "preset:ford-mt82-coyote"
+    },
+    "trim": "GT 5.0 (18s)"
+  },
+  {
+    "id": "ford-mustang-gt-5-0-19s-2011-2013-6mt",
+    "name": "2011-2013 Ford Mustang GT 5.0 (19s) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-coyote"
+    },
+    "weightLbs": 3600,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 3.66,
+      "2": 2.43,
+      "3": 1.69,
+      "4": 1.32,
+      "5": 1,
+      "6": 0.65
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_GT_11-13.xml",
+      "index": 1,
+      "gearSource": "preset:ford-mt82-coyote"
+    },
+    "trim": "GT 5.0 (19s)"
+  },
+  {
+    "id": "ford-mustang-v6-3-7-17s-2011-2013-6at",
+    "name": "2011-2013 Ford Mustang V6 3.7 (17s) [6AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3501,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28,
+    "finalDrive": 2.73,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_V6_11-13.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "V6 3.7 (17s)"
+  },
+  {
+    "id": "ford-mustang-v6-3-7-17s-2011-2013-6mt",
+    "name": "2011-2013 Ford Mustang V6 3.7 (17s) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-v6"
+    },
+    "weightLbs": 3501,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 4.236,
+      "2": 2.538,
+      "3": 1.66,
+      "4": 1.23,
+      "5": 1,
+      "6": 0.704
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_V6_11-13.xml",
+      "index": 0,
+      "gearSource": "preset:ford-mt82-v6"
+    },
+    "trim": "V6 3.7 (17s)"
+  },
+  {
+    "id": "ford-mustang-v6-3-7-18s-2011-2013-6at",
+    "name": "2011-2013 Ford Mustang V6 3.7 (18s) [6AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3501,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.25,
+    "finalDrive": 2.73,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_V6_11-13.xml",
+      "index": 3,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "V6 3.7 (18s)"
+  },
+  {
+    "id": "ford-mustang-v6-3-7-18s-2011-2013-6mt",
+    "name": "2011-2013 Ford Mustang V6 3.7 (18s) [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2011,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-v6"
+    },
+    "weightLbs": 3501,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.25,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 4.236,
+      "2": 2.538,
+      "3": 1.66,
+      "4": 1.23,
+      "5": 1,
+      "6": 0.704
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_V6_11-13.xml",
+      "index": 2,
+      "gearSource": "preset:ford-mt82-v6"
+    },
+    "trim": "V6 3.7 (18s)"
+  },
+  {
+    "id": "ford-mustang-ecoboost-2015-2016-6mt",
+    "name": "2015-2016 Ford Mustang Ecoboost [6MT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2015,
+    "yearEnd": 2016,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-v6"
+    },
+    "weightLbs": 3532,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.3,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 4.236,
+      "2": 2.538,
+      "3": 1.665,
+      "4": 1.238,
+      "5": 1,
+      "6": 0.704
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 23.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_Ecoboost_15-16.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "2015-2016 EcoBoost MT-82; VD's 5th duplicated 4th (1.238) - corrected to 1.000 with 6th 0.704."
+    },
+    "trim": "Ecoboost"
+  },
+  {
+    "id": "ford-mustang-v6-2015-2017-6at",
+    "name": "2015-2017 Ford Mustang V6 [6AT]",
+    "make": "Ford",
+    "model": "Mustang",
+    "yearStart": 2015,
+    "yearEnd": 2017,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3530,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.2,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 23.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Mustang_V6_15-17.xml",
+      "index": 0,
+      "custom": true,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "V6"
+  },
+  {
+    "id": "ford-shelby-gt500-2007-2009-6mt",
+    "name": "2007-2009 Ford Shelby GT500 [6MT]",
+    "make": "Ford",
+    "model": "Shelby",
+    "yearStart": 2007,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-gt500"
+    },
+    "weightLbs": 3920,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.98,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Shelby_GT500_07-09.xml",
+      "index": 0,
+      "gearSource": "preset:ford-tr6060-gt500"
+    },
+    "trim": "GT500"
+  },
+  {
+    "id": "ford-shelby-gt500-conv-2007-2009-6mt",
+    "name": "2007-2009 Ford Shelby GT500 (Conv.) [6MT]",
+    "make": "Ford",
+    "model": "Shelby",
+    "yearStart": 2007,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-gt500"
+    },
+    "weightLbs": 4040,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.98,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Shelby_GT500_07-09.xml",
+      "index": 1,
+      "gearSource": "preset:ford-tr6060-gt500"
+    },
+    "trim": "GT500 (Conv.)"
+  },
+  {
+    "id": "ford-shelby-gt500-kr-2008-2009-6mt",
+    "name": "2008-2009 Ford Shelby GT500 KR [6MT]",
+    "make": "Ford",
+    "model": "Shelby",
+    "yearStart": 2008,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-gt500"
+    },
+    "weightLbs": 3898,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.98,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Shelby_GT500_07-09.xml",
+      "index": 2,
+      "gearSource": "preset:ford-tr6060-gt500"
+    },
+    "trim": "GT500 KR"
+  },
+  {
+    "id": "ford-shelby-gt500-2010-2012-6mt",
+    "name": "2010-2012 Ford Shelby GT500 [6MT]",
+    "make": "Ford",
+    "model": "Shelby",
+    "yearStart": 2010,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-gt500"
+    },
+    "weightLbs": 3820,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.85,
+    "finalDrive": 3.73,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Shelby_GT500_10-12.xml",
+      "index": 0,
+      "gearSource": "preset:ford-tr6060-gt500"
+    },
+    "trim": "GT500"
+  },
+  {
+    "id": "ford-shelby-gt500-2013-2014-6mt",
+    "name": "2013-2014 Ford Shelby GT500 [6MT]",
+    "make": "Ford",
+    "model": "Shelby",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-tr6060-gt500"
+    },
+    "weightLbs": 3850,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 27.9,
+    "finalDrive": 3.31,
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 24.99,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Ford/Mustang/Shelby_GT500_13-14.xml",
+      "index": 0,
+      "gearSource": "preset:ford-tr6060-gt500"
+    },
+    "trim": "GT500"
+  }
+]

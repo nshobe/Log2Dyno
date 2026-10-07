@@ -1,0 +1,158 @@
+[
+  {
+    "id": "scion-frs-coupe-limited-2013-2014-6at",
+    "name": "2013-2014 Scion FRS Coupe (Limited) [6AT]",
+    "make": "Scion",
+    "model": "FRS",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "toyota-86-6at"
+    },
+    "weightLbs": 2806,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.538,
+      "2": 2.06,
+      "3": 1.404,
+      "4": 1,
+      "5": 0.713,
+      "6": 0.582
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.27,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Scion/FRS/Scion_FRS_13-14.xml",
+      "index": 3,
+      "gearSource": "preset:toyota-86-6at"
+    },
+    "trim": "Coupe (Limited)"
+  },
+  {
+    "id": "scion-frs-coupe-limited-2013-2014-6mt",
+    "name": "2013-2014 Scion FRS Coupe (Limited) [6MT]",
+    "make": "Scion",
+    "model": "FRS",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-86-6mt"
+    },
+    "weightLbs": 2776,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.626,
+      "2": 2.188,
+      "3": 1.541,
+      "4": 1.213,
+      "5": 1,
+      "6": 0.767
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.27,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Scion/FRS/Scion_FRS_13-14.xml",
+      "index": 1,
+      "gearSource": "preset:toyota-86-6mt"
+    },
+    "trim": "Coupe (Limited)"
+  },
+  {
+    "id": "scion-frs-coupe-premium-2013-2014-6at",
+    "name": "2013-2014 Scion FRS Coupe (Premium) [6AT]",
+    "make": "Scion",
+    "model": "FRS",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "toyota-86-6at"
+    },
+    "weightLbs": 2806,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.538,
+      "2": 2.06,
+      "3": 1.404,
+      "4": 1,
+      "5": 0.713,
+      "6": 0.582
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.27,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Scion/FRS/Scion_FRS_13-14.xml",
+      "index": 2,
+      "gearSource": "preset:toyota-86-6at"
+    },
+    "trim": "Coupe (Premium)"
+  },
+  {
+    "id": "scion-frs-coupe-premium-2013-2014-6mt",
+    "name": "2013-2014 Scion FRS Coupe (Premium) [6MT]",
+    "make": "Scion",
+    "model": "FRS",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-86-6mt"
+    },
+    "weightLbs": 2762,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.626,
+      "2": 2.188,
+      "3": 1.541,
+      "4": 1.213,
+      "5": 1,
+      "6": 0.767
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.27,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Scion/FRS/Scion_FRS_13-14.xml",
+      "index": 0,
+      "gearSource": "preset:toyota-86-6mt"
+    },
+    "trim": "Coupe (Premium)"
+  }
+]

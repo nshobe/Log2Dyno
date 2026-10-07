@@ -1,0 +1,1274 @@
+[
+  {
+    "id": "mitsubishi-3000gt-vr4-1990-1993-5mt",
+    "name": "1990-1993 Mitsubishi 3000GT VR4 [5MT]",
+    "make": "Mitsubishi",
+    "model": "3000GT",
+    "yearStart": 1990,
+    "yearEnd": 1993,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-w5mg1-5mt"
+    },
+    "weightLbs": 3790,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.68,
+    "finalDrive": 3.972,
+    "gears": {
+      "1": 3.071,
+      "2": 1.739,
+      "3": 1.103,
+      "4": 0.824,
+      "5": 0.66
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21.62,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/3000GT/3000GT_VR4_90-93.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "3000GT VR-4 (1991-1993) W5MG1 5MT per 3S wiki; VD 3rd/4th (1.103/0.823) match."
+    },
+    "trim": "VR4"
+  },
+  {
+    "id": "mitsubishi-3000gt-vr4-1994-1999-6mt",
+    "name": "1994-1999 Mitsubishi 3000GT VR4 [6MT]",
+    "make": "Mitsubishi",
+    "model": "3000GT",
+    "yearStart": 1994,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mitsubishi-w6mg1-6mt"
+    },
+    "weightLbs": 3790,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 3.869,
+    "gears": {
+      "1": 3.266,
+      "2": 1.904,
+      "3": 1.241,
+      "4": 0.918,
+      "5": 0.733,
+      "6": 0.589
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21.62,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/3000GT/3000GT_VR4_94-99.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "3000GT VR-4 (1994-1999) Getrag W6MG1 6MT per 3S wiki; VD 3rd/4th (1.241/0.918) match."
+    },
+    "trim": "VR4"
+  },
+  {
+    "id": "mitsubishi-airtrek-cu2w-2002-2005-5at",
+    "name": "2002-2005 Mitsubishi Airtrek CU2W [5AT]",
+    "make": "Mitsubishi",
+    "model": "Airtrek",
+    "yearStart": 2002,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "weightLbs": 3380,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.333,
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1,
+      "5": 0.731
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.42,
+    "frontalAreaSqFt": 31,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Airtrek/Airtrek_02-05.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Mitsubishi F5A51 5-speed automatic; VD 3rd/4th (1.421/1.0) match."
+    },
+    "trim": "CU2W"
+  },
+  {
+    "id": "mitsubishi-eclipse-gst-1990-1994-5mt",
+    "name": "1990-1994 Mitsubishi Eclipse GST [5MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 1990,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m33-5mt"
+    },
+    "weightLbs": 2791,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.153,
+    "gears": {
+      "1": 3.09,
+      "2": 1.833,
+      "3": 1.217,
+      "4": 0.888,
+      "5": 0.741
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GST_90-94.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Eclipse GST (FWD turbo) uses the F5M33 5MT; VD 3rd/4th (1.217/0.888) match."
+    },
+    "trim": "GST"
+  },
+  {
+    "id": "mitsubishi-eclipse-gsx-1990-1994-4at",
+    "name": "1990-1994 Mitsubishi Eclipse GSX [4AT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 1990,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "mitsubishi-dsm-awd-4at"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 2.846,
+      "2": 1.581,
+      "3": 1,
+      "4": 0.685
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GSX_90-94.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-dsm-awd-4at"
+    },
+    "trim": "GSX"
+  },
+  {
+    "id": "mitsubishi-eclipse-gsx-1990-1994-5mt",
+    "name": "1990-1994 Mitsubishi Eclipse GSX [5MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 1990,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GSX_90-94.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "GSX"
+  },
+  {
+    "id": "mitsubishi-eclipse-gst-1995-1999-5mt",
+    "name": "1995-1999 Mitsubishi Eclipse GST [5MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 1995,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m33-5mt"
+    },
+    "weightLbs": 2921,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.153,
+    "gears": {
+      "1": 3.09,
+      "2": 1.833,
+      "3": 1.217,
+      "4": 0.888,
+      "5": 0.741
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.4,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GST_95-99.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Eclipse GST (FWD turbo) uses the F5M33 5MT; VD 3rd/4th match."
+    },
+    "trim": "GST"
+  },
+  {
+    "id": "mitsubishi-eclipse-gsx-1995-1999-5mt",
+    "name": "1995-1999 Mitsubishi Eclipse GSX [5MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 1995,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3157,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.46,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.4,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GSX_95-99.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "GSX"
+  },
+  {
+    "id": "mitsubishi-eclipse-gs-rs-2000-2005-5mt",
+    "name": "2000-2005 Mitsubishi Eclipse GS/RS [5MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 2000,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m42-5mt"
+    },
+    "weightLbs": 2822,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.8,
+    "finalDrive": 3.722,
+    "gears": {
+      "1": 3.583,
+      "2": 1.947,
+      "3": 1.379,
+      "4": 1.03,
+      "5": 0.82
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GS_RS_00-05.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-f5m42-5mt"
+    },
+    "trim": "GS/RS"
+  },
+  {
+    "id": "mitsubishi-eclipse-gt-2000-2005-mt",
+    "name": "2000-2005 Mitsubishi Eclipse GT [MT]",
+    "make": "Mitsubishi",
+    "model": "Eclipse",
+    "yearStart": 2000,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2852,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.46,
+    "finalDrive": 3.736,
+    "gears": {
+      "3": 1.407,
+      "4": 1.031
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Eclipse/Eclipse_GT_00-05.xml",
+      "index": 0
+    },
+    "trim": "GT"
+  },
+  {
+    "id": "mitsubishi-evolution-3-gsr-1995-1996-mt",
+    "name": "1995-1996 Mitsubishi Evolution 3 GSR [MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 1995,
+    "yearEnd": 1996,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2772,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23.9,
+    "finalDrive": 5.358,
+    "gears": {
+      "3": 1.16,
+      "4": 0.862
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_III.xml",
+      "index": 0
+    },
+    "trim": "3 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-5-gsr-1998-1998-5mt",
+    "name": "1998 Mitsubishi Evolution 5 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 1998,
+    "yearEnd": 1998,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-5mt"
+    },
+    "weightLbs": 2998,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.8,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.928,
+      "2": 1.95,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.72
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 21.4,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_V.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo-5mt"
+    },
+    "trim": "5 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-6-gsr-1999-2001-5mt",
+    "name": "1999-2001 Mitsubishi Evolution 6 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 1999,
+    "yearEnd": 2001,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-5mt"
+    },
+    "weightLbs": 2998,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.8,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.928,
+      "2": 1.95,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.72
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VI.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo-5mt"
+    },
+    "trim": "6 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-6-5-tme-1999-2001-mt",
+    "name": "1999-2001 Mitsubishi Evolution 6.5 TME [MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 1999,
+    "yearEnd": 2001,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2992,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "3": 1.444,
+      "4": 1.096
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VI_5.xml",
+      "index": 0
+    },
+    "trim": "6.5 TME"
+  },
+  {
+    "id": "mitsubishi-evolution-7-gsr-2001-2003-5mt",
+    "name": "2001-2003 Mitsubishi Evolution 7 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2001,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-5mt"
+    },
+    "weightLbs": 3263,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.928,
+      "2": 1.95,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.72
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VII.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo-5mt"
+    },
+    "trim": "7 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-7-gta-2001-2003-5at",
+    "name": "2001-2003 Mitsubishi Evolution 7 GTA [5AT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2001,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "weightLbs": 3256,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.443,
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1,
+      "5": 0.731
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VII.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "Evo VII GTA uses the F5A51 5-speed automatic; VD 3rd/4th (1.421/1.0) match."
+    },
+    "trim": "7 GTA"
+  },
+  {
+    "id": "mitsubishi-evolution-8-gsr-2003-2005-5mt",
+    "name": "2003-2005 Mitsubishi Evolution 8 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-5mt"
+    },
+    "weightLbs": 3263,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.928,
+      "2": 1.95,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.72
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VIII.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-evo-5mt"
+    },
+    "trim": "8 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-8-mr-2003-2005-6mt",
+    "name": "2003-2005 Mitsubishi Evolution 8 MR [6MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mitsubishi-evo-mr-6mt"
+    },
+    "weightLbs": 3285,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.583,
+    "gears": {
+      "1": 2.909,
+      "2": 1.944,
+      "3": 1.434,
+      "4": 1.1,
+      "5": 0.868,
+      "6": 0.693
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VIII.xml",
+      "index": 2,
+      "gearSource": "preset:mitsubishi-evo-mr-6mt"
+    },
+    "trim": "8 MR"
+  },
+  {
+    "id": "mitsubishi-evolution-8-rs-2003-2005-5mt",
+    "name": "2003-2005 Mitsubishi Evolution 8 RS [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-5mt"
+    },
+    "weightLbs": 3175,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.928,
+      "2": 1.95,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.72
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 23.37,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_VIII.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo-5mt"
+    },
+    "trim": "8 RS"
+  },
+  {
+    "id": "mitsubishi-evolution-9-gsr-2006-2007-5mt",
+    "name": "2006-2007 Mitsubishi Evolution 9 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo9-5mt"
+    },
+    "weightLbs": 3263,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.785,
+      "2": 1.95,
+      "3": 1.444,
+      "4": 1.096,
+      "5": 0.761
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.92,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_IX.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-evo9-5mt"
+    },
+    "trim": "9 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-9-mr-2006-2007-6mt",
+    "name": "2006-2007 Mitsubishi Evolution 9 MR [6MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mitsubishi-evo-mr-6mt"
+    },
+    "weightLbs": 3285,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.583,
+    "gears": {
+      "1": 2.909,
+      "2": 1.944,
+      "3": 1.434,
+      "4": 1.1,
+      "5": 0.868,
+      "6": 0.693
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.92,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_IX.xml",
+      "index": 2,
+      "gearSource": "preset:mitsubishi-evo-mr-6mt"
+    },
+    "trim": "9 MR"
+  },
+  {
+    "id": "mitsubishi-evolution-9-rs-2006-2007-5mt",
+    "name": "2006-2007 Mitsubishi Evolution 9 RS [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo9-5mt"
+    },
+    "weightLbs": 3219,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.529,
+    "gears": {
+      "1": 2.785,
+      "2": 1.95,
+      "3": 1.444,
+      "4": 1.096,
+      "5": 0.761
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24.92,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_IX.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo9-5mt"
+    },
+    "trim": "9 RS"
+  },
+  {
+    "id": "mitsubishi-evolution-10-gsr-2008-2012-5mt",
+    "name": "2008-2012 Mitsubishi Evolution 10 GSR [5MT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2008,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-evo-x-5mt"
+    },
+    "weightLbs": 3517,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 4.687,
+    "gears": {
+      "1": 2.857,
+      "2": 1.95,
+      "3": 1.444,
+      "4": 1.096,
+      "5": 0.761
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_X.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-evo-x-5mt"
+    },
+    "trim": "10 GSR"
+  },
+  {
+    "id": "mitsubishi-evolution-10-mr-2008-2012-6dct",
+    "name": "2008-2012 Mitsubishi Evolution 10 MR [6DCT]",
+    "make": "Mitsubishi",
+    "model": "Evolution",
+    "yearStart": 2008,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "dct",
+      "speeds": 6,
+      "code": "mitsubishi-sst-dct"
+    },
+    "weightLbs": 3594,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 3.655,
+      "2": 2.368,
+      "3": 1.754,
+      "4": 1.322,
+      "5": 1.008,
+      "6": 0.775
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Evo/Evo_X.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-sst-dct"
+    },
+    "trim": "10 MR"
+  },
+  {
+    "id": "mitsubishi-galant-vr4-1991-1992-5mt",
+    "name": "1991-1992 Mitsubishi Galant VR4 [5MT]",
+    "make": "Mitsubishi",
+    "model": "Galant",
+    "yearStart": 1991,
+    "yearEnd": 1992,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3270,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.2,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 20.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Galant/Galant_VR4_Sedan_91-92.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "VR4"
+  },
+  {
+    "id": "mitsubishi-galant-vr4-legnum-1996-2003-5at",
+    "name": "1996-2003 Mitsubishi Galant VR4 Legnum [5AT]",
+    "make": "Mitsubishi",
+    "model": "Galant",
+    "yearStart": 1996,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "weightLbs": 3365,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.684,
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1,
+      "5": 0.731
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Galant/Galant_VR4_Legnum_96-03.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "Galant VR-4 automatic uses the F5A51; VD 3rd/4th (1.421/1.0) match."
+    },
+    "trim": "VR4 Legnum"
+  },
+  {
+    "id": "mitsubishi-galant-vr4-legnum-1996-2003-5mt",
+    "name": "1996-2003 Mitsubishi Galant VR4 Legnum [5MT]",
+    "make": "Mitsubishi",
+    "model": "Galant",
+    "yearStart": 1996,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-galant-vr4-5mt"
+    },
+    "weightLbs": 3365,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 3.333,
+      "2": 2.105,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.761
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Galant/Galant_VR4_Legnum_96-03.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-galant-vr4-5mt"
+    },
+    "trim": "VR4 Legnum"
+  },
+  {
+    "id": "mitsubishi-galant-vr4-sedan-1996-2003-5at",
+    "name": "1996-2003 Mitsubishi Galant VR4 Sedan [5AT]",
+    "make": "Mitsubishi",
+    "model": "Galant",
+    "yearStart": 1996,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "weightLbs": 3344,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.684,
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1,
+      "5": 0.731
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Galant/Galant_VR4_Sedan_96-03.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "Galant VR-4 automatic uses the F5A51; VD 3rd/4th match."
+    },
+    "trim": "VR4 Sedan"
+  },
+  {
+    "id": "mitsubishi-galant-vr4-sedan-1996-2003-5mt",
+    "name": "1996-2003 Mitsubishi Galant VR4 Sedan [5MT]",
+    "make": "Mitsubishi",
+    "model": "Galant",
+    "yearStart": 1996,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-galant-vr4-5mt"
+    },
+    "weightLbs": 3256,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 3.333,
+      "2": 2.105,
+      "3": 1.407,
+      "4": 1.031,
+      "5": 0.761
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 24.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Galant/Galant_VR4_Sedan_96-03.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-galant-vr4-5mt"
+    },
+    "trim": "VR4 Sedan"
+  },
+  {
+    "id": "mitsubishi-lancer-2002-2006-5mt",
+    "name": "2002-2006 Mitsubishi Lancer [5MT]",
+    "make": "Mitsubishi",
+    "model": "Lancer",
+    "yearStart": 2002,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m42-5mt"
+    },
+    "weightLbs": 2701,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.21,
+    "finalDrive": 3.722,
+    "gears": {
+      "1": 3.583,
+      "2": 1.947,
+      "3": 1.379,
+      "4": 1.03,
+      "5": 0.82
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Lancer/Lancer_02-06.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-f5m42-5mt"
+    }
+  },
+  {
+    "id": "mitsubishi-lancer-2009-2010-at",
+    "name": "2009-2010 Mitsubishi Lancer [AT]",
+    "make": "Mitsubishi",
+    "model": "Lancer",
+    "yearStart": 2009,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3060,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.97,
+    "finalDrive": 6.12,
+    "gears": {
+      "3": 1.074,
+      "4": 0.832
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Lancer/Lancer_09-10.xml",
+      "index": 0
+    }
+  },
+  {
+    "id": "mitsubishi-lancer-2009-2010-mt",
+    "name": "2009-2010 Mitsubishi Lancer [MT]",
+    "make": "Mitsubishi",
+    "model": "Lancer",
+    "yearStart": 2009,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3030,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.97,
+    "finalDrive": 4.235,
+    "gears": {
+      "3": 1.333,
+      "4": 1.028
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Lancer/Lancer_09-10.xml",
+      "index": 1
+    }
+  },
+  {
+    "id": "mitsubishi-ralliart-2009-2010-6dct",
+    "name": "2009-2010 Mitsubishi Ralliart [6DCT]",
+    "make": "Mitsubishi",
+    "model": "Ralliart",
+    "yearStart": 2009,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "dct",
+      "speeds": 6,
+      "code": "mitsubishi-sst-dct"
+    },
+    "weightLbs": 3462,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.62,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 3.655,
+      "2": 2.368,
+      "3": 1.754,
+      "4": 1.322,
+      "5": 1.008,
+      "6": 0.775
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Ralliart/Ralliart_09-10.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Ralliart uses the TC-SST twin-clutch, not a manual."
+    }
+  },
+  {
+    "id": "mitsubishi-ralliart-sportback-2009-2010-6dct",
+    "name": "2009-2010 Mitsubishi Ralliart Sportback [6DCT]",
+    "make": "Mitsubishi",
+    "model": "Ralliart",
+    "yearStart": 2009,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "dct",
+      "speeds": 6,
+      "code": "mitsubishi-sst-dct"
+    },
+    "weightLbs": 3592,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.62,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 3.655,
+      "2": 2.368,
+      "3": 1.754,
+      "4": 1.322,
+      "5": 1.008,
+      "6": 0.775
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.9,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mitsubishi/Ralliart/Ralliart_Sportback_09-10.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-sst-dct"
+    },
+    "trim": "Sportback"
+  }
+]

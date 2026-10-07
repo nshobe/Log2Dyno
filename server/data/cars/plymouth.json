@@ -1,0 +1,77 @@
+[
+  {
+    "id": "plymouth-laser-rs-turbo-awd-1991-1994-4at",
+    "name": "1991-1994 Plymouth Laser RS Turbo AWD [4AT]",
+    "make": "Plymouth",
+    "model": "Laser",
+    "yearStart": 1991,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "mitsubishi-dsm-awd-4at"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.062,
+    "gears": {
+      "1": 2.846,
+      "2": 1.581,
+      "3": 1,
+      "4": 0.685
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Plymouth/Laser/Laser_RSTurbo_91-94.xml",
+      "index": 1,
+      "gearSource": "preset:mitsubishi-dsm-awd-4at"
+    },
+    "trim": "RS Turbo AWD"
+  },
+  {
+    "id": "plymouth-laser-rs-turbo-awd-1991-1994-5mt",
+    "name": "1991-1994 Plymouth Laser RS Turbo AWD [5MT]",
+    "make": "Plymouth",
+    "model": "Laser",
+    "yearStart": 1991,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-dsm-awd-5mt"
+    },
+    "weightLbs": 3108,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.929,
+    "gears": {
+      "1": 3.083,
+      "2": 1.684,
+      "3": 1.115,
+      "4": 0.833,
+      "5": 0.666
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 20.05,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Plymouth/Laser/Laser_RSTurbo_91-94.xml",
+      "index": 0,
+      "gearSource": "preset:mitsubishi-dsm-awd-5mt"
+    },
+    "trim": "RS Turbo AWD"
+  }
+]

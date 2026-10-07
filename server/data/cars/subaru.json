@@ -1,0 +1,1264 @@
+[
+  {
+    "id": "subaru-brz-coupe-limited-2013-2014-6at",
+    "name": "2013-2014 Subaru BRZ Coupe (Limited) [6AT]",
+    "make": "Subaru",
+    "model": "BRZ",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "toyota-86-6at"
+    },
+    "weightLbs": 2822,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.538,
+      "2": 2.06,
+      "3": 1.404,
+      "4": 1,
+      "5": 0.713,
+      "6": 0.582
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.28,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/BRZ/Subaru_BRZ_13-14.xml",
+      "index": 3,
+      "gearSource": "preset:toyota-86-6at"
+    },
+    "trim": "Coupe (Limited)"
+  },
+  {
+    "id": "subaru-brz-coupe-limited-2013-2014-6mt",
+    "name": "2013-2014 Subaru BRZ Coupe (Limited) [6MT]",
+    "make": "Subaru",
+    "model": "BRZ",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-86-6mt"
+    },
+    "weightLbs": 2776,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.626,
+      "2": 2.188,
+      "3": 1.541,
+      "4": 1.213,
+      "5": 1,
+      "6": 0.767
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.28,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/BRZ/Subaru_BRZ_13-14.xml",
+      "index": 1,
+      "gearSource": "preset:toyota-86-6mt"
+    },
+    "trim": "Coupe (Limited)"
+  },
+  {
+    "id": "subaru-brz-coupe-premium-2013-2014-6at",
+    "name": "2013-2014 Subaru BRZ Coupe (Premium) [6AT]",
+    "make": "Subaru",
+    "model": "BRZ",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "toyota-86-6at"
+    },
+    "weightLbs": 2809,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.538,
+      "2": 2.06,
+      "3": 1.404,
+      "4": 1,
+      "5": 0.713,
+      "6": 0.582
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/BRZ/Subaru_BRZ_13-14.xml",
+      "index": 2,
+      "gearSource": "preset:toyota-86-6at"
+    },
+    "trim": "Coupe (Premium)"
+  },
+  {
+    "id": "subaru-brz-coupe-premium-2013-2014-6mt",
+    "name": "2013-2014 Subaru BRZ Coupe (Premium) [6MT]",
+    "make": "Subaru",
+    "model": "BRZ",
+    "yearStart": 2013,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-86-6mt"
+    },
+    "weightLbs": 2762,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.6,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.626,
+      "2": 2.188,
+      "3": 1.541,
+      "4": 1.213,
+      "5": 1,
+      "6": 0.767
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 23.67,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/BRZ/Subaru_BRZ_13-14.xml",
+      "index": 0,
+      "gearSource": "preset:toyota-86-6mt"
+    },
+    "trim": "Coupe (Premium)"
+  },
+  {
+    "id": "subaru-forester-xt-2004-2008-5mt",
+    "name": "2004-2008 Subaru Forester XT [5MT]",
+    "make": "Subaru",
+    "model": "Forester",
+    "yearStart": 2004,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3320,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.31,
+    "finalDrive": 4.444,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Forester/Forester_XT_04-08.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "XT"
+  },
+  {
+    "id": "subaru-forester-xt-2009-2009-4at",
+    "name": "2009 Subaru Forester XT [4AT]",
+    "make": "Subaru",
+    "model": "Forester",
+    "yearStart": 2009,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "subaru-4eat"
+    },
+    "weightLbs": 3436,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.74,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 2.785,
+      "2": 1.545,
+      "3": 1,
+      "4": 0.694
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Forester/Forester_XT_09.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-4eat"
+    },
+    "trim": "XT"
+  },
+  {
+    "id": "subaru-forester-xt-2010-2010-5mt",
+    "name": "2010 Subaru Forester XT [5MT]",
+    "make": "Subaru",
+    "model": "Forester",
+    "yearStart": 2010,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3470,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.68,
+    "finalDrive": 4.444,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 24,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Forester/Forester_XT_10.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "XT"
+  },
+  {
+    "id": "subaru-impreza-outback-sport-2003-2005-5mt",
+    "name": "2003-2005 Subaru Impreza Outback Sport [5MT]",
+    "make": "Subaru",
+    "model": "Impreza",
+    "yearStart": 2003,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3050,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 23,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Impreza/Impreza_OutbackSport_03-05.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "VD marked this automatic but its gears (1.947/1.366/0.972) are the Subaru 5MT set - corrected to manual."
+    },
+    "trim": "Outback Sport"
+  },
+  {
+    "id": "subaru-impreza-sedan-2007-2007-4at",
+    "name": "2007 Subaru Impreza Sedan [4AT]",
+    "make": "Subaru",
+    "model": "Impreza",
+    "yearStart": 2007,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "subaru-4eat"
+    },
+    "weightLbs": 3024,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 2.785,
+      "2": 1.545,
+      "3": 1,
+      "4": 0.694
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Impreza/Impreza_07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-4eat"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-legacy-sedan-2-5gt-1996-1999-5mt",
+    "name": "1996-1999 Subaru Legacy Sedan 2.5GT [5MT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 1996,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5
+    },
+    "weightLbs": 3125,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.11,
+    "gears": {
+      "1": 3.55,
+      "2": 2.11,
+      "3": 1.45,
+      "4": 1.09,
+      "5": 0.78
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.25,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_GT_96-99.xml",
+      "index": 0
+    },
+    "trim": "Sedan 2.5GT"
+  },
+  {
+    "id": "subaru-legacy-wagon-2-0-gt-spec-b-2003-2006-5at",
+    "name": "2003-2006 Subaru Legacy Wagon 2.0 GT spec.B [5AT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2003,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "subaru-5eat"
+    },
+    "weightLbs": 3351,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.583,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_Wagon_GT_03-06.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5eat"
+    },
+    "trim": "Wagon 2.0 GT spec.B"
+  },
+  {
+    "id": "subaru-legacy-wagon-2-0-gt-spec-b-2003-2006-6mt",
+    "name": "2003-2006 Subaru Legacy Wagon 2.0 GT spec.B [6MT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2003,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-specb"
+    },
+    "weightLbs": 3351,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.891,
+      "6": 0.707
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_Wagon_GT_03-06.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "JDM Legacy 2.0GT spec.B 6MT; VD 3rd/4th (1.521/1.137) match."
+    },
+    "trim": "Wagon 2.0 GT spec.B"
+  },
+  {
+    "id": "subaru-legacy-2-5-gt-wagon-2005-2007-5mt",
+    "name": "2005-2007 Subaru Legacy 2.5 GT Wagon [5MT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2005,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3435,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.62,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 22.56,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_GT_Wagon_05-07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "2.5 GT Wagon"
+  },
+  {
+    "id": "subaru-legacy-2-5-gt-2005-2009-5at",
+    "name": "2005-2009 Subaru Legacy 2.5 GT [5AT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "subaru-5eat"
+    },
+    "weightLbs": 3330,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.62,
+    "finalDrive": 3.272,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.56,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_GT_05-09.xml",
+      "index": 1,
+      "gearSource": "preset:subaru-5eat"
+    },
+    "trim": "2.5 GT"
+  },
+  {
+    "id": "subaru-legacy-2-5-gt-2005-2009-5mt",
+    "name": "2005-2009 Subaru Legacy 2.5 GT [5MT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3330,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.62,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.56,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_GT_05-09.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "2.5 GT"
+  },
+  {
+    "id": "subaru-legacy-wagon-2-5-gt-2006-2008-5at",
+    "name": "2006-2008 Subaru Legacy Wagon 2.5 GT [5AT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2006,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "subaru-5eat"
+    },
+    "weightLbs": 3500,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.272,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_Wagon_GT_06-08.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5eat"
+    },
+    "trim": "Wagon 2.5 GT"
+  },
+  {
+    "id": "subaru-legacy-se-2007-2007-4at",
+    "name": "2007 Subaru Legacy SE [4AT]",
+    "make": "Subaru",
+    "model": "Legacy",
+    "yearStart": 2007,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "subaru-4eat"
+    },
+    "weightLbs": 3325,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 2.785,
+      "2": 1.545,
+      "3": 1,
+      "4": 0.694
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Legacy/Legacy_SE_07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-4eat"
+    },
+    "trim": "SE"
+  },
+  {
+    "id": "subaru-outback-xt-2005-2009-5at",
+    "name": "2005-2009 Subaru Outback XT [5AT]",
+    "make": "Subaru",
+    "model": "Outback",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "subaru-5eat"
+    },
+    "weightLbs": 3565,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.31,
+    "finalDrive": 3.583,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 23.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Outback/Outback_XT_05-09.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5eat"
+    },
+    "trim": "XT"
+  },
+  {
+    "id": "subaru-outback-xt-2005-2009-5mt",
+    "name": "2005-2009 Subaru Outback XT [5MT]",
+    "make": "Subaru",
+    "model": "Outback",
+    "yearStart": 2005,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3565,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.31,
+    "finalDrive": 4.444,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 23.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/Outback/Outback_XT_05-09.xml",
+      "index": 1,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "XT"
+  },
+  {
+    "id": "sti_04_usdm",
+    "name": "2004 Subaru WRX STi [USDM 6MT]",
+    "make": "Subaru",
+    "model": "STi",
+    "yearStart": 2004,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-sti-early"
+    },
+    "weightLbs": 3351,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.375,
+      "3": 1.761,
+      "4": 1.346,
+      "5": 0.971,
+      "6": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/STI/STI_04-06.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-6mt-sti-early",
+      "note": "Preserves the id/name of the profile originally shipped with Log2Dyno."
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-sti-sedan-2007-2007-6mt",
+    "name": "2007 Subaru STi Sedan [6MT]",
+    "make": "Subaru",
+    "model": "STi",
+    "yearStart": 2007,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-sti-late"
+    },
+    "weightLbs": 3351,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.971,
+      "6": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/STI/STI_07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-6mt-sti-late"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-sti-hatchback-2008-2014-6mt",
+    "name": "2008-2014 Subaru STi Hatchback [6MT]",
+    "make": "Subaru",
+    "model": "STi",
+    "yearStart": 2008,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-sti-late"
+    },
+    "weightLbs": 3373,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.971,
+      "6": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/STI/STI_Hatch_08-14.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-6mt-sti-late"
+    },
+    "trim": "Hatchback"
+  },
+  {
+    "id": "subaru-sti-sedan-2011-2014-6mt",
+    "name": "2011-2014 Subaru STi Sedan [6MT]",
+    "make": "Subaru",
+    "model": "STi",
+    "yearStart": 2011,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-sti-late"
+    },
+    "weightLbs": 3373,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.971,
+      "6": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/STI/STI_Sedan_11-14.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-6mt-sti-late"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-sti-sedan-2015-2015-6mt",
+    "name": "2015 Subaru STi Sedan [6MT]",
+    "make": "Subaru",
+    "model": "STi",
+    "yearStart": 2015,
+    "yearEnd": 2015,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-sti-late"
+    },
+    "weightLbs": 3402,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.971,
+      "6": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/STI/STI_Sedan_15.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-6mt-sti-late"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-wrx-sedan-2002-2005-5mt",
+    "name": "2002-2005 Subaru WRX Sedan [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2002,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3085,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Sedan_02-05.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-wrx-wagon-2002-2005-5mt",
+    "name": "2002-2005 Subaru WRX Wagon [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2002,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3165,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Wagon_02-05.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "Wagon"
+  },
+  {
+    "id": "subaru-wrx-sedan-2006-2007-5mt",
+    "name": "2006-2007 Subaru WRX Sedan [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3192,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.62,
+    "finalDrive": 3.7,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Sedan_06-07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-wrx-wagon-2006-2007-5mt",
+    "name": "2006-2007 Subaru WRX Wagon [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "weightLbs": 3395,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.62,
+    "finalDrive": 3.7,
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Wagon_06-07.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.454"
+    },
+    "trim": "Wagon"
+  },
+  {
+    "id": "subaru-wrx-hatchback-2008-2010-5mt",
+    "name": "2008-2010 Subaru WRX Hatchback [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3190,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Hatch_08-10.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "Hatchback"
+  },
+  {
+    "id": "subaru-wrx-sedan-2008-2010-5mt",
+    "name": "2008-2010 Subaru WRX Sedan [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3190,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Sedan_08-10.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-wrx-hatchback-2011-2014-5mt",
+    "name": "2011-2014 Subaru WRX Hatchback [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2011,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Hatch_11-14.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "Hatchback"
+  },
+  {
+    "id": "subaru-wrx-sedan-2011-2014-5mt",
+    "name": "2011-2014 Subaru WRX Sedan [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2011,
+    "yearEnd": 2014,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 3.9,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.36,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Sedan_11-14.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "subaru-wrx-sedan-2015-2015-5mt",
+    "name": "2015 Subaru WRX Sedan [5MT]",
+    "make": "Subaru",
+    "model": "WRX",
+    "yearStart": 2015,
+    "yearEnd": 2015,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.166"
+    },
+    "weightLbs": 3267,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.33,
+    "finalDrive": 4.111,
+    "gears": {
+      "1": 3.166,
+      "2": 1.882,
+      "3": 1.296,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Subaru/WRX/WRX_Sedan_15.xml",
+      "index": 0,
+      "gearSource": "preset:subaru-5mt-3.166"
+    },
+    "trim": "Sedan"
+  }
+]

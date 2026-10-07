@@ -1,0 +1,42 @@
+[
+  {
+    "id": "saab-9-3-aero-2008-2010-6at",
+    "name": "2008-2010 Saab 9-3 Aero [6AT]",
+    "make": "Saab",
+    "model": "9-3",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "saab-af40-6at"
+    },
+    "weightLbs": 3800,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.02,
+    "finalDrive": 3.53,
+    "gears": {
+      "1": 4.148,
+      "2": 2.37,
+      "3": 1.556,
+      "4": 1.155,
+      "5": 0.859,
+      "6": 0.686
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.28,
+    "frontalAreaSqFt": 21.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Saab/9-3 Turbo/9-3_Turbo_08-10.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "9-3 Aero automatic is the Aisin AF40-6/TF-80SC; VD 3rd/4th/5th (1.56/1.15/0.86) match."
+    },
+    "trim": "Aero"
+  }
+]

@@ -1,0 +1,616 @@
+{
+  "_comment": "Per-vehicle gear/data overrides keyed by Virtual Dyno source location '<relative file>#<index>'. Applied after transmission-preset backfill, so an override always wins. Use this for per-car research results. Fields: gears, transmission, finalDrive, id, name, gearSource, note.",
+  "Subaru/STI/STI_04-06.xml#0": {
+    "id": "sti_04_usdm",
+    "name": "2004 Subaru WRX STi [USDM 6MT]",
+    "note": "Preserves the id/name of the profile originally shipped with Log2Dyno."
+  },
+  "Mitsubishi/Ralliart/Ralliart_09-10.xml#0": {
+    "transmission": {
+      "type": "dct",
+      "speeds": 6,
+      "code": "mitsubishi-sst-dct"
+    },
+    "gears": {
+      "1": 3.655,
+      "2": 2.368,
+      "3": 1.754,
+      "4": 1.322,
+      "5": 1.008,
+      "6": 0.775
+    },
+    "gearSource": "override",
+    "note": "Ralliart uses the TC-SST twin-clutch, not a manual."
+  },
+  "Audi/RS4/Audi_RS4_00-01.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "audi-01e-6mt"
+    },
+    "gears": {
+      "1": 3.5,
+      "2": 2.059,
+      "3": 1.32,
+      "4": 1.034,
+      "5": 0.857,
+      "6": 0.73
+    },
+    "gearSource": "override",
+    "note": "B5 RS4 uses the Getrag 01E 6-speed; VD's 3rd/4th (1.32/1.034) already match 01E. Source: Audi 01E service data / Audizine."
+  },
+  "Audi/S4/Audi_S4_08-13.xml#0": {
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "audi-dl501-dct"
+    },
+    "gears": {
+      "1": 3.692,
+      "2": 2.238,
+      "3": 1.559,
+      "4": 1.175,
+      "5": 0.915,
+      "6": 0.745,
+      "7": 0.617
+    },
+    "gearSource": "override",
+    "note": "B8 S4 S tronic is the 7-speed DL501 (0B5), not a 6-speed. VD 3rd/4th (1.406/1.025) conflict with DL501. Source: Audi DL501 service data."
+  },
+  "Audi/S4/Audi_S4_08-13.xml#1": {
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "audi-dl501-dct"
+    },
+    "gears": {
+      "1": 3.692,
+      "2": 2.238,
+      "3": 1.559,
+      "4": 1.175,
+      "5": 0.915,
+      "6": 0.745,
+      "7": 0.617
+    },
+    "gearSource": "override",
+    "note": "B8 S4 S tronic is the 7-speed DL501 (0B5). VD 3rd/4th conflict with DL501."
+  },
+  "Audi/TT/Audi_TT_RS_10-10.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "audi-ttrs-6mt"
+    },
+    "gears": {
+      "1": 3.57,
+      "2": 2.16,
+      "3": 1.89,
+      "4": 1.43,
+      "5": 1.16,
+      "6": 0.97
+    },
+    "gearSource": "override",
+    "note": "TT RS 6-speed manual per Audi UK technical data; VD 3rd/4th (1.89/1.43) match."
+  },
+  "BMW/120/120_07-11.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-37dz"
+    },
+    "gears": {
+      "1": 5.14,
+      "2": 2.83,
+      "3": 1.79,
+      "4": 1.26,
+      "5": 1.0,
+      "6": 0.83
+    },
+    "gearSource": "override",
+    "note": "120d (N47) uses the diesel GS6-37DZ; VD 3rd/4th/5th (1.8/1.26/1.0) match."
+  },
+  "BMW/Z4/Z4_09-12.xml#1": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-37bz"
+    },
+    "gears": {
+      "1": 4.35,
+      "2": 2.496,
+      "3": 1.665,
+      "4": 1.234,
+      "5": 1.0,
+      "6": 0.851
+    },
+    "gearSource": "override",
+    "note": "Z4 sDrive23i (N52) uses the ZF GS6-37BZ; VD 3rd/4th (1.659/1.23) match within tolerance."
+  },
+  "Chevrolet/Camaro/Camaro_10-11.xml#2": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "aisin-ay6-mv5"
+    },
+    "gears": {
+      "1": 4.48,
+      "2": 2.58,
+      "3": 1.63,
+      "4": 1.19,
+      "5": 1.0,
+      "6": 0.75
+    },
+    "gearSource": "override",
+    "note": "2010-2011 V6 Camaro uses the Aisin AY6 (RPO MV5); VD 2nd/3rd/4th/5th match."
+  },
+  "Chevrolet/Camaro/Camaro_98-02.xml#2": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1.0,
+      "4": 0.696
+    },
+    "gearSource": "override",
+    "note": "1998-2002 V6 Camaro automatic is the 4L60E; VD 3rd/4th (1.41/1.0) conflict with 4L60E."
+  },
+  "Chevrolet/Cavalier/Cavalier_02-05.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "getrag-f23-m86"
+    },
+    "gears": {
+      "1": 3.58,
+      "2": 2.02,
+      "3": 1.35,
+      "4": 0.98,
+      "5": 0.69
+    },
+    "gearSource": "override",
+    "note": "2002-2005 Cavalier Ecotec uses the Getrag F23 (RPO M86); VD 3rd/4th (1.35/0.98) match."
+  },
+  "Chevrolet/Silverado/Silverado_Classic_99-07.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l60e"
+    },
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1.0,
+      "4": 0.696
+    },
+    "gearSource": "override",
+    "note": "4L60E published ratios; VD 2nd/3rd (1.52/1.0) conflict with 1.625/1.000."
+  },
+  "Chevrolet/Silverado/Silverado_Classic_99-07.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l80e"
+    },
+    "gears": {
+      "1": 2.482,
+      "2": 1.482,
+      "3": 1.0,
+      "4": 0.75
+    },
+    "gearSource": "override",
+    "note": "4L80E published ratios; VD 2nd/3rd (1.0/0.75) conflict with 1.482/1.000."
+  },
+  "Chevrolet/Silverado/Silverado_NewBodyStyle_07-11.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l70e"
+    },
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1.0,
+      "4": 0.696
+    },
+    "gearSource": "override",
+    "note": "4L70E is a 4L60E variant and shares its ratios; VD 2nd/3rd (1.52/1.0) conflict."
+  },
+  "Chevrolet/Silverado/Silverado_NewBodyStyle_07-11.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4,
+      "code": "gm-4l80e"
+    },
+    "gears": {
+      "1": 2.482,
+      "2": 1.482,
+      "3": 1.0,
+      "4": 0.75
+    },
+    "gearSource": "override",
+    "note": "4L80E published ratios; VD 2nd/3rd (1.53/1.15) conflict with 1.482/1.000."
+  },
+  "Ford/Mustang/Mustang_Ecoboost_15-16.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "ford-mt82-v6"
+    },
+    "gears": {
+      "1": 4.236,
+      "2": 2.538,
+      "3": 1.665,
+      "4": 1.238,
+      "5": 1.0,
+      "6": 0.704
+    },
+    "gearSource": "override",
+    "note": "2015-2016 EcoBoost MT-82; VD's 5th duplicated 4th (1.238) - corrected to 1.000 with 6th 0.704."
+  },
+  "Hyundai/Genesis/Genesis_Coupe_09-12.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "hyundai-m6cf1-6mt"
+    },
+    "gears": {
+      "1": 3.848,
+      "2": 2.317,
+      "3": 1.623,
+      "4": 1.233,
+      "5": 1.0,
+      "6": 0.794
+    },
+    "gearSource": "override",
+    "note": "Genesis Coupe 2.0T 6MT (M6VR/M6CF1 family); VD 3rd (1.671) conflicts with published 1.623."
+  },
+  "Infiniti/G35/G35_03-07.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "nissan-re5r05a-5at"
+    },
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1.0,
+      "5": 0.834
+    },
+    "gearSource": "override",
+    "note": "G35 5AT is the RE5R05A; VD 3rd (1.417) conflicts with published 1.471."
+  },
+  "Infiniti/G35/G35_03-07.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "nissan-re5r05a-5at"
+    },
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1.0,
+      "5": 0.834
+    },
+    "gearSource": "override",
+    "note": "G35 5AT is the RE5R05A; VD 3rd conflicts with published 1.471."
+  },
+  "Mazda/6/6_03-08.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-g35m-r-5mt"
+    },
+    "gears": {
+      "1": 3.15,
+      "2": 1.84,
+      "3": 1.26,
+      "4": 0.95,
+      "5": 0.73
+    },
+    "gearSource": "override",
+    "note": "Mazda6 V6 5MT per Mazda spec sheet; VD 3rd/4th (1.26/0.95) match."
+  },
+  "Mazda/CX-7/CX7_07-09.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "mazda-aw6a-6at"
+    },
+    "gears": {
+      "1": 4.148,
+      "2": 2.37,
+      "3": 1.556,
+      "4": 1.155,
+      "5": 0.859,
+      "6": 0.686
+    },
+    "gearSource": "override",
+    "note": "CX-7 AWD uses the Aisin 6-speed automatic; VD 3rd/4th/5th (1.555/1.154/0.859) match."
+  },
+  "Mazda/CX-7/CX7_07-09.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mazda-fn5-5at"
+    },
+    "gears": {
+      "1": 3.62,
+      "2": 1.925,
+      "3": 1.285,
+      "4": 0.933,
+      "5": 0.692
+    },
+    "gearSource": "override",
+    "note": "CX-7 FWD uses a 5-speed automatic (FN5); VD 2nd/3rd/4th (1.925/1.285/0.933) match Mazda's 5AT spec."
+  },
+  "Mazda/Speed3/Speed3_07-09.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-a26m-r-6mt"
+    },
+    "gears": {
+      "1": 3.538,
+      "2": 2.05,
+      "3": 1.535,
+      "4": 1.171,
+      "5": 1.085,
+      "6": 0.853
+    },
+    "gearSource": "override",
+    "note": "Mazdaspeed3 (2007-2009) 6MT; VD 3rd/4th/5th (1.54/1.17/1.09) match."
+  },
+  "Mazda/Speed6/Speed6_06-07.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-a26m-r-6mt"
+    },
+    "gears": {
+      "1": 3.538,
+      "2": 2.05,
+      "3": 1.535,
+      "4": 1.171,
+      "5": 1.085,
+      "6": 0.853
+    },
+    "gearSource": "override",
+    "note": "Mazdaspeed6 6MT shares the Mazdaspeed3 gearbox ratios; VD 3rd/4th (1.535/1.171) match."
+  },
+  "Mini/Cooper/Mini_Cooper_S_2001-2004.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mini-getrag-285-6mt"
+    },
+    "gears": {
+      "1": 3.308,
+      "2": 2.13,
+      "3": 1.483,
+      "4": 1.139,
+      "5": 0.949,
+      "6": 0.816
+    },
+    "gearSource": "override",
+    "note": "Cooper S (R53) Getrag 285 6-speed published ratios; VD 3rd/4th (1.333/1.089) conflict."
+  },
+  "Mini/Cooper/Mini_Cooper_S_2005-2008.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mini-getrag-285-6mt"
+    },
+    "gears": {
+      "1": 3.308,
+      "2": 2.13,
+      "3": 1.483,
+      "4": 1.139,
+      "5": 0.949,
+      "6": 0.816
+    },
+    "gearSource": "override",
+    "note": "Cooper S (R53) Getrag 285 6-speed published ratios; VD 3rd (1.395) conflicts."
+  },
+  "Mitsubishi/3000GT/3000GT_VR4_90-93.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-w5mg1-5mt"
+    },
+    "gears": {
+      "1": 3.071,
+      "2": 1.739,
+      "3": 1.103,
+      "4": 0.824,
+      "5": 0.66
+    },
+    "gearSource": "override",
+    "note": "3000GT VR-4 (1991-1993) W5MG1 5MT per 3S wiki; VD 3rd/4th (1.103/0.823) match."
+  },
+  "Mitsubishi/3000GT/3000GT_VR4_94-99.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mitsubishi-w6mg1-6mt"
+    },
+    "gears": {
+      "1": 3.266,
+      "2": 1.904,
+      "3": 1.241,
+      "4": 0.918,
+      "5": 0.733,
+      "6": 0.589
+    },
+    "gearSource": "override",
+    "note": "3000GT VR-4 (1994-1999) Getrag W6MG1 6MT per 3S wiki; VD 3rd/4th (1.241/0.918) match."
+  },
+  "Mitsubishi/Airtrek/Airtrek_02-05.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1.0,
+      "5": 0.731
+    },
+    "gearSource": "override",
+    "note": "Mitsubishi F5A51 5-speed automatic; VD 3rd/4th (1.421/1.0) match."
+  },
+  "Mitsubishi/Eclipse/Eclipse_GST_90-94.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m33-5mt"
+    },
+    "gears": {
+      "1": 3.09,
+      "2": 1.833,
+      "3": 1.217,
+      "4": 0.888,
+      "5": 0.741
+    },
+    "gearSource": "override",
+    "note": "Eclipse GST (FWD turbo) uses the F5M33 5MT; VD 3rd/4th (1.217/0.888) match."
+  },
+  "Mitsubishi/Eclipse/Eclipse_GST_95-99.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mitsubishi-f5m33-5mt"
+    },
+    "gears": {
+      "1": 3.09,
+      "2": 1.833,
+      "3": 1.217,
+      "4": 0.888,
+      "5": 0.741
+    },
+    "gearSource": "override",
+    "note": "Eclipse GST (FWD turbo) uses the F5M33 5MT; VD 3rd/4th match."
+  },
+  "Mitsubishi/Evo/Evo_VII.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1.0,
+      "5": 0.731
+    },
+    "gearSource": "override",
+    "note": "Evo VII GTA uses the F5A51 5-speed automatic; VD 3rd/4th (1.421/1.0) match."
+  },
+  "Mitsubishi/Galant/Galant_VR4_Legnum_96-03.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1.0,
+      "5": 0.731
+    },
+    "gearSource": "override",
+    "note": "Galant VR-4 automatic uses the F5A51; VD 3rd/4th (1.421/1.0) match."
+  },
+  "Mitsubishi/Galant/Galant_VR4_Sedan_96-03.xml#1": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mitsubishi-f5a51-5at"
+    },
+    "gears": {
+      "1": 3.789,
+      "2": 2.057,
+      "3": 1.421,
+      "4": 1.0,
+      "5": 0.731
+    },
+    "gearSource": "override",
+    "note": "Galant VR-4 automatic uses the F5A51; VD 3rd/4th match."
+  },
+  "Pontiac/G8/G8_GXP_09-09.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "tremec-tr6060"
+    },
+    "gears": {
+      "1": 2.66,
+      "2": 1.78,
+      "3": 1.3,
+      "4": 1.0,
+      "5": 0.8,
+      "6": 0.63
+    },
+    "gearSource": "override",
+    "note": "G8 GXP (LS3) uses the Tremec TR-6060; VD 3rd (1.43) conflicts with published 1.30."
+  },
+  "Saab/9-3 Turbo/9-3_Turbo_08-10.xml#0": {
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "saab-af40-6at"
+    },
+    "gears": {
+      "1": 4.148,
+      "2": 2.37,
+      "3": 1.556,
+      "4": 1.155,
+      "5": 0.859,
+      "6": 0.686
+    },
+    "gearSource": "override",
+    "note": "9-3 Aero automatic is the Aisin AF40-6/TF-80SC; VD 3rd/4th/5th (1.56/1.15/0.86) match."
+  },
+  "Subaru/Impreza/Impreza_OutbackSport_03-05.xml#0": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "subaru-5mt-3.454"
+    },
+    "gears": {
+      "1": 3.454,
+      "2": 1.947,
+      "3": 1.366,
+      "4": 0.972,
+      "5": 0.738
+    },
+    "gearSource": "override",
+    "note": "VD marked this automatic but its gears (1.947/1.366/0.972) are the Subaru 5MT set - corrected to manual."
+  },
+  "Subaru/Legacy/Legacy_Wagon_GT_03-06.xml#1": {
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "subaru-6mt-specb"
+    },
+    "gears": {
+      "1": 3.636,
+      "2": 2.235,
+      "3": 1.521,
+      "4": 1.137,
+      "5": 0.891,
+      "6": 0.707
+    },
+    "gearSource": "override",
+    "note": "JDM Legacy 2.0GT spec.B 6MT; VD 3rd/4th (1.521/1.137) match."
+  }
+}

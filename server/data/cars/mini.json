@@ -1,0 +1,120 @@
+[
+  {
+    "id": "mini-cooper-s-2001-2004-6mt",
+    "name": "2001-2004 Mini Cooper S [6MT]",
+    "make": "Mini",
+    "model": "Cooper",
+    "yearStart": 2001,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mini-getrag-285-6mt"
+    },
+    "weightLbs": 2678,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.3,
+    "finalDrive": 4.05,
+    "gears": {
+      "1": 3.308,
+      "2": 2.13,
+      "3": 1.483,
+      "4": 1.139,
+      "5": 0.949,
+      "6": 0.816
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mini/Cooper/Mini_Cooper_S_2001-2004.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Cooper S (R53) Getrag 285 6-speed published ratios; VD 3rd/4th (1.333/1.089) conflict."
+    },
+    "trim": "S"
+  },
+  {
+    "id": "mini-cooper-r50-2002-2006-5mt",
+    "name": "2002-2006 Mini Cooper R50 [5MT]",
+    "make": "Mini",
+    "model": "Cooper",
+    "yearStart": 2002,
+    "yearEnd": 2006,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mini-getrag-252-5mt"
+    },
+    "weightLbs": 2524,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.3,
+    "finalDrive": 4.35,
+    "gears": {
+      "1": 3.308,
+      "2": 1.913,
+      "3": 1.258,
+      "4": 0.943,
+      "5": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mini/Cooper/Mini_Cooper_2002-2006.xml",
+      "index": 0,
+      "gearSource": "preset:mini-getrag-252-5mt"
+    },
+    "trim": "R50"
+  },
+  {
+    "id": "mini-cooper-s-2005-2008-6mt",
+    "name": "2005-2008 Mini Cooper S [6MT]",
+    "make": "Mini",
+    "model": "Cooper",
+    "yearStart": 2005,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mini-getrag-285-6mt"
+    },
+    "weightLbs": 2668,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.3,
+    "finalDrive": 4.05,
+    "gears": {
+      "1": 3.308,
+      "2": 2.13,
+      "3": 1.483,
+      "4": 1.139,
+      "5": 0.949,
+      "6": 0.816
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 21.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mini/Cooper/Mini_Cooper_S_2005-2008.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Cooper S (R53) Getrag 285 6-speed published ratios; VD 3rd (1.395) conflicts."
+    },
+    "trim": "S"
+  }
+]

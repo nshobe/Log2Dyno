@@ -1,0 +1,259 @@
+[
+  {
+    "id": "infiniti-g20-base-1999-1999-5mt",
+    "name": "1999 Infiniti G20 Base [5MT]",
+    "make": "Infiniti",
+    "model": "G20",
+    "yearStart": 1999,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-rs5f32a-g20-5mt"
+    },
+    "weightLbs": 2913,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.98,
+    "finalDrive": 4.176,
+    "gears": {
+      "1": 3.063,
+      "2": 1.826,
+      "3": 1.286,
+      "4": 0.975,
+      "5": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21.44,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G20/G20_99.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-rs5f32a-g20-5mt"
+    },
+    "trim": "Base"
+  },
+  {
+    "id": "infiniti-g20-touring-1999-1999-5mt",
+    "name": "1999 Infiniti G20 Touring [5MT]",
+    "make": "Infiniti",
+    "model": "G20",
+    "yearStart": 1999,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-rs5f32a-g20-5mt"
+    },
+    "weightLbs": 2936,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.21,
+    "finalDrive": 4.176,
+    "gears": {
+      "1": 3.063,
+      "2": 1.826,
+      "3": 1.286,
+      "4": 0.975,
+      "5": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21.44,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G20/G20_99.xml",
+      "index": 1,
+      "gearSource": "preset:nissan-rs5f32a-g20-5mt"
+    },
+    "trim": "Touring"
+  },
+  {
+    "id": "infiniti-g20-base-2000-2002-mt",
+    "name": "2000-2002 Infiniti G20 Base [MT]",
+    "make": "Infiniti",
+    "model": "G20",
+    "yearStart": 2000,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2923,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.98,
+    "finalDrive": 4.176,
+    "gears": {
+      "3": 1.286,
+      "4": 0.926
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21.44,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G20/G20_00-02.xml",
+      "index": 0
+    },
+    "trim": "Base"
+  },
+  {
+    "id": "infiniti-g20-touring-sport-2000-2002-mt",
+    "name": "2000-2002 Infiniti G20 Touring/Sport [MT]",
+    "make": "Infiniti",
+    "model": "G20",
+    "yearStart": 2000,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 2950,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.21,
+    "finalDrive": 4.176,
+    "gears": {
+      "3": 1.286,
+      "4": 0.926
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 21.44,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G20/G20_00-02.xml",
+      "index": 1
+    },
+    "trim": "Touring/Sport"
+  },
+  {
+    "id": "infiniti-g35-coupe-2003-2007-5at",
+    "name": "2003-2007 Infiniti G35 Coupe [5AT]",
+    "make": "Infiniti",
+    "model": "G35",
+    "yearStart": 2003,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "nissan-re5r05a-5at"
+    },
+    "weightLbs": 3395,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.68,
+    "finalDrive": 3.35,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.26,
+    "frontalAreaSqFt": 23.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G35/G35_03-07.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "G35 5AT is the RE5R05A; VD 3rd conflicts with published 1.471."
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "infiniti-g35-coupe-2003-2007-6mt",
+    "name": "2003-2007 Infiniti G35 Coupe [6MT]",
+    "make": "Infiniti",
+    "model": "G35",
+    "yearStart": 2003,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "nissan-fs6r31a-6mt"
+    },
+    "weightLbs": 3415,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.68,
+    "finalDrive": 3.538,
+    "gears": {
+      "1": 3.794,
+      "2": 2.324,
+      "3": 1.624,
+      "4": 1.271,
+      "5": 1,
+      "6": 0.794
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.26,
+    "frontalAreaSqFt": 23.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G35/G35_03-07.xml",
+      "index": 2,
+      "gearSource": "preset:nissan-fs6r31a-6mt"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "infiniti-g35-coupe-aero-2003-2007-5at",
+    "name": "2003-2007 Infiniti G35 Coupe (Aero) [5AT]",
+    "make": "Infiniti",
+    "model": "G35",
+    "yearStart": 2003,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "nissan-re5r05a-5at"
+    },
+    "weightLbs": 3395,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.68,
+    "finalDrive": 3.35,
+    "gears": {
+      "1": 3.54,
+      "2": 2.264,
+      "3": 1.471,
+      "4": 1,
+      "5": 0.834
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.26,
+    "frontalAreaSqFt": 23.8,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Infiniti/G35/G35_03-07.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "G35 5AT is the RE5R05A; VD 3rd (1.417) conflicts with published 1.471."
+    },
+    "trim": "Coupe (Aero)"
+  }
+]

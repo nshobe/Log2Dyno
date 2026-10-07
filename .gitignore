@@ -14,8 +14,9 @@ logs/
 *.csv
 
 # Local runtime state
-# data/ is the Docker volume (saved car profiles); it is recreated at runtime.
-data/
+# /data/ is the Docker volume (user car garage); it is recreated at runtime.
+# Anchored to the repo root so the bundled catalog in server/data/ stays tracked.
+/data/
 
 # Test fixtures are tracked despite the generic data-file ignores above
 !tests/fixtures/**

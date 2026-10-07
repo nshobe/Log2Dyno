@@ -1,0 +1,37 @@
+[
+  {
+    "id": "holden-monaro-cv8-2002-2004-4at",
+    "name": "2002-2004 Holden Monaro CV8 [4AT]",
+    "make": "Holden",
+    "model": "Monaro",
+    "yearStart": 2002,
+    "yearEnd": 2004,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 4
+    },
+    "weightLbs": 3634,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 3.059,
+      "2": 1.625,
+      "3": 1,
+      "4": 0.696
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.53,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Holden/Monaro/Monaro_02-04.xml",
+      "index": 0
+    },
+    "trim": "CV8"
+  }
+]

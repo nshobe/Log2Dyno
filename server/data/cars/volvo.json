@@ -1,0 +1,66 @@
+[
+  {
+    "id": "volvo-s60-r-2004-2005-at",
+    "name": "2004-2005 Volvo S60 R [AT]",
+    "make": "Volvo",
+    "model": "S60",
+    "yearStart": 2004,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3571,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 2.65,
+    "gears": {
+      "3": 1.98,
+      "4": 1.34
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volvo/S60/S60_R_04-05.xml",
+      "index": 0
+    },
+    "trim": "R"
+  },
+  {
+    "id": "volvo-s60-r-2004-2005-mt",
+    "name": "2004-2005 Volvo S60 R [MT]",
+    "make": "Volvo",
+    "model": "S60",
+    "yearStart": 2004,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3571,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.77,
+    "gears": {
+      "3": 1.43,
+      "4": 1.09
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 22.78,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Volvo/S60/S60_R_04-05.xml",
+      "index": 1
+    },
+    "trim": "R"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "id": "nissan-200sx-2-0-17s-1995-1998-5mt",
+    "name": "1995-1998 Nissan 200sx 2.0 (17s) [5MT]",
+    "make": "Nissan",
+    "model": "200sx",
+    "yearStart": 1995,
+    "yearEnd": 1998,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-sr20de"
+    },
+    "weightLbs": 2762,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.9,
+    "finalDrive": 4.176,
+    "gears": {
+      "1": 3.063,
+      "2": 1.826,
+      "3": 1.286,
+      "4": 0.975,
+      "5": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 19.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/200sx/200sx_95-98.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-sr20de"
+    },
+    "trim": "2.0 (17s)"
+  },
+  {
+    "id": "nissan-240sx-1991-1994-5mt",
+    "name": "1991-1994 Nissan 240sx [5MT]",
+    "make": "Nissan",
+    "model": "240sx",
+    "yearStart": 1991,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-ka24de"
+    },
+    "weightLbs": 2698,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.21,
+    "finalDrive": 4.083,
+    "gears": {
+      "1": 3.321,
+      "2": 1.902,
+      "3": 1.308,
+      "4": 1,
+      "5": 0.759
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 19.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/240sx/240sx_91-94.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-ka24de"
+    }
+  },
+  {
+    "id": "nissan-240sx-se-1995-1998-5mt",
+    "name": "1995-1998 Nissan 240sx SE [5MT]",
+    "make": "Nissan",
+    "model": "240sx",
+    "yearStart": 1995,
+    "yearEnd": 1998,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-ka24de"
+    },
+    "weightLbs": 2763,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.083,
+    "gears": {
+      "1": 3.321,
+      "2": 1.902,
+      "3": 1.308,
+      "4": 1,
+      "5": 0.759
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 19.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/240sx/240sx_95-98.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-ka24de"
+    },
+    "trim": "SE"
+  },
+  {
+    "id": "nissan-300zx-twin-turbo-1990-1996-5mt",
+    "name": "1990-1996 Nissan 300zx twin turbo [5MT]",
+    "make": "Nissan",
+    "model": "300zx",
+    "yearStart": 1990,
+    "yearEnd": 1996,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-fs5r30a"
+    },
+    "weightLbs": 3480,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.692,
+    "gears": {
+      "1": 3.214,
+      "2": 1.925,
+      "3": 1.302,
+      "4": 1,
+      "5": 0.752
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 19.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/300zx/300zx_90-96.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-fs5r30a"
+    },
+    "trim": "twin turbo"
+  },
+  {
+    "id": "nissan-gtr-2007-2012-6mt",
+    "name": "2007-2012 Nissan GTR [6MT]",
+    "make": "Nissan",
+    "model": "GTR",
+    "yearStart": 2007,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6
+    },
+    "weightLbs": 3820,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 28.03,
+    "finalDrive": 3.7,
+    "gears": {
+      "1": 4.056,
+      "2": 2.301,
+      "3": 1.595,
+      "4": 1.248,
+      "5": 1.001,
+      "6": 0.796
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.26,
+    "frontalAreaSqFt": 22.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/GTR/GTR_07-12.xml",
+      "index": 0
+    }
+  },
+  {
+    "id": "nissan-sentra-se-r-1991-1994-5mt",
+    "name": "1991-1994 Nissan Sentra SE-R [5MT]",
+    "make": "Nissan",
+    "model": "Sentra",
+    "yearStart": 1991,
+    "yearEnd": 1994,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-sr20de"
+    },
+    "weightLbs": 2450,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 22.74,
+    "finalDrive": 4.176,
+    "gears": {
+      "1": 3.063,
+      "2": 1.826,
+      "3": 1.286,
+      "4": 0.975,
+      "5": 0.756
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 19.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/Sentra/Sentra_SE-R_91-94.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-sr20de"
+    },
+    "trim": "SE-R"
+  },
+  {
+    "id": "nissan-silvia-spec-r-1999-2002-6mt",
+    "name": "1999-2002 Nissan Silvia Spec-R [6MT]",
+    "make": "Nissan",
+    "model": "Silvia",
+    "yearStart": 1999,
+    "yearEnd": 2002,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6
+    },
+    "weightLbs": 2800,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.9,
+    "finalDrive": 3.692,
+    "gears": {
+      "1": 3.626,
+      "2": 2.2,
+      "3": 1.541,
+      "4": 1.213,
+      "5": 1,
+      "6": 0.767
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 19.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/S15/S15_99-02.xml",
+      "index": 0
+    },
+    "trim": "Spec-R"
+  },
+  {
+    "id": "nissan-skyline-gts-t-r33-rb25det-1993-1996-5mt",
+    "name": "1993-1996 Nissan Skyline GTS-T (R33 RB25DET) [5MT]",
+    "make": "Nissan",
+    "model": "Skyline",
+    "yearStart": 1993,
+    "yearEnd": 1996,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "nissan-5mt-fs5r30a"
+    },
+    "weightLbs": 3064,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.88,
+    "finalDrive": 4.11,
+    "gears": {
+      "1": 3.214,
+      "2": 1.925,
+      "3": 1.302,
+      "4": 1,
+      "5": 0.752
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 22.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Nissan/Skyline/Skyline_GTS-T_93-96.xml",
+      "index": 0,
+      "gearSource": "preset:nissan-5mt-fs5r30a"
+    },
+    "trim": "GTS-T (R33 RB25DET)"
+  }
+]

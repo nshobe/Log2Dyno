@@ -1,0 +1,152 @@
+[
+  {
+    "id": "hyundai-genesis-coupe-2-0t-2009-2012-6mt",
+    "name": "2009-2012 Hyundai Genesis Coupe 2.0T [6MT]",
+    "make": "Hyundai",
+    "model": "Genesis",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "hyundai-m6cf1-6mt"
+    },
+    "weightLbs": 3294,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.7,
+    "finalDrive": 3.909,
+    "gears": {
+      "1": 3.848,
+      "2": 2.317,
+      "3": 1.623,
+      "4": 1.233,
+      "5": 1,
+      "6": 0.794
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Hyundai/Genesis/Genesis_Coupe_09-12.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Genesis Coupe 2.0T 6MT (M6VR/M6CF1 family); VD 3rd (1.671) conflicts with published 1.623."
+    },
+    "trim": "Coupe 2.0T"
+  },
+  {
+    "id": "hyundai-genesis-coupe-2-0t-2009-2012-at",
+    "name": "2009-2012 Hyundai Genesis Coupe 2.0T [AT]",
+    "make": "Hyundai",
+    "model": "Genesis",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 3362,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.7,
+    "finalDrive": 4.181,
+    "gears": {
+      "3": 1.52,
+      "4": 1
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Hyundai/Genesis/Genesis_Coupe_09-12.xml",
+      "index": 1
+    },
+    "trim": "Coupe 2.0T"
+  },
+  {
+    "id": "hyundai-genesis-coupe-3-8-2009-2012-6at",
+    "name": "2009-2012 Hyundai Genesis Coupe 3.8 [6AT]",
+    "make": "Hyundai",
+    "model": "Genesis",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "hyundai-6hp19-6at"
+    },
+    "weightLbs": 3397,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.7,
+    "finalDrive": 3.727,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Hyundai/Genesis/Genesis_Coupe_09-12.xml",
+      "index": 3,
+      "gearSource": "preset:hyundai-6hp19-6at"
+    },
+    "trim": "Coupe 3.8"
+  },
+  {
+    "id": "hyundai-genesis-coupe-3-8-2009-2012-6mt",
+    "name": "2009-2012 Hyundai Genesis Coupe 3.8 [6MT]",
+    "make": "Hyundai",
+    "model": "Genesis",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "hyundai-m6cf1-6mt"
+    },
+    "weightLbs": 3389,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.7,
+    "finalDrive": 3.538,
+    "gears": {
+      "1": 3.848,
+      "2": 2.317,
+      "3": 1.623,
+      "4": 1.233,
+      "5": 1,
+      "6": 0.794
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Hyundai/Genesis/Genesis_Coupe_09-12.xml",
+      "index": 2,
+      "gearSource": "preset:hyundai-m6cf1-6mt"
+    },
+    "trim": "Coupe 3.8"
+  }
+]

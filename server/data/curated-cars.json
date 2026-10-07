@@ -1,0 +1,43 @@
+[
+  {
+    "id": "corvette_15_z06",
+    "name": "2015 Chevrolet Corvette Z06 [7MT]",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "trim": "Z06",
+    "generation": "C7",
+    "yearStart": 2015,
+    "yearEnd": 2015,
+    "bodyStyle": "Coupe",
+    "drive": "RWD",
+    "transmission": {
+      "type": "manual",
+      "speeds": 7,
+      "code": "TR-6070"
+    },
+    "weightLbs": 3524,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.6,
+    "finalDrive": 3.42,
+    "gears": {
+      "1": 2.289,
+      "2": 1.611,
+      "3": 1.208,
+      "4": 1.0,
+      "5": 0.814,
+      "6": 0.672,
+      "7": 0.45
+    },
+    "defaultGear": 4,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 21.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "log2dyno",
+      "note": "Hand-curated (not present in the Virtual Dyno dataset)."
+    }
+  }
+]

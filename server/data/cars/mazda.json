@@ -1,0 +1,605 @@
+[
+  {
+    "id": "mazda-6-sedan-v6-2003-2008-5mt",
+    "name": "2003-2008 Mazda 6 Sedan V6 [5MT]",
+    "make": "Mazda",
+    "model": "6",
+    "yearStart": 2003,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-g35m-r-5mt"
+    },
+    "weightLbs": 3300,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.62,
+    "finalDrive": 4.13,
+    "gears": {
+      "1": 3.15,
+      "2": 1.84,
+      "3": 1.26,
+      "4": 0.95,
+      "5": 0.73
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.27,
+    "frontalAreaSqFt": 23.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/6/6_03-08.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Mazda6 V6 5MT per Mazda spec sheet; VD 3rd/4th (1.26/0.95) match."
+    },
+    "trim": "Sedan V6"
+  },
+  {
+    "id": "mazda-cx-7-touring-awd-l4-2007-2009-6at",
+    "name": "2007-2009 Mazda CX-7 Touring AWD L4 [6AT]",
+    "make": "Mazda",
+    "model": "CX-7",
+    "yearStart": 2007,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "mazda-aw6a-6at"
+    },
+    "weightLbs": 3928,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29.1,
+    "finalDrive": 3.749,
+    "gears": {
+      "1": 4.148,
+      "2": 2.37,
+      "3": 1.556,
+      "4": 1.155,
+      "5": 0.859,
+      "6": 0.686
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 27.77,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/CX-7/CX7_07-09.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "CX-7 AWD uses the Aisin 6-speed automatic; VD 3rd/4th/5th (1.555/1.154/0.859) match."
+    },
+    "trim": "Touring AWD L4"
+  },
+  {
+    "id": "mazda-cx-7-touring-fwd-l4-2007-2009-5at",
+    "name": "2007-2009 Mazda CX-7 Touring FWD L4 [5AT]",
+    "make": "Mazda",
+    "model": "CX-7",
+    "yearStart": 2007,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 5,
+      "code": "mazda-fn5-5at"
+    },
+    "weightLbs": 3710,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 29.1,
+    "finalDrive": 3.863,
+    "gears": {
+      "1": 3.62,
+      "2": 1.925,
+      "3": 1.285,
+      "4": 0.933,
+      "5": 0.692
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 27.77,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/CX-7/CX7_07-09.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "CX-7 FWD uses a 5-speed automatic (FN5); VD 2nd/3rd/4th (1.925/1.285/0.933) match Mazda's 5AT spec."
+    },
+    "trim": "Touring FWD L4"
+  },
+  {
+    "id": "mazda-miata-1-6-1990-1993-5mt",
+    "name": "1990-1993 Mazda Miata 1.6 [5MT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 1990,
+    "yearEnd": 1993,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-miata-5mt-na"
+    },
+    "weightLbs": 2200,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 22.68,
+    "finalDrive": 4.3,
+    "gears": {
+      "1": 3.136,
+      "2": 1.888,
+      "3": 1.33,
+      "4": 1,
+      "5": 0.814
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 18.42,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_90-93.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-miata-5mt-na"
+    },
+    "trim": "1.6"
+  },
+  {
+    "id": "mazda-miata-1-8-1994-1997-5mt",
+    "name": "1994-1997 Mazda Miata 1.8 [5MT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 1994,
+    "yearEnd": 1997,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-miata-5mt-na"
+    },
+    "weightLbs": 2300,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 22.68,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.136,
+      "2": 1.888,
+      "3": 1.33,
+      "4": 1,
+      "5": 0.814
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.38,
+    "frontalAreaSqFt": 18.42,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_94-97.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-miata-5mt-na"
+    },
+    "trim": "1.8"
+  },
+  {
+    "id": "mazda-miata-1-8-5-speed-1999-2005-5mt",
+    "name": "1999-2005 Mazda Miata 1.8 (5-Speed) [5MT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 1999,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-miata-5mt-nb"
+    },
+    "weightLbs": 2350,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23,
+    "finalDrive": 4.3,
+    "gears": {
+      "1": 3.136,
+      "2": 1.888,
+      "3": 1.333,
+      "4": 1,
+      "5": 0.814
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_99-05.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-miata-5mt-nb"
+    },
+    "trim": "1.8 (5-Speed)"
+  },
+  {
+    "id": "mazda-miata-1-8-6-speed-1999-2005-6mt",
+    "name": "1999-2005 Mazda Miata 1.8 (6-Speed) [6MT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 1999,
+    "yearEnd": 2005,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-miata-6mt-nb"
+    },
+    "weightLbs": 2350,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23,
+    "finalDrive": 3.909,
+    "gears": {
+      "1": 3.76,
+      "2": 2.269,
+      "3": 1.645,
+      "4": 1.257,
+      "5": 1,
+      "6": 0.843
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 22.3,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_99-05.xml",
+      "index": 1,
+      "gearSource": "preset:mazda-miata-6mt-nb"
+    },
+    "trim": "1.8 (6-Speed)"
+  },
+  {
+    "id": "mazda-miata-soft-top-2015-2018-6at",
+    "name": "2015-2018 Mazda Miata Soft Top [6AT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 2015,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "mazda-sj6a-6at"
+    },
+    "weightLbs": 2381,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.26378,
+    "finalDrive": 3.454,
+    "gears": {
+      "1": 3.538,
+      "2": 2.06,
+      "3": 1.404,
+      "4": 1,
+      "5": 0.713,
+      "6": 0.582
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 19.2674,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_15-18.xml",
+      "index": 1,
+      "gearSource": "preset:mazda-sj6a-6at"
+    },
+    "trim": "Soft Top"
+  },
+  {
+    "id": "mazda-miata-soft-top-2015-2018-6mt",
+    "name": "2015-2018 Mazda Miata Soft Top [6MT]",
+    "make": "Mazda",
+    "model": "Miata",
+    "yearStart": 2015,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-miata-6mt-nd"
+    },
+    "weightLbs": 2332,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.26378,
+    "finalDrive": 2.866,
+    "gears": {
+      "1": 5.087,
+      "2": 2.991,
+      "3": 2.035,
+      "4": 1.594,
+      "5": 1.286,
+      "6": 1
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.35,
+    "frontalAreaSqFt": 19.2674,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Miata/Miata_15-18.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-miata-6mt-nd"
+    },
+    "trim": "Soft Top"
+  },
+  {
+    "id": "mazda-protege-es-2003-2003-5mt",
+    "name": "2003 Mazda Protege ES [5MT]",
+    "make": "Mazda",
+    "model": "Protege",
+    "yearStart": 2003,
+    "yearEnd": 2003,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-fs-5mt"
+    },
+    "weightLbs": 2634,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 23.68,
+    "finalDrive": 4.105,
+    "gears": {
+      "1": 3.307,
+      "2": 1.842,
+      "3": 1.31,
+      "4": 0.97,
+      "5": 0.755
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.18,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Protege/Protege_ES_03.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-fs-5mt"
+    },
+    "trim": "ES"
+  },
+  {
+    "id": "mazda-rx-7-1993-1995-5mt",
+    "name": "1993-1995 Mazda RX-7 [5MT]",
+    "make": "Mazda",
+    "model": "RX-7",
+    "yearStart": 1993,
+    "yearEnd": 1995,
+    "transmission": {
+      "type": "manual",
+      "speeds": 5,
+      "code": "mazda-rx7-fd-5mt"
+    },
+    "weightLbs": 2886,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.97,
+    "finalDrive": 4.1,
+    "gears": {
+      "1": 3.483,
+      "2": 2.015,
+      "3": 1.391,
+      "4": 1,
+      "5": 0.719
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 18.18,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/RX-7/RX7_93-95.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-rx7-fd-5mt"
+    }
+  },
+  {
+    "id": "mazda-rx-7-1993-1995-at",
+    "name": "1993-1995 Mazda RX-7 [AT]",
+    "make": "Mazda",
+    "model": "RX-7",
+    "yearStart": 1993,
+    "yearEnd": 1995,
+    "transmission": {
+      "type": "automatic"
+    },
+    "weightLbs": 2886,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.97,
+    "finalDrive": 3.909,
+    "gears": {
+      "2": 1.619,
+      "3": 1
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 18.18,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/RX-7/RX7_93-95.xml",
+      "index": 1
+    }
+  },
+  {
+    "id": "mazda-rx-8-sport-2003-2008-6mt",
+    "name": "2003-2008 Mazda RX-8 Sport [6MT]",
+    "make": "Mazda",
+    "model": "RX-8",
+    "yearStart": 2003,
+    "yearEnd": 2008,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-rx8-6mt"
+    },
+    "weightLbs": 2886,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.97,
+    "finalDrive": 4.44,
+    "gears": {
+      "1": 3.76,
+      "2": 2.269,
+      "3": 1.645,
+      "4": 1.187,
+      "5": 1,
+      "6": 0.843
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 21.6,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/RX-8/RX8_03-08.xml",
+      "index": 0,
+      "gearSource": "preset:mazda-rx8-6mt"
+    },
+    "trim": "Sport"
+  },
+  {
+    "id": "mazda-speed3-2007-2009-6mt",
+    "name": "2007-2009 Mazda Speed3 [6MT]",
+    "make": "Mazda",
+    "model": "Speed3",
+    "yearStart": 2007,
+    "yearEnd": 2009,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-a26m-r-6mt"
+    },
+    "weightLbs": 3180,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.61,
+    "finalDrive": 3.94,
+    "gears": {
+      "1": 3.538,
+      "2": 2.05,
+      "3": 1.535,
+      "4": 1.171,
+      "5": 1.085,
+      "6": 0.853
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 25.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Speed3/Speed3_07-09.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Mazdaspeed3 (2007-2009) 6MT; VD 3rd/4th/5th (1.54/1.17/1.09) match."
+    }
+  },
+  {
+    "id": "mazda-speed3-2010-2013-mt",
+    "name": "2010-2013 Mazda Speed3 [MT]",
+    "make": "Mazda",
+    "model": "Speed3",
+    "yearStart": 2010,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3272,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.08,
+    "finalDrive": 4.19,
+    "gears": {
+      "3": 1.37,
+      "4": 1.03
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 25.5,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Speed3/Speed3_10-13.xml",
+      "index": 0
+    }
+  },
+  {
+    "id": "mazda-speed6-2006-2007-6mt",
+    "name": "2006-2007 Mazda Speed6 [6MT]",
+    "make": "Mazda",
+    "model": "Speed6",
+    "yearStart": 2006,
+    "yearEnd": 2007,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "mazda-a26m-r-6mt"
+    },
+    "weightLbs": 3589,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.62,
+    "finalDrive": 3.941,
+    "gears": {
+      "1": 3.538,
+      "2": 2.05,
+      "3": 1.535,
+      "4": 1.171,
+      "5": 1.085,
+      "6": 0.853
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Mazda/Speed6/Speed6_06-07.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "Mazdaspeed6 6MT shares the Mazdaspeed3 gearbox ratios; VD 3rd/4th (1.535/1.171) match."
+    }
+  }
+]

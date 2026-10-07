@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "Log2Dyno built-in vehicle catalog",
+  "description": "Read-only vehicle profiles. Originally bootstrapped from the Virtual Dyno car database plus hand-curated vehicles; now maintained directly in these files. User edits live in the garage (data/cars.json) and are never written here.",
+  "derivedFrom": [
+    "Virtual Dyno car database (Brad Barnhill) - community-contributed vehicle specifications, imported once",
+    "Manufacturer-published transmission and vehicle specifications (researched corrections)"
+  ],
+  "count": 278,
+  "files": [
+    "acura.json",
+    "audi.json",
+    "bmw.json",
+    "cadillac.json",
+    "chevrolet.json",
+    "dodge.json",
+    "eagle.json",
+    "ford.json",
+    "holden.json",
+    "honda.json",
+    "hyundai.json",
+    "infiniti.json",
+    "mazda.json",
+    "mini.json",
+    "mitsubishi.json",
+    "nissan.json",
+    "plymouth.json",
+    "pontiac.json",
+    "saab.json",
+    "saturn.json",
+    "scion.json",
+    "subaru.json",
+    "toyota.json",
+    "volkswagen.json",
+    "volvo.json"
+  ]
+}

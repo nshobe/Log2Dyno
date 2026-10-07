@@ -1,0 +1,643 @@
+[
+  {
+    "code": "subaru-5mt-3.454",
+    "label": "Subaru 5MT (3.454 first)",
+    "make": ["Subaru"],
+    "type": "manual",
+    "ratios": { "1": 3.454, "2": 1.947, "3": 1.366, "4": 0.972, "5": 0.738 },
+    "source": "Subaru service data"
+  },
+  {
+    "code": "subaru-5mt-3.166",
+    "label": "Subaru 5MT (3.166 first)",
+    "make": ["Subaru"],
+    "type": "manual",
+    "ratios": { "1": 3.166, "2": 1.882, "3": 1.296, "4": 0.972, "5": 0.738 },
+    "source": "Subaru service data"
+  },
+  {
+    "code": "subaru-6mt-sti-early",
+    "label": "Subaru 6MT STi (2004-2006)",
+    "make": ["Subaru"],
+    "years": [2004, 2006],
+    "type": "manual",
+    "ratios": { "1": 3.636, "2": 2.375, "3": 1.761, "4": 1.346, "5": 0.971, "6": 0.756 },
+    "source": "Subaru service data"
+  },
+  {
+    "code": "subaru-6mt-sti-late",
+    "label": "Subaru 6MT STi (2007+)",
+    "make": ["Subaru"],
+    "years": [2007, 2021],
+    "type": "manual",
+    "ratios": { "1": 3.636, "2": 2.235, "3": 1.521, "4": 1.137, "5": 0.971, "6": 0.756 },
+    "source": "Subaru service data"
+  },
+  {
+    "code": "mitsubishi-dsm-awd-5mt",
+    "label": "Mitsubishi DSM AWD 5MT",
+    "make": ["Mitsubishi", "Eagle", "Plymouth"],
+    "type": "manual",
+    "ratios": { "1": 3.083, "2": 1.684, "3": 1.115, "4": 0.833, "5": 0.666 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-dsm-awd-4at",
+    "label": "Mitsubishi DSM AWD 4AT",
+    "make": ["Mitsubishi", "Eagle", "Plymouth"],
+    "type": "automatic",
+    "ratios": { "1": 2.846, "2": 1.581, "3": 1.0, "4": 0.685 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-evo-5mt",
+    "label": "Mitsubishi Evo 5MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["Evolution", "Evo"],
+    "type": "manual",
+    "ratios": { "1": 2.928, "2": 1.95, "3": 1.407, "4": 1.031, "5": 0.72 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "toyota-86-6mt",
+    "label": "Aisin TL70 6MT (86 / BRZ / FR-S)",
+    "make": ["Toyota", "Subaru", "Scion"],
+    "type": "manual",
+    "ratios": { "1": 3.626, "2": 2.188, "3": 1.541, "4": 1.213, "5": 1.0, "6": 0.767 },
+    "source": "Toyota / Subaru service data"
+  },
+  {
+    "code": "toyota-86-6at",
+    "label": "Aisin A960E 6AT (86 / BRZ / FR-S)",
+    "make": ["Toyota", "Subaru", "Scion"],
+    "type": "automatic",
+    "ratios": { "1": 3.538, "2": 2.06, "3": 1.404, "4": 1.0, "5": 0.713, "6": 0.582 },
+    "source": "Aisin published ratios"
+  },
+  {
+    "code": "honda-s2000-6mt",
+    "label": "Honda S2000 6MT",
+    "make": ["Honda"],
+    "modelIncludes": ["S2000"],
+    "type": "manual",
+    "ratios": { "1": 3.133, "2": 2.045, "3": 1.481, "4": 1.161, "5": 0.943, "6": 0.763 },
+    "source": "Honda service data"
+  },
+  {
+    "code": "honda-civic-si-6mt-k20z3",
+    "label": "Honda Civic Si 6MT (K20Z3)",
+    "make": ["Honda"],
+    "modelIncludes": ["Civic"],
+    "years": [2006, 2011],
+    "type": "manual",
+    "ratios": { "1": 3.267, "2": 2.13, "3": 1.517, "4": 1.147, "5": 0.921, "6": 0.738 },
+    "source": "Honda service data"
+  },
+  {
+    "code": "ford-t45",
+    "label": "TREMEC T45",
+    "make": ["Ford"],
+    "modelIncludes": ["Mustang"],
+    "years": [1996, 2001],
+    "type": "manual",
+    "ratios": { "1": 3.37, "2": 2.03, "3": 1.33, "4": 1.0, "5": 0.67 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "ford-tr3650",
+    "label": "TREMEC TR-3650",
+    "make": ["Ford"],
+    "modelIncludes": ["Mustang"],
+    "years": [2001, 2010],
+    "type": "manual",
+    "ratios": { "1": 3.38, "2": 2.0, "3": 1.32, "4": 1.0, "5": 0.62 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "ford-mt82-coyote",
+    "label": "Getrag MT-82 (5.0 V8)",
+    "make": ["Ford"],
+    "modelIncludes": ["Mustang"],
+    "years": [2011, 2017],
+    "type": "manual",
+    "ratios": { "1": 3.66, "2": 2.43, "3": 1.69, "4": 1.32, "5": 1.0, "6": 0.65 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "tremec-t56-base",
+    "label": "TREMEC T56 (wide ratio)",
+    "make": ["Chevrolet", "Pontiac", "Dodge"],
+    "modelIncludes": ["Corvette", "Camaro", "GTO", "Viper"],
+    "type": "manual",
+    "ratios": { "1": 2.66, "2": 1.78, "3": 1.3, "4": 1.0, "5": 0.74, "6": 0.5 },
+    "source": "GM / Dodge service data"
+  },
+  {
+    "code": "tremec-t56-close",
+    "label": "TREMEC T56 (close ratio / M12)",
+    "make": ["Chevrolet", "Pontiac"],
+    "modelIncludes": ["Corvette", "Camaro", "GTO"],
+    "type": "manual",
+    "ratios": { "1": 2.97, "2": 2.07, "3": 1.43, "4": 1.0, "5": 0.84, "6": 0.56 },
+    "source": "GM service data"
+  },
+  {
+    "code": "tremec-tr6060-challenger",
+    "label": "TREMEC TR-6060 (Challenger)",
+    "make": ["Dodge"],
+    "modelIncludes": ["Challenger"],
+    "type": "manual",
+    "ratios": { "1": 2.97, "2": 2.1, "3": 1.46, "4": 1.0, "5": 0.74, "6": 0.5 },
+    "source": "Dodge service data"
+  },
+  {
+    "code": "dodge-nag1-5at",
+    "label": "Mercedes 722.6 / NAG1 5AT",
+    "make": ["Dodge"],
+    "modelIncludes": ["Challenger"],
+    "type": "automatic",
+    "ratios": { "1": 3.588, "2": 2.186, "3": 1.405, "4": 1.0, "5": 0.831 },
+    "source": "Mercedes-Benz published ratios"
+  },
+  {
+    "code": "gm-4l60e",
+    "label": "GM 4L60E / 4L70E 4AT",
+    "make": ["Chevrolet", "Pontiac"],
+    "type": "automatic",
+    "ratios": { "1": 3.059, "2": 1.625, "3": 1.0, "4": 0.696 },
+    "source": "GM service data"
+  },
+  {
+    "code": "gm-6l80",
+    "label": "GM 6L80E 6AT",
+    "make": ["Chevrolet", "Pontiac", "Cadillac"],
+    "modelIncludes": ["G8", "Camaro", "STS"],
+    "type": "automatic",
+    "ratios": { "1": 4.027, "2": 2.364, "3": 1.532, "4": 1.152, "5": 0.852, "6": 0.667 },
+    "source": "GM service data"
+  },
+  {
+    "code": "gm-f35-5mt",
+    "label": "GM F35 5MT (Ecotec)",
+    "make": ["Chevrolet", "Saturn"],
+    "modelIncludes": ["Cobalt", "HHR", "ION"],
+    "type": "manual",
+    "ratios": { "1": 3.38, "2": 1.76, "3": 1.18, "4": 0.89, "5": 0.7 },
+    "source": "GM service data"
+  },
+  {
+    "code": "zf-6hp19-6r80",
+    "label": "ZF 6HP19 / Ford 6R80 6AT",
+    "make": ["BMW", "Ford"],
+    "type": "automatic",
+    "ratios": { "1": 4.17, "2": 2.34, "3": 1.52, "4": 1.14, "5": 0.87, "6": 0.69 },
+    "source": "ZF / Ford published ratios"
+  },
+  {
+    "code": "zf-8hp51",
+    "label": "ZF 8HP51 8AT",
+    "make": ["Toyota", "BMW"],
+    "type": "automatic",
+    "ratios": { "1": 5.25, "2": 3.36, "3": 2.17, "4": 1.72, "5": 1.32, "6": 1.0, "7": 0.82, "8": 0.64 },
+    "source": "ZF published ratios"
+  },
+  {
+    "code": "bmw-gs6-53bz",
+    "label": "ZF GS6-53BZ 6MT",
+    "make": ["BMW"],
+    "type": "manual",
+    "ratios": { "1": 4.055, "2": 2.396, "3": 1.582, "4": 1.192, "5": 1.0, "6": 0.872 },
+    "source": "ZF published ratios"
+  },
+  {
+    "code": "bmw-dct-7dci600",
+    "label": "Getrag 7DCI600 M-DCT",
+    "make": ["BMW"],
+    "type": "dct",
+    "ratios": { "1": 4.78, "2": 2.933, "3": 2.153, "4": 1.678, "5": 1.39, "6": 1.203, "7": 0.806 },
+    "source": "Getrag / BMW published ratios"
+  },
+  {
+    "code": "nissan-5mt-fs5r30a",
+    "label": "Nissan FS5R30A 5MT",
+    "make": ["Nissan"],
+    "modelIncludes": ["300zx", "Skyline"],
+    "type": "manual",
+    "ratios": { "1": 3.214, "2": 1.925, "3": 1.302, "4": 1.0, "5": 0.752 },
+    "source": "Nissan service data"
+  },
+  {
+    "code": "nissan-5mt-ka24de",
+    "label": "Nissan 5MT (KA24DE)",
+    "make": ["Nissan"],
+    "modelIncludes": ["240sx"],
+    "type": "manual",
+    "ratios": { "1": 3.321, "2": 1.902, "3": 1.308, "4": 1.0, "5": 0.759 },
+    "source": "Nissan service data"
+  },
+  {
+    "code": "nissan-5mt-sr20de",
+    "label": "Nissan 5MT (SR20DE)",
+    "make": ["Nissan"],
+    "modelIncludes": ["200sx", "Sentra"],
+    "type": "manual",
+    "ratios": { "1": 3.063, "2": 1.826, "3": 1.286, "4": 0.975, "5": 0.756 },
+    "source": "Nissan service data"
+  },
+  {
+    "code": "mazda-miata-5mt-na",
+    "label": "Mazda Miata 5MT (NA)",
+    "make": ["Mazda"],
+    "modelIncludes": ["Miata"],
+    "years": [1990, 1997],
+    "type": "manual",
+    "ratios": { "1": 3.136, "2": 1.888, "3": 1.33, "4": 1.0, "5": 0.814 },
+    "source": "Mazda service data"
+  },
+  {
+    "code": "mazda-miata-5mt-nb",
+    "label": "Mazda Miata 5MT (NB)",
+    "make": ["Mazda"],
+    "modelIncludes": ["Miata"],
+    "years": [1999, 2005],
+    "type": "manual",
+    "ratios": { "1": 3.136, "2": 1.888, "3": 1.333, "4": 1.0, "5": 0.814 },
+    "source": "Mazda service data"
+  },
+  {
+    "code": "mazda-miata-6mt-nb",
+    "label": "Mazda Miata 6MT (NB)",
+    "make": ["Mazda"],
+    "modelIncludes": ["Miata"],
+    "years": [1999, 2005],
+    "type": "manual",
+    "ratios": { "1": 3.76, "2": 2.269, "3": 1.645, "4": 1.257, "5": 1.0, "6": 0.843 },
+    "source": "Mazda service data"
+  },
+  {
+    "code": "mazda-rx8-6mt",
+    "label": "Mazda RX-8 6MT",
+    "make": ["Mazda"],
+    "modelIncludes": ["RX-8"],
+    "type": "manual",
+    "ratios": { "1": 3.76, "2": 2.269, "3": 1.645, "4": 1.187, "5": 1.0, "6": 0.843 },
+    "source": "Mazda service data"
+  },
+  {
+    "code": "ford-t56-cobra",
+    "label": "TREMEC T56 (2003-04 Mustang Cobra)",
+    "make": ["Ford"],
+    "modelIncludes": ["Cobra"],
+    "years": [2003, 2004],
+    "type": "manual",
+    "ratios": { "1": 2.66, "2": 1.78, "3": 1.3, "4": 1.0, "5": 0.74, "6": 0.5 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "ford-tr6060-gt500",
+    "label": "TREMEC TR-6060 (Mustang Shelby GT500)",
+    "make": ["Ford"],
+    "modelIncludes": ["Shelby"],
+    "years": [2007, 2014],
+    "type": "manual",
+    "ratios": { "1": 2.66, "2": 1.78, "3": 1.3, "4": 1.0, "5": 0.8, "6": 0.63 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "ford-5r55s",
+    "label": "Ford 5R55S 5AT",
+    "make": ["Ford"],
+    "modelIncludes": ["Mustang"],
+    "years": [2005, 2010],
+    "type": "automatic",
+    "ratios": { "1": 3.22, "2": 2.1, "3": 1.545, "4": 1.0, "5": 0.75 },
+    "source": "Ford service data"
+  },
+  {
+    "code": "bmw-gs6-f8x",
+    "label": "BMW 6MT (F80 M3 / F82 M4)",
+    "make": ["BMW"],
+    "modelIncludes": ["M3", "M4"],
+    "years": [2014, 2018],
+    "type": "manual",
+    "ratios": { "1": 4.111, "2": 2.315, "3": 1.542, "4": 1.179, "5": 1.0, "6": 0.846 },
+    "source": "BMW published specifications"
+  },
+  {
+    "code": "bmw-dct-f8x",
+    "label": "BMW M DCT (F80 M3 / F82 M4)",
+    "make": ["BMW"],
+    "modelIncludes": ["M3", "M4"],
+    "years": [2014, 2018],
+    "type": "dct",
+    "ratios": { "1": 4.806, "2": 2.593, "3": 1.701, "4": 1.277, "5": 1.0, "6": 0.844, "7": 0.671 },
+    "source": "BMW published specifications"
+  },
+  {
+    "code": "subaru-5eat",
+    "label": "Subaru 5EAT",
+    "make": ["Subaru"],
+    "type": "automatic",
+    "ratios": { "1": 3.54, "2": 2.264, "3": 1.471, "4": 1.0, "5": 0.834 },
+    "source": "Subaru service data"
+  },
+  {
+    "code": "mitsubishi-evo9-5mt",
+    "label": "Mitsubishi Evo IX GSR/RS 5MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["Evolution", "Evo"],
+    "years": [2006, 2007],
+    "type": "manual",
+    "ratios": { "1": 2.785, "2": 1.95, "3": 1.444, "4": 1.096, "5": 0.761 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-evo-x-5mt",
+    "label": "Mitsubishi Evo X GSR 5MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["Evolution", "Evo"],
+    "years": [2008, 2012],
+    "type": "manual",
+    "ratios": { "1": 2.857, "2": 1.95, "3": 1.444, "4": 1.096, "5": 0.761 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-evo-mr-6mt",
+    "label": "Mitsubishi Evo VIII/IX MR 6MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["MR"],
+    "type": "manual",
+    "ratios": { "1": 2.909, "2": 1.944, "3": 1.434, "4": 1.1, "5": 0.868, "6": 0.693 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-sst-dct",
+    "label": "Mitsubishi TC-SST 6DCT (Evo X MR / Ralliart)",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["MR", "Ralliart"],
+    "type": "dct",
+    "ratios": { "1": 3.655, "2": 2.368, "3": 1.754, "4": 1.322, "5": 1.008, "6": 0.775 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "audi-0b1-6mt",
+    "label": "Audi 6MT (B8 S4)",
+    "make": ["Audi"],
+    "modelIncludes": ["S4"],
+    "type": "manual",
+    "ratios": { "1": 3.667, "2": 2.158, "3": 1.52, "4": 1.133, "5": 0.919, "6": 0.778 },
+    "source": "Audi published specifications"
+  },
+  {
+    "code": "audi-dl501-dct",
+    "label": "Audi 7-speed S tronic (DL501)",
+    "make": ["Audi"],
+    "modelIncludes": ["S tronic", "S4"],
+    "type": "dct",
+    "ratios": { "1": 3.692, "2": 2.238, "3": 1.559, "4": 1.175, "5": 0.915, "6": 0.745, "7": 0.617 },
+    "source": "Audi published specifications"
+  },
+  {
+    "code": "ford-mt82-v6",
+    "label": "Getrag MT-82 (2011-2014 Mustang V6)",
+    "make": ["Ford"],
+    "modelIncludes": ["Mustang"],
+    "years": [2011, 2014],
+    "type": "manual",
+    "ratios": { "1": 4.236, "2": 2.538, "3": 1.66, "4": 1.23, "5": 1.0, "6": 0.704 },
+    "source": "Ford published specifications"
+  },
+  {
+    "code": "ford-tr6060-falcon",
+    "label": "TREMEC TR-6060 (Falcon GT)",
+    "make": ["Ford"],
+    "modelIncludes": ["Falcon"],
+    "type": "manual",
+    "ratios": { "1": 2.66, "2": 1.78, "3": 1.3, "4": 1.0, "5": 0.8, "6": 0.63 },
+    "source": "Ford Australia service data"
+  },
+  {
+    "code": "honda-h22-prelude-5mt",
+    "label": "Honda H22 5MT (Prelude 1997-2001)",
+    "make": ["Honda"],
+    "modelIncludes": ["Prelude"],
+    "years": [1997, 2001],
+    "type": "manual",
+    "ratios": { "1": 3.285, "2": 1.956, "3": 1.344, "4": 1.034, "5": 0.812 },
+    "source": "Honda published specifications"
+  },
+  {
+    "code": "honda-b18c1-gsr-5mt",
+    "label": "Honda 5MT (Integra GS-R)",
+    "make": ["Acura", "Honda"],
+    "modelIncludes": ["Integra"],
+    "years": [1994, 2001],
+    "type": "manual",
+    "ratios": { "1": 3.23, "2": 1.9, "3": 1.36, "4": 1.034, "5": 0.787 },
+    "source": "Honda service data"
+  },
+  {
+    "code": "honda-d-cable-5mt",
+    "label": "Honda cable 5MT (B/D-series)",
+    "make": ["Honda"],
+    "modelIncludes": ["Civic"],
+    "years": [1991, 1998],
+    "type": "manual",
+    "ratios": { "1": 3.23, "2": 2.105, "3": 1.458, "4": 1.107, "5": 0.848 },
+    "source": "Honda service data"
+  },
+  {
+    "code": "honda-k20-rsx-6mt",
+    "label": "Honda K20 6MT (RSX Type-S)",
+    "make": ["Acura"],
+    "modelIncludes": ["RSX"],
+    "years": [2002, 2006],
+    "type": "manual",
+    "ratios": { "1": 3.267, "2": 2.13, "3": 1.517, "4": 1.147, "5": 0.921, "6": 0.738 },
+    "source": "Acura published specifications"
+  },
+  {
+    "code": "honda-k24z7-6mt",
+    "label": "Honda K24Z7 6MT (Civic Si)",
+    "make": ["Honda"],
+    "modelIncludes": ["Civic"],
+    "years": [2012, 2015],
+    "type": "manual",
+    "ratios": { "1": 3.267, "2": 2.04, "3": 1.429, "4": 1.073, "5": 0.83, "6": 0.647 },
+    "source": "Honda published specifications"
+  },
+  {
+    "code": "mazda-fs-5mt",
+    "label": "Mazda FS 5MT (Protege)",
+    "make": ["Mazda"],
+    "modelIncludes": ["Protege"],
+    "years": [1999, 2003],
+    "type": "manual",
+    "ratios": { "1": 3.307, "2": 1.842, "3": 1.31, "4": 0.97, "5": 0.755 },
+    "source": "Mazda published specifications"
+  },
+  {
+    "code": "mazda-rx7-fd-5mt",
+    "label": "Mazda RX-7 FD 5MT",
+    "make": ["Mazda"],
+    "modelIncludes": ["RX-7"],
+    "years": [1993, 1995],
+    "type": "manual",
+    "ratios": { "1": 3.483, "2": 2.015, "3": 1.391, "4": 1.0, "5": 0.719 },
+    "source": "Mazda service data"
+  },
+  {
+    "code": "mazda-miata-6mt-nd",
+    "label": "Mazda Miata ND 6MT",
+    "make": ["Mazda"],
+    "modelIncludes": ["Miata"],
+    "years": [2015, 2018],
+    "type": "manual",
+    "ratios": { "1": 5.087, "2": 2.991, "3": 2.035, "4": 1.594, "5": 1.286, "6": 1.0 },
+    "source": "Mazda published specifications"
+  },
+  {
+    "code": "mitsubishi-galant-vr4-5mt",
+    "label": "Mitsubishi Galant VR-4 5MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["Galant"],
+    "years": [1996, 2003],
+    "type": "manual",
+    "ratios": { "1": 3.333, "2": 2.105, "3": 1.407, "4": 1.031, "5": 0.761 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "mitsubishi-f5m42-5mt",
+    "label": "Mitsubishi F5M42 5MT",
+    "make": ["Mitsubishi"],
+    "modelIncludes": ["Eclipse", "Lancer"],
+    "years": [2000, 2006],
+    "type": "manual",
+    "ratios": { "1": 3.583, "2": 1.947, "3": 1.379, "4": 1.03, "5": 0.82 },
+    "source": "Mitsubishi service data"
+  },
+  {
+    "code": "subaru-4eat",
+    "label": "Subaru 4EAT",
+    "make": ["Subaru"],
+    "type": "automatic",
+    "ratios": { "1": 2.785, "2": 1.545, "3": 1.0, "4": 0.694 },
+    "source": "Subaru published specifications"
+  },
+  {
+    "code": "gm-4t65e",
+    "label": "GM 4T65E 4AT",
+    "make": ["Pontiac", "Chevrolet", "Buick"],
+    "modelIncludes": ["Grand Prix"],
+    "type": "automatic",
+    "ratios": { "1": 2.921, "2": 1.56, "3": 1.0, "4": 0.705 },
+    "source": "GM service data"
+  },
+  {
+    "code": "gm-ar5-5mt",
+    "label": "Aisin AR5 5MT",
+    "make": ["Pontiac", "Chevrolet", "Saturn"],
+    "modelIncludes": ["Solstice", "Sky"],
+    "type": "manual",
+    "ratios": { "1": 3.75, "2": 2.26, "3": 1.37, "4": 1.0, "5": 0.73 },
+    "source": "GM service data"
+  },
+  {
+    "code": "vw-02j-5mt",
+    "label": "Volkswagen 02J 5MT",
+    "make": ["Volkswagen"],
+    "type": "manual",
+    "ratios": { "1": 3.778, "2": 2.118, "3": 1.36, "4": 1.029, "5": 0.837 },
+    "source": "Volkswagen service data"
+  },
+  {
+    "code": "toyota-v160-6mt",
+    "label": "Toyota V160 Getrag 6MT (Supra Turbo)",
+    "make": ["Toyota"],
+    "modelIncludes": ["Supra"],
+    "years": [1993, 1998],
+    "type": "manual",
+    "ratios": { "1": 3.827, "2": 2.36, "3": 1.685, "4": 1.312, "5": 1.0, "6": 0.793 },
+    "source": "Toyota / Getrag published specifications"
+  },
+  {
+    "code": "bmw-gs6-45bz",
+    "label": "BMW GS6-45BZ 6MT (N55)",
+    "make": ["BMW"],
+    "modelIncludes": ["135i", "335i", "1M"],
+    "years": [2010, 2013],
+    "type": "manual",
+    "ratios": { "1": 4.11, "2": 2.315, "3": 1.542, "4": 1.179, "5": 1.0, "6": 0.846 },
+    "source": "BMW published specifications"
+  },
+  {
+    "code": "nissan-fs6r31a-6mt",
+    "label": "Nissan FS6R31A 6MT (CD009)",
+    "make": ["Infiniti", "Nissan"],
+    "modelIncludes": ["G35", "350Z"],
+    "years": [2003, 2009],
+    "type": "manual",
+    "ratios": { "1": 3.794, "2": 2.324, "3": 1.624, "4": 1.271, "5": 1.0, "6": 0.794 },
+    "source": "Nissan service data"
+  },
+  {
+    "code": "ford-ib6-6mt",
+    "label": "Ford B6/IB6 6MT (Fiesta ST)",
+    "make": ["Ford"],
+    "modelIncludes": ["Fiesta"],
+    "years": [2014, 2017],
+    "type": "manual",
+    "ratios": { "1": 3.727, "2": 2.048, "3": 1.357, "4": 1.03, "5": 0.821, "6": 0.69 },
+    "source": "Ford published specifications"
+  },
+  {
+    "code": "mini-getrag-252-5mt",
+    "label": "Getrag 252 5MT (MINI Cooper)",
+    "make": ["Mini"],
+    "modelIncludes": ["Cooper"],
+    "years": [2002, 2006],
+    "type": "manual",
+    "ratios": { "1": 3.308, "2": 1.913, "3": 1.258, "4": 0.943, "5": 0.806 },
+    "source": "MINI published specifications"
+  },
+  {
+    "code": "hyundai-m6cf1-6mt",
+    "label": "Hyundai M6CF1 6MT (Genesis Coupe 3.8)",
+    "make": ["Hyundai"],
+    "modelIncludes": ["Genesis"],
+    "years": [2009, 2016],
+    "type": "manual",
+    "ratios": { "1": 3.848, "2": 2.317, "3": 1.623, "4": 1.233, "5": 1.0, "6": 0.794 },
+    "source": "Hyundai published specifications"
+  },
+  {
+    "code": "hyundai-6hp19-6at",
+    "label": "Hyundai 6AT (ZF 6HP19-type)",
+    "make": ["Hyundai"],
+    "modelIncludes": ["Genesis"],
+    "years": [2009, 2012],
+    "type": "automatic",
+    "ratios": { "1": 4.17, "2": 2.34, "3": 1.52, "4": 1.14, "5": 0.87, "6": 0.69 },
+    "source": "Matched to Virtual Dyno 3rd/4th; ZF 6HP19 ratios"
+  },
+  {
+    "code": "mazda-sj6a-6at",
+    "label": "Mazda SJ6A-EL 6AT (Aisin)",
+    "make": ["Mazda"],
+    "modelIncludes": ["Miata"],
+    "years": [2015, 2018],
+    "type": "automatic",
+    "ratios": { "1": 3.538, "2": 2.06, "3": 1.404, "4": 1.0, "5": 0.713, "6": 0.582 },
+    "source": "Aisin / Mazda published specifications"
+  },
+  {
+    "code": "nissan-rs5f32a-g20-5mt",
+    "label": "Nissan RS5F32A 5MT (G20 1999)",
+    "make": ["Infiniti"],
+    "modelIncludes": ["G20"],
+    "years": [1999, 1999],
+    "type": "manual",
+    "ratios": { "1": 3.063, "2": 1.826, "3": 1.286, "4": 0.975, "5": 0.756 },
+    "source": "Nissan service data"
+  }
+]

@@ -1,0 +1,1725 @@
+[
+  {
+    "id": "bmw-120d-n47-18s-2007-2011-6mt",
+    "name": "2007-2011 BMW 120d N47 (18s) [6MT]",
+    "make": "BMW",
+    "model": "120d",
+    "yearStart": 2007,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-37dz"
+    },
+    "weightLbs": 3250,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.75,
+    "finalDrive": 2.56,
+    "gears": {
+      "1": 5.14,
+      "2": 2.83,
+      "3": 1.79,
+      "4": 1.26,
+      "5": 1,
+      "6": 0.83
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/120/120_07-11.xml",
+      "index": 0,
+      "gearSource": "override",
+      "note": "120d (N47) uses the diesel GS6-37DZ; VD 3rd/4th/5th (1.8/1.26/1.0) match."
+    },
+    "trim": "N47 (18s)"
+  },
+  {
+    "id": "bmw-135i-n54-17s-2007-2010-6at",
+    "name": "2007-2010 BMW 135i N54 (17s) [6AT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3219,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_07-10.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "N54 (17s)"
+  },
+  {
+    "id": "bmw-135i-n54-17s-2007-2010-6mt",
+    "name": "2007-2010 BMW 135i N54 (17s) [6MT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.07,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_07-10.xml",
+      "index": 3,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "N54 (17s)"
+  },
+  {
+    "id": "bmw-135i-n54-18s-2007-2010-6at",
+    "name": "2007-2010 BMW 135i N54 (18s) [6AT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3219,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.75,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_07-10.xml",
+      "index": 0,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "N54 (18s)"
+  },
+  {
+    "id": "bmw-135i-n54-18s-2007-2010-6mt",
+    "name": "2007-2010 BMW 135i N54 (18s) [6MT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3208,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.75,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_07-10.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "N54 (18s)"
+  },
+  {
+    "id": "bmw-135i-n55-6-speed-2011-2012-6mt",
+    "name": "2011-2012 BMW 135i N55 (6 speed) [6MT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2011,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-45bz"
+    },
+    "weightLbs": 3384,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.75,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.11,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_11-12.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-45bz"
+    },
+    "trim": "N55 (6 speed)"
+  },
+  {
+    "id": "bmw-135i-n55-7-speed-2011-2012-7dct",
+    "name": "2011-2012 BMW 135i N55 (7 speed) [7DCT]",
+    "make": "BMW",
+    "model": "135i",
+    "yearStart": 2011,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3384,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.75,
+    "finalDrive": 2.563,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/135/135i_11-12.xml",
+      "index": 1,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "N55 (7 speed)"
+  },
+  {
+    "id": "bmw-1m-coupe-2011-2011-6mt",
+    "name": "2011 BMW 1M Coupe [6MT]",
+    "make": "BMW",
+    "model": "1M",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-45bz"
+    },
+    "weightLbs": 3461,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.26,
+    "finalDrive": 3.154,
+    "gears": {
+      "1": 4.11,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.37,
+    "frontalAreaSqFt": 22.6042,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/1M/1M_11-11.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-45bz"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "bmw-335i-convertible-2007-2010-6at",
+    "name": "2007-2010 BMW 335i Convertible [6AT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3991,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 4,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Convertible"
+  },
+  {
+    "id": "bmw-335i-coupe-2007-2010-6at",
+    "name": "2007-2010 BMW 335i Coupe [6AT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3560,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 3,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "bmw-335i-coupe-2007-2010-6mt",
+    "name": "2007-2010 BMW 335i Coupe [6MT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3527,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "bmw-335i-coupe-base-dct-2007-2010-7dct",
+    "name": "2007-2010 BMW 335i Coupe Base (DCT) [7DCT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3850,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 2.563,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 22.388912,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 5,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "Coupe Base (DCT)"
+  },
+  {
+    "id": "bmw-335i-coupe-sport-dct-2007-2010-7dct",
+    "name": "2007-2010 BMW 335i Coupe Sport (DCT) [7DCT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3850,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 2.563,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 22.388912,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 6,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "Coupe Sport (DCT)"
+  },
+  {
+    "id": "bmw-335i-sedan-2007-2010-6at",
+    "name": "2007-2010 BMW 335i Sedan [6AT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3585,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "bmw-335i-sedan-2007-2010-6mt",
+    "name": "2007-2010 BMW 335i Sedan [6MT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3552,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_07-10.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "bmw-335i-n55-m-sport-2011-2011-6at",
+    "name": "2011 BMW 335i N55 M-Sport [6AT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3385,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 22.38,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_11-11.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "N55 M-Sport"
+  },
+  {
+    "id": "bmw-335i-n55-m-sport-2011-2011-6mt",
+    "name": "2011 BMW 335i N55 M-Sport [6MT]",
+    "make": "BMW",
+    "model": "335i",
+    "yearStart": 2011,
+    "yearEnd": 2011,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-45bz"
+    },
+    "weightLbs": 3385,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.11,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 22.38,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335i_11-11.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-45bz"
+    },
+    "trim": "N55 M-Sport"
+  },
+  {
+    "id": "bmw-335is-n54-2011-2012-7dct",
+    "name": "2011-2012 BMW 335is N54 [7DCT]",
+    "make": "BMW",
+    "model": "335is",
+    "yearStart": 2011,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3569,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.09,
+    "finalDrive": 2.56,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 22.38,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335is_11-12.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "N54"
+  },
+  {
+    "id": "bmw-335xi-coupe-2007-2010-6at",
+    "name": "2007-2010 BMW 335xi Coupe [6AT]",
+    "make": "BMW",
+    "model": "335xi",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3801,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335xi_07-10.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "bmw-335xi-coupe-2007-2010-6mt",
+    "name": "2007-2010 BMW 335xi Coupe [6MT]",
+    "make": "BMW",
+    "model": "335xi",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3768,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335xi_07-10.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "Coupe"
+  },
+  {
+    "id": "bmw-335xi-sedan-2007-2010-6at",
+    "name": "2007-2010 BMW 335xi Sedan [6AT]",
+    "make": "BMW",
+    "model": "335xi",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3825,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.46,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335xi_07-10.xml",
+      "index": 3,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "bmw-335xi-sedan-2007-2010-6mt",
+    "name": "2007-2010 BMW 335xi Sedan [6MT]",
+    "make": "BMW",
+    "model": "335xi",
+    "yearStart": 2007,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3792,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.03,
+    "finalDrive": 3.08,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/335/335xi_07-10.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "Sedan"
+  },
+  {
+    "id": "bmw-535i-base-2008-2010-6at",
+    "name": "2008-2010 BMW 535i Base [6AT]",
+    "make": "BMW",
+    "model": "535i",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3909,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.72,
+    "finalDrive": 3.64,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/535/535i_08-10.xml",
+      "index": 0,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Base"
+  },
+  {
+    "id": "bmw-535i-sport-2008-2010-6at",
+    "name": "2008-2010 BMW 535i Sport [6AT]",
+    "make": "BMW",
+    "model": "535i",
+    "yearStart": 2008,
+    "yearEnd": 2010,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3909,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.58,
+    "finalDrive": 3.64,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.29,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/535/535i_08-10.xml",
+      "index": 1,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "Sport"
+  },
+  {
+    "id": "bmw-m3-e90-2007-2013-6mt",
+    "name": "2007-2013 BMW M3 E90 [6MT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3538,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.846,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "E90"
+  },
+  {
+    "id": "bmw-m3-e90-2007-2013-7dct",
+    "name": "2007-2013 BMW M3 E90 [7DCT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3538,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.3,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 1,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "E90"
+  },
+  {
+    "id": "bmw-m3-e92-2007-2013-6mt",
+    "name": "2007-2013 BMW M3 E92 [6MT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3483,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.846,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "E92"
+  },
+  {
+    "id": "bmw-m3-e92-2007-2013-7dct",
+    "name": "2007-2013 BMW M3 E92 [7DCT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3483,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.31,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 3,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "E92"
+  },
+  {
+    "id": "bmw-m3-e93-2007-2013-6mt",
+    "name": "2007-2013 BMW M3 E93 [6MT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3990,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.846,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 4,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "E93"
+  },
+  {
+    "id": "bmw-m3-e93-2007-2013-7dct",
+    "name": "2007-2013 BMW M3 E93 [7DCT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2007,
+    "yearEnd": 2013,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3990,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.7,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 23.3577,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_07-13.xml",
+      "index": 5,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "E93"
+  },
+  {
+    "id": "bmw-m3-f80-19s-2014-2018-6mt",
+    "name": "2014-2018 BMW M3 F80 - 19s [6MT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-f8x"
+    },
+    "weightLbs": 3574,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.111,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_14-18.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-f8x"
+    },
+    "trim": "F80 - 19s"
+  },
+  {
+    "id": "bmw-m3-f80-19s-2014-2018-7dct",
+    "name": "2014-2018 BMW M3 F80 - 19s [7DCT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-f8x"
+    },
+    "weightLbs": 3631,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.806,
+      "2": 2.593,
+      "3": 1.701,
+      "4": 1.277,
+      "5": 1,
+      "6": 0.844,
+      "7": 0.671
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_14-18.xml",
+      "index": 1,
+      "gearSource": "preset:bmw-dct-f8x"
+    },
+    "trim": "F80 - 19s"
+  },
+  {
+    "id": "bmw-m3-f80-20s-2014-2018-6mt",
+    "name": "2014-2018 BMW M3 F80 - 20s [6MT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-f8x"
+    },
+    "weightLbs": 3574,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.3,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.111,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_14-18.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-f8x"
+    },
+    "trim": "F80 - 20s"
+  },
+  {
+    "id": "bmw-m3-f80-20s-2014-2018-7dct",
+    "name": "2014-2018 BMW M3 F80 - 20s [7DCT]",
+    "make": "BMW",
+    "model": "M3",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-f8x"
+    },
+    "weightLbs": 3631,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.3,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.806,
+      "2": 2.593,
+      "3": 1.701,
+      "4": 1.277,
+      "5": 1,
+      "6": 0.844,
+      "7": 0.671
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M3/M3_14-18.xml",
+      "index": 3,
+      "gearSource": "preset:bmw-dct-f8x"
+    },
+    "trim": "F80 - 20s"
+  },
+  {
+    "id": "bmw-m4-f82-19s-2014-2018-6mt",
+    "name": "2014-2018 BMW M4 F82 - 19s [6MT]",
+    "make": "BMW",
+    "model": "M4",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-f8x"
+    },
+    "weightLbs": 3466,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.111,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M4/M4_14-18.xml",
+      "index": 0,
+      "gearSource": "preset:bmw-gs6-f8x"
+    },
+    "trim": "F82 - 19s"
+  },
+  {
+    "id": "bmw-m4-f82-19s-2014-2018-7dct",
+    "name": "2014-2018 BMW M4 F82 - 19s [7DCT]",
+    "make": "BMW",
+    "model": "M4",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-f8x"
+    },
+    "weightLbs": 3554,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.806,
+      "2": 2.593,
+      "3": 1.701,
+      "4": 1.277,
+      "5": 1,
+      "6": 0.844,
+      "7": 0.671
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M4/M4_14-18.xml",
+      "index": 1,
+      "gearSource": "preset:bmw-dct-f8x"
+    },
+    "trim": "F82 - 19s"
+  },
+  {
+    "id": "bmw-m4-f82-20s-2014-2018-6mt",
+    "name": "2014-2018 BMW M4 F82 - 20s [6MT]",
+    "make": "BMW",
+    "model": "M4",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-f8x"
+    },
+    "weightLbs": 3466,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.3,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.111,
+      "2": 2.315,
+      "3": 1.542,
+      "4": 1.179,
+      "5": 1,
+      "6": 0.846
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M4/M4_14-18.xml",
+      "index": 2,
+      "gearSource": "preset:bmw-gs6-f8x"
+    },
+    "trim": "F82 - 20s"
+  },
+  {
+    "id": "bmw-m4-f82-20s-2014-2018-7dct",
+    "name": "2014-2018 BMW M4 F82 - 20s [7DCT]",
+    "make": "BMW",
+    "model": "M4",
+    "yearStart": 2014,
+    "yearEnd": 2018,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-f8x"
+    },
+    "weightLbs": 3554,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26.3,
+    "finalDrive": 3.462,
+    "gears": {
+      "1": 4.806,
+      "2": 2.593,
+      "3": 1.701,
+      "4": 1.277,
+      "5": 1,
+      "6": 0.844,
+      "7": 0.671
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 24.64935,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/M4/M4_14-18.xml",
+      "index": 3,
+      "gearSource": "preset:bmw-dct-f8x"
+    },
+    "trim": "F82 - 20s"
+  },
+  {
+    "id": "bmw-z4-sdrive23i-2009-2012-6at",
+    "name": "2009-2012 BMW Z4 sDrive23i [6AT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3153,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.727,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 0,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "sDrive23i"
+  },
+  {
+    "id": "bmw-z4-sdrive23i-2009-2012-6mt",
+    "name": "2009-2012 BMW Z4 sDrive23i [6MT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-37bz"
+    },
+    "weightLbs": 3097,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.636,
+    "gears": {
+      "1": 4.35,
+      "2": 2.496,
+      "3": 1.665,
+      "4": 1.234,
+      "5": 1,
+      "6": 0.851
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 1,
+      "gearSource": "override",
+      "note": "Z4 sDrive23i (N52) uses the ZF GS6-37BZ; VD 3rd/4th (1.659/1.23) match within tolerance."
+    },
+    "trim": "sDrive23i"
+  },
+  {
+    "id": "bmw-z4-sdrive30i-2009-2012-6at",
+    "name": "2009-2012 BMW Z4 sDrive30i [6AT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 6,
+      "code": "zf-6hp19-6r80"
+    },
+    "weightLbs": 3153,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.636,
+    "gears": {
+      "1": 4.17,
+      "2": 2.34,
+      "3": 1.52,
+      "4": 1.14,
+      "5": 0.87,
+      "6": 0.69
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 3,
+      "gearSource": "preset:zf-6hp19-6r80"
+    },
+    "trim": "sDrive30i"
+  },
+  {
+    "id": "bmw-z4-sdrive30i-2009-2012-mt",
+    "name": "2009-2012 BMW Z4 sDrive30i [MT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual"
+    },
+    "weightLbs": 3119,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 4.273,
+    "gears": {
+      "3": 1.313,
+      "4": 1
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": false,
+    "dataConfidence": "measured",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 2
+    },
+    "trim": "sDrive30i"
+  },
+  {
+    "id": "bmw-z4-sdrive35i-2009-2012-6mt",
+    "name": "2009-2012 BMW Z4 sDrive35i [6MT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "bmw-gs6-53bz"
+    },
+    "weightLbs": 3318,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 3.077,
+    "gears": {
+      "1": 4.055,
+      "2": 2.396,
+      "3": 1.582,
+      "4": 1.192,
+      "5": 1,
+      "6": 0.872
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 4,
+      "gearSource": "preset:bmw-gs6-53bz"
+    },
+    "trim": "sDrive35i"
+  },
+  {
+    "id": "bmw-z4-sdrive35i-2009-2012-7dct",
+    "name": "2009-2012 BMW Z4 sDrive35i [7DCT]",
+    "make": "BMW",
+    "model": "Z4",
+    "yearStart": 2009,
+    "yearEnd": 2012,
+    "transmission": {
+      "type": "dct",
+      "speeds": 7,
+      "code": "bmw-dct-7dci600"
+    },
+    "weightLbs": 3318,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 24.97,
+    "finalDrive": 2.56,
+    "gears": {
+      "1": 4.78,
+      "2": 2.933,
+      "3": 2.153,
+      "4": 1.678,
+      "5": 1.39,
+      "6": 1.203,
+      "7": 0.806
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.34,
+    "frontalAreaSqFt": 23.36,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "BMW/Z4/Z4_09-12.xml",
+      "index": 5,
+      "gearSource": "preset:bmw-dct-7dci600"
+    },
+    "trim": "sDrive35i"
+  }
+]

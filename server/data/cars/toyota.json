@@ -1,0 +1,122 @@
+[
+  {
+    "id": "toyota-supra-turbo-jdm-1994-1999-6mt",
+    "name": "1994-1999 Toyota Supra Turbo (JDM) [6MT]",
+    "make": "Toyota",
+    "model": "Supra",
+    "yearStart": 1994,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-v160-6mt"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.266,
+    "gears": {
+      "1": 3.827,
+      "2": 2.36,
+      "3": 1.685,
+      "4": 1.312,
+      "5": 1,
+      "6": 0.793
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 20.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Toyota/Supra/Supra_94-99.xml",
+      "index": 0,
+      "gearSource": "preset:toyota-v160-6mt"
+    },
+    "trim": "Turbo (JDM)"
+  },
+  {
+    "id": "toyota-supra-turbo-usdm-1994-1999-6mt",
+    "name": "1994-1999 Toyota Supra Turbo (USDM) [6MT]",
+    "make": "Toyota",
+    "model": "Supra",
+    "yearStart": 1994,
+    "yearEnd": 1999,
+    "transmission": {
+      "type": "manual",
+      "speeds": 6,
+      "code": "toyota-v160-6mt"
+    },
+    "weightLbs": 3550,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 25.4,
+    "finalDrive": 3.133,
+    "gears": {
+      "1": 3.827,
+      "2": 2.36,
+      "3": 1.685,
+      "4": 1.312,
+      "5": 1,
+      "6": 0.793
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.32,
+    "frontalAreaSqFt": 20.1,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Toyota/Supra/Supra_94-99.xml",
+      "index": 1,
+      "gearSource": "preset:toyota-v160-6mt"
+    },
+    "trim": "Turbo (USDM)"
+  },
+  {
+    "id": "toyota-supra-3-0l-gr-mkv-2020-2020-8at",
+    "name": "2020 Toyota Supra 3.0L GR MKV [8AT]",
+    "make": "Toyota",
+    "model": "Supra",
+    "yearStart": 2020,
+    "yearEnd": 2020,
+    "transmission": {
+      "type": "automatic",
+      "speeds": 8,
+      "code": "zf-8hp51"
+    },
+    "weightLbs": 3397,
+    "occupantWeightLbs": 170,
+    "tireDiameterInches": 26,
+    "finalDrive": 3.15,
+    "gears": {
+      "1": 5.25,
+      "2": 3.36,
+      "3": 2.17,
+      "4": 1.72,
+      "5": 1.32,
+      "6": 1,
+      "7": 0.82,
+      "8": 0.64
+    },
+    "defaultGear": 3,
+    "dragCoefficient": 0.33,
+    "frontalAreaSqFt": 23.2,
+    "dynoType": "dynojet",
+    "smoothing": 4,
+    "gearDataComplete": true,
+    "dataConfidence": "mixed",
+    "source": {
+      "kind": "virtualdyno",
+      "file": "Toyota/Supra/Supra-20-20.xml",
+      "index": 0,
+      "custom": true,
+      "gearSource": "preset:zf-8hp51"
+    },
+    "trim": "3.0L GR MKV"
+  }
+]

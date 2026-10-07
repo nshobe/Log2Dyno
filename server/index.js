@@ -2,48 +2,18 @@
  * Log2Dyno - Local Server & API
  */
 
+'use strict';
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const { parseLog, parseLogBuffer } = require('./parser');
 const { calculateDyno, DYNO_FACTORS } = require('./dynoMath');
+const carCatalog = require('./carCatalog');
 
 const PORT = parseInt(process.env.PORT, 10) || 3300;
-const CARS_FILE = process.env.CARS_FILE || path.join(__dirname, 'cars.json');
-
-// Default car profiles pre-loaded with USDM 2004 STi
-const DEFAULT_CARS = [
-  {
-    id: 'sti_04_usdm',
-    name: '2004 Subaru WRX STi [USDM 6MT]',
-    make: 'Subaru',
-    model: 'STi Sedan',
-    year: 2004,
-    weightLbs: 3351,
-    occupantWeightLbs: 170,
-    tireDiameterInches: 24.97,
-    finalDrive: 3.900,
-    gears: {
-      "1": 3.636,
-      "2": 2.375,
-      "3": 1.761,
-      "4": 1.346,
-      "5": 0.971,
-      "6": 0.756
-    },
-    defaultGear: 3,
-    dragCoefficient: 0.33,
-    frontalAreaSqFt: 22.20,
-    dynoType: 'dynojet',
-    smoothing: 4
-  }
-];
-
-// Initialize cars file if not exists
-if (!fs.existsSync(CARS_FILE)) {
-  fs.writeFileSync(CARS_FILE, JSON.stringify(DEFAULT_CARS, null, 2), 'utf8');
-}
+const DEFAULT_CARS_FILE = path.join(__dirname, '..', 'data', 'cars.json');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -85,174 +55,190 @@ function parseBody(req) {
   });
 }
 
-const server = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
+/**
+ * Build the HTTP server.
+ * @param {{carsFile?: string, catalogDir?: string}} [config]
+ *   carsFile   - path to the writable user garage (defaults to CARS_FILE env)
+ *   catalogDir - directory of read-only bundled catalog JSON files
+ */
+function createServer(config = {}) {
+  const carsFile = config.carsFile || process.env.CARS_FILE || DEFAULT_CARS_FILE;
+  const catalogDir = config.catalogDir || process.env.CARS_CATALOG_DIR || undefined;
+  const carOptions = { catalogDir, garageFile: carsFile };
 
-  // CORS headers
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    });
-    return res.end();
+  function listCars() {
+    const { cars, garageError } = carCatalog.getCars(carOptions);
+    if (garageError) console.warn('[cars] garage ignored (catalog served):', garageError);
+    return cars;
   }
 
-  // --- API Endpoints ---
-  
-  // 1. Parse uploaded or pasted log content
-  if (pathname === '/api/parse-log' && req.method === 'POST') {
-    try {
-      const data = await parseBody(req);
-      const content = typeof data === 'object' ? data.content : data;
-      const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
-      const options = (typeof data === 'object' && data.options) || {};
-      const encoding = typeof data === 'object' ? data.encoding : null;
-      let parsed;
-      if (encoding === 'base64') {
-        const buffer = Buffer.from(content, 'base64');
-        parsed = parseLogBuffer(buffer, filename, options);
-      } else {
-        parsed = parseLog(content, filename, options);
-      }
-      return sendJson(res, 200, parsed);
-    } catch (err) {
-      return sendJson(res, 500, { error: 'Parse failure: ' + err.message });
-    }
-  }
+  const server = http.createServer(async (req, res) => {
+    const parsedUrl = url.parse(req.url, true);
+    const pathname = parsedUrl.pathname;
 
-  // 2. Extract arbitrary numeric channel series (custom graph field)
-  if (pathname === '/api/channel-series' && req.method === 'POST') {
-    try {
-      const data = await parseBody(req);
-      const content = typeof data === 'object' ? data.content : null;
-      const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
-      const baseOptions = (typeof data === 'object' && data.options) || {};
-      const encoding = typeof data === 'object' ? data.encoding : null;
-      const requested = (typeof data === 'object' && Array.isArray(data.channels)) ? data.channels : [];
-      if (!content || requested.length === 0) {
-        return sendJson(res, 400, { error: 'Missing content or channels' });
-      }
-      const options = { ...baseOptions, series: requested };
-      let parsed;
-      if (encoding === 'base64') {
-        parsed = parseLogBuffer(Buffer.from(content, 'base64'), filename, options);
-      } else {
-        parsed = parseLog(content, filename, options);
-      }
-      if (parsed.error) return sendJson(res, 200, { error: parsed.error });
-      const series = parsed.series || {};
-      const available = Object.keys(series).filter(k => series[k].some(v => v !== null));
-      const missing = requested.filter(name => !available.includes(name));
-      return sendJson(res, 200, {
-        series,
-        missing,
-        numericChannels: parsed.numericChannels || [],
-        totalRows: parsed.totalRows
+    // CORS headers
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
       });
-    } catch (err) {
-      return sendJson(res, 500, { error: 'Channel series failure: ' + err.message });
+      return res.end();
     }
-  }
 
-  // 3. Supported log formats / type hints for the UI selector
-  if (pathname === '/api/formats' && req.method === 'GET') {
-    return sendJson(res, 200, [
-      { id: 'auto', label: 'Auto-detect' },
-      { id: 'haltech', label: 'Haltech (NSP / Nexus)' },
-      { id: 'megasquirt', label: 'MegaSquirt / TunerStudio' },
-      { id: 'generic', label: 'Generic CSV' }
-    ]);
-  }
+    // --- API Endpoints ---
 
-  // 4. Calculate Dyno Curve
-  if (pathname === '/api/calculate-dyno' && req.method === 'POST') {
-    try {
-      const { pullData, carProfile, rpmStep, customName } = await parseBody(req);
-      if (!pullData || !carProfile) {
-        return sendJson(res, 400, { error: 'Missing pullData or carProfile' });
-      }
-      const manualRpmStep = [5,10,25].includes(Number(rpmStep)) ? Number(rpmStep) : null;
-      const dynoResult = calculateDyno(pullData, carProfile, manualRpmStep, customName || null);
-      return sendJson(res, 200, dynoResult);
-    } catch (err) {
-      return sendJson(res, 500, { error: 'Dyno calculation failure: ' + err.message });
-    }
-  }
-
-  // 5. Get Saved Car Profiles
-  if (pathname === '/api/cars' && req.method === 'GET') {
-    try {
-      const raw = fs.readFileSync(CARS_FILE, 'utf8');
-      return sendJson(res, 200, JSON.parse(raw));
-    } catch (e) {
-      return sendJson(res, 200, DEFAULT_CARS);
-    }
-  }
-
-  // 6. Save or Update Car Profile
-  if (pathname === '/api/save-car' && req.method === 'POST') {
-    try {
-      const car = await parseBody(req);
-      let list = [];
+    // 1. Parse uploaded or pasted log content
+    if (pathname === '/api/parse-log' && req.method === 'POST') {
       try {
-        list = JSON.parse(fs.readFileSync(CARS_FILE, 'utf8'));
-      } catch (e) {
-        list = DEFAULT_CARS;
+        const data = await parseBody(req);
+        const content = typeof data === 'object' ? data.content : data;
+        const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
+        const options = (typeof data === 'object' && data.options) || {};
+        const encoding = typeof data === 'object' ? data.encoding : null;
+        let parsed;
+        if (encoding === 'base64') {
+          const buffer = Buffer.from(content, 'base64');
+          parsed = parseLogBuffer(buffer, filename, options);
+        } else {
+          parsed = parseLog(content, filename, options);
+        }
+        return sendJson(res, 200, parsed);
+      } catch (err) {
+        return sendJson(res, 500, { error: 'Parse failure: ' + err.message });
       }
-      const idx = list.findIndex(c => c.id === car.id);
-      if (idx >= 0) {
-        list[idx] = car;
-      } else {
-        car.id = car.id || ('car_' + Date.now());
-        list.push(car);
-      }
-      fs.writeFileSync(CARS_FILE, JSON.stringify(list, null, 2), 'utf8');
-      return sendJson(res, 200, { success: true, cars: list, currentCar: car });
-    } catch (err) {
-      return sendJson(res, 500, { error: 'Failed to save car profile: ' + err.message });
     }
-  }
 
-  // 7. Delete Car Profile
-  if (pathname === '/api/delete-car' && req.method === 'POST') {
-    try {
-      const { id } = await parseBody(req);
-      let list = [];
+    // 2. Extract arbitrary numeric channel series (custom graph field)
+    if (pathname === '/api/channel-series' && req.method === 'POST') {
       try {
-        list = JSON.parse(fs.readFileSync(CARS_FILE, 'utf8'));
-      } catch (e) {
-        list = DEFAULT_CARS;
+        const data = await parseBody(req);
+        const content = typeof data === 'object' ? data.content : null;
+        const filename = (typeof data === 'object' && data.filename) || 'uploaded_log.csv';
+        const baseOptions = (typeof data === 'object' && data.options) || {};
+        const encoding = typeof data === 'object' ? data.encoding : null;
+        const requested = (typeof data === 'object' && Array.isArray(data.channels)) ? data.channels : [];
+        if (!content || requested.length === 0) {
+          return sendJson(res, 400, { error: 'Missing content or channels' });
+        }
+        const options = { ...baseOptions, series: requested };
+        let parsed;
+        if (encoding === 'base64') {
+          parsed = parseLogBuffer(Buffer.from(content, 'base64'), filename, options);
+        } else {
+          parsed = parseLog(content, filename, options);
+        }
+        if (parsed.error) return sendJson(res, 200, { error: parsed.error });
+        const series = parsed.series || {};
+        const available = Object.keys(series).filter(k => series[k].some(v => v !== null));
+        const missing = requested.filter(name => !available.includes(name));
+        return sendJson(res, 200, {
+          series,
+          missing,
+          numericChannels: parsed.numericChannels || [],
+          totalRows: parsed.totalRows
+        });
+      } catch (err) {
+        return sendJson(res, 500, { error: 'Channel series failure: ' + err.message });
       }
-      list = list.filter(c => c.id !== id);
-      fs.writeFileSync(CARS_FILE, JSON.stringify(list, null, 2), 'utf8');
-      return sendJson(res, 200, { success: true, cars: list });
-    } catch (err) {
-      return sendJson(res, 500, { error: 'Failed to delete car profile: ' + err.message });
     }
+
+    // 3. Supported log formats / type hints for the UI selector
+    if (pathname === '/api/formats' && req.method === 'GET') {
+      return sendJson(res, 200, [
+        { id: 'auto', label: 'Auto-detect' },
+        { id: 'haltech', label: 'Haltech (NSP / Nexus)' },
+        { id: 'megasquirt', label: 'MegaSquirt / TunerStudio' },
+        { id: 'generic', label: 'Generic CSV' }
+      ]);
+    }
+
+    // 4. Calculate Dyno Curve
+    if (pathname === '/api/calculate-dyno' && req.method === 'POST') {
+      try {
+        const { pullData, carProfile, rpmStep, customName } = await parseBody(req);
+        if (!pullData || !carProfile) {
+          return sendJson(res, 400, { error: 'Missing pullData or carProfile' });
+        }
+        const manualRpmStep = [5,10,25].includes(Number(rpmStep)) ? Number(rpmStep) : null;
+        const dynoResult = calculateDyno(pullData, carProfile, manualRpmStep, customName || null);
+        return sendJson(res, 200, dynoResult);
+      } catch (err) {
+        return sendJson(res, 500, { error: 'Dyno calculation failure: ' + err.message });
+      }
+    }
+
+    // 5. Get vehicle list (read-only catalog + user garage)
+    if (pathname === '/api/cars' && req.method === 'GET') {
+      try {
+        return sendJson(res, 200, listCars());
+      } catch (err) {
+        return sendJson(res, 500, { error: 'Failed to load vehicles: ' + err.message });
+      }
+    }
+
+    // 6. Save or update a user vehicle profile (garage only)
+    if (pathname === '/api/save-car' && req.method === 'POST') {
+      try {
+        const car = await parseBody(req);
+        const { car: saved, cloned } = carCatalog.upsertGarageCar(car, carOptions);
+        return sendJson(res, 200, {
+          success: true,
+          cloned,
+          currentCar: saved,
+          cars: listCars()
+        });
+      } catch (err) {
+        const status = err.code === 'INVALID_CAR' ? 400 : 500;
+        return sendJson(res, status, { error: err.message, validation: err.validation || null });
+      }
+    }
+
+    // 7. Delete a user vehicle profile (built-in catalog profiles are protected)
+    if (pathname === '/api/delete-car' && req.method === 'POST') {
+      try {
+        const { id } = await parseBody(req);
+        carCatalog.removeGarageCar(id, carOptions);
+        return sendJson(res, 200, { success: true, cars: listCars() });
+      } catch (err) {
+        const status = (err.code === 'INVALID_CAR' || err.code === 'CATALOG_IMMUTABLE') ? 400 : 500;
+        return sendJson(res, status, { error: err.message });
+      }
+    }
+
+    // --- Static Files Server ---
+    let filePath = path.join(__dirname, '../public', pathname === '/' ? 'index.html' : pathname);
+
+    if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+      filePath = path.join(__dirname, '../public', 'index.html');
+    }
+
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+
+    try {
+      const data = fs.readFileSync(filePath);
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(data);
+    } catch (err) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not Found');
+    }
+  });
+
+  return server;
+}
+
+if (require.main === module) {
+  const { errors, warnings } = carCatalog.getCatalogDiagnostics();
+  for (const e of errors) console.error('[catalog] ' + e);
+  if (warnings.length) {
+    console.warn(`[catalog] ${warnings.length} validation warning(s); run "npm run validate-cars" for details.`);
   }
 
-  // --- Static Files Server ---
-  let filePath = path.join(__dirname, '../public', pathname === '/' ? 'index.html' : pathname);
-  
-  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(__dirname, '../public', 'index.html');
-  }
+  createServer().listen(PORT, '0.0.0.0', () => {
+    console.log(`Log2Dyno server running at http://localhost:${PORT}`);
+  });
+}
 
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-  try {
-    const data = fs.readFileSync(filePath);
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(data);
-  } catch (err) {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
-  }
-});
-
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Log2Dyno server running at http://localhost:${PORT}`);
-});
+module.exports = { createServer, DEFAULT_CARS_FILE };
