@@ -119,3 +119,18 @@ Ideal for standalone tuning laptops:
 ## ⚖️ Disclaimer
 
 *Log2Dyno is an independent open-source community tool created for telemetry analysis and is not affiliated with, sponsored by, or endorsed by Haltech, EFI Analytics (TunerStudio/MegaLogViewer), or any ECU manufacturer.*
+
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE).
+
+Log2Dyno descends from [NSP_Dyno](https://github.com/ImMrTea/NSP_Dyno) by
+[ImMrTea](https://github.com/ImMrTea), and the original copyright notice is retained
+in `LICENSE`.
+
+The bundled vehicle catalog additionally derives from the Virtual Dyno car database
+(Brad Barnhill) and from manufacturer-published transmission and vehicle
+specifications. See [`server/data/cars/SOURCES.md`](server/data/cars/SOURCES.md) for
+full attribution.
